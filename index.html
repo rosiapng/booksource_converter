@@ -55,19 +55,37 @@
     <script>
         // Function to convert HTML to XPath
         function getXPathForElement(element) {
-            if (element.id !== '') return '//*[@id="' + element.id + '"]';
-            if (element === document.body) return '/html/body';
-            var ix = 0;
-            var siblings = element.parentNode.childNodes;
-            for (var i = 0; i < siblings.length; i++) {
-                var sibling = siblings[i];
-                if (sibling === element) {
-                    return getXPathForElement(element.parentNode) + '/' + element.tagName.toLowerCase() + '[' + (ix + 1) + ']';
-                }
-                if (sibling.nodeType === 1 && sibling.tagName === element.tagName) {
-                    ix++;
+            if (!element || element.nodeType !== 1) return '';
+            
+            // Start constructing the XPath
+            let xpath = '//' + element.tagName.toLowerCase();
+
+            // Handle ID if it exists
+            if (element.id) {
+                xpath += '[@id="' + element.id + '"]';
+            }
+            // Handle class attribute if it exists
+            else if (element.className) {
+                xpath += '[@class="' + element.className + '"]';
+            } 
+            // Handle other attributes (you can extend this to include more attributes if needed)
+            else {
+                const attributes = element.attributes;
+                if (attributes.length > 0) {
+                    let conditions = [];
+                    for (let i = 0; i < attributes.length; i++) {
+                        let attr = attributes[i];
+                        if (attr.name !== "id" && attr.name !== "class") {
+                            conditions.push(`@${attr.name}="${attr.value}"`);
+                        }
+                    }
+                    if (conditions.length > 0) {
+                        xpath += '[' + conditions.join(' and ') + ']';
+                    }
                 }
             }
+
+            return xpath;
         }
 
         function convertToXPath() {
