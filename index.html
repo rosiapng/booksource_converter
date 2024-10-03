@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML to XPath Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .input-container {
+            margin: 20px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>HTML to XPath Converter</h2>
+    
+    <div class="input-container">
+        <label for="htmlInput">Input HTML Code:</label>
+        <textarea id="htmlInput" rows="6" placeholder="Paste your HTML code here"></textarea>
+    </div>
+    
+    <button onclick="convertToXPath()">Convert to XPath</button>
+    
+    <div class="input-container">
+        <label for="xpathOutput">Generated XPath:</label>
+        <input type="text" id="xpathOutput" readonly placeholder="XPath will appear here">
+    </div>
+
+    <script>
+        // Function to convert HTML to XPath
+        function getXPathForElement(element) {
+            if (element.id !== '') return '//*[@id="' + element.id + '"]';
+            if (element === document.body) return '/html/body';
+            var ix = 0;
+            var siblings = element.parentNode.childNodes;
+            for (var i = 0; i < siblings.length; i++) {
+                var sibling = siblings[i];
+                if (sibling === element) {
+                    return getXPathForElement(element.parentNode) + '/' + element.tagName.toLowerCase() + '[' + (ix + 1) + ']';
+                }
+                if (sibling.nodeType === 1 && sibling.tagName === element.tagName) {
+                    ix++;
+                }
+            }
+        }
+
+        function convertToXPath() {
+            // Get the HTML from the input box
+            const htmlCode = document.getElementById('htmlInput').value;
+            
+            // Create a new DOM parser to parse the HTML string
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlCode, 'text/html');
+
+            // Select the first element in the parsed HTML
+            const firstElement = doc.body.firstElementChild;
+
+            if (firstElement) {
+                // Generate XPath for the first element
+                const xpath = getXPathForElement(firstElement);
+                
+                // Output the XPath in the second input box
+                document.getElementById('xpathOutput').value = xpath;
+            } else {
+                document.getElementById('xpathOutput').value = 'No valid element found in HTML';
+            }
+        }
+    </script>
+
+</body>
+</html>
