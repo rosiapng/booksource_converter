@@ -193,13 +193,13 @@
     // Step 2: Transform the provided JavaScript code
     convertedCode += jsCode
         .replace(/@js:/g, '') // Remove "@js:"
-        .replace(/return\s+(\w+);/g, (match, urlsVariable) => {
-            // Keep the original return variable and convert it to JSON
-            return `var jsonString = JSON.stringify(${urlsVariable});\nreturn jsonString;\n`;
-        });
+        
 
     // Step 3: Close the function
-    convertedCode += `\n}`;
+    convertedCode += `var jsonString = JSON.stringify(the return code)//put return code here
+
+return jsonString
+}`;
 
     // Output the converted code
     document.getElementById('jsOutput').value = convertedCode;
