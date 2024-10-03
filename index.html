@@ -174,14 +174,13 @@
             document.getElementById(inputId).value = '';
         }
 
-        // Function to copy output values to the clipboard
         function copyOutput(outputId) {
-            const outputElement = document.getElementById(outputId);
-            outputElement.select();
-            outputElement.setSelectionRange(0, 99999); // For mobile devices
-            document.execCommand("copy");
-            alert("Copied the text: " + outputElement.value);
-        }
+    const outputElement = document.getElementById(outputId);
+    outputElement.select();
+    outputElement.setSelectionRange(0, 99999); // For mobile devices
+    document.execCommand("copy");
+    // Removed the alert
+}
         
       
         // Function to convert the input JS code to a custom format
