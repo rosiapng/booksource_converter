@@ -45,6 +45,8 @@
 
     <h2>HTML to XPath & XPath to CSS Converter</h2>
     
+     <p>Convert your JavaScript snippets into a custom function format with ease. This tool will add necessary comments and transform map function calls into JSON stringifications.</p>
+    
     <!-- HTML to XPath Converter -->
     <div class="input-container">
         <label for="htmlInput">Input HTML Code:</label>
@@ -59,6 +61,10 @@
         <input type="text" id="xpathOutput" readonly placeholder="XPath will appear here">
         <button onclick="copyOutput('xpathOutput')">Copy</button>
     </div>
+    
+      <h2>HTML to XPath & XPath to CSS Converter</h2>
+      
+       <p>Convert your JavaScript snippets into a custom function format with ease. This tool will add necessary comments and transform map function calls into JSON stringifications.</p>
 
     <!-- XPath to CSS Converter -->
     <div class="input-container">
@@ -73,6 +79,27 @@
         <label for="cssOutput">Generated CSS Selector:</label>
         <input type="text" id="cssOutput" readonly placeholder="CSS Selector will appear here">
         <button onclick="copyOutput('cssOutput')">Copy</button>
+    </div>
+    
+        
+    <h2>JS Code to Custom Function Converter</h2>
+    
+     <p>Convert your JavaScript snippets into a custom function format with ease. This tool will add necessary comments and transform map function calls into JSON stringifications.</p>
+    
+    <!-- Input Box for JavaScript Code -->
+    <div class="input-container">
+        <label for="jsInput">Input JavaScript Code:</label>
+        <textarea id="jsInput" rows="12" placeholder="Paste your JavaScript code here"></textarea>
+        <button onclick="clearInput('jsInput')">Clear</button>
+    </div>
+    
+    <button onclick="convertToCustomFunction()">Convert to Custom Function</button>
+    
+    <!-- Output Box for Converted Code -->
+    <div class="input-container">
+        <label for="jsOutput">Converted Function Code:</label>
+        <textarea id="jsOutput" rows="12" readonly placeholder="Converted JavaScript code will appear here"></textarea>
+        <button onclick="copyOutput('jsOutput')">Copy</button>
     </div>
 
     <script>
@@ -155,6 +182,30 @@
             document.execCommand("copy");
             alert("Copied the text: " + outputElement.value);
         }
+        
+      
+        // Function to convert the input JS code to a custom format
+        function convertToCustomFunction() {
+            let jsCode = document.getElementById('jsInput').value;
+
+            // Step 1: Add "powered by RosiaP'ng" into the function definition
+            let convertedCode = `function MYAnalysis(result) {\n//powered by RosiaP'ng,\n`;
+
+            // Step 2: Extract the variable used before '.map()'
+            convertedCode += jsCode.replace(/@js:/g, '') // Remove "@js:"
+                .replace(/return\s+(\w+)\.map\(x\s*=>\s*`(.*?)`\);/g, (match, imgVar) => {
+                    // Replace the return statement with JSON conversion
+                    return `var jsonString = JSON.stringify(${imgVar});\nreturn jsonString;`;
+                });
+
+            // Step 3: Close the function
+            convertedCode += `\n}`;
+
+            // Output the converted code
+            document.getElementById('jsOutput').value = convertedCode;
+        }
+        
+        
     </script>
 
 </body>
