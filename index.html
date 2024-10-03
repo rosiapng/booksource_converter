@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML to XPath Converter</title>
+    <title>HTML to XPath & XPath to CSS Converter</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,11 +16,12 @@
             margin-bottom: 5px;
         }
         textarea, input[type="text"] {
-            width: 100%;
+            width: calc(100% - 100px); /* Adjusted width for buttons */
             padding: 10px;
             font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 4px;
+            display: inline-block;
         }
         button {
             padding: 10px 20px;
@@ -30,19 +31,25 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            margin-left: 10px;
         }
         button:hover {
             background-color: #0056b3;
+        }
+        .action-buttons {
+            display: inline-block;
         }
     </style>
 </head>
 <body>
 
-    <h2>HTML to XPath Converter</h2>
+    <h2>HTML to XPath & XPath to CSS Converter</h2>
     
+    <!-- HTML to XPath Converter -->
     <div class="input-container">
         <label for="htmlInput">Input HTML Code:</label>
         <textarea id="htmlInput" rows="6" placeholder="Paste your HTML code here"></textarea>
+        <button onclick="clearInput('htmlInput')">Clear</button>
     </div>
     
     <button onclick="convertToXPath()">Convert to XPath</button>
@@ -50,6 +57,22 @@
     <div class="input-container">
         <label for="xpathOutput">Generated XPath:</label>
         <input type="text" id="xpathOutput" readonly placeholder="XPath will appear here">
+        <button onclick="copyOutput('xpathOutput')">Copy</button>
+    </div>
+
+    <!-- XPath to CSS Converter -->
+    <div class="input-container">
+        <label for="xpathInput">Input XPath Code:</label>
+        <textarea id="xpathInput" rows="2" placeholder="Paste your XPath code here"></textarea>
+        <button onclick="clearInput('xpathInput')">Clear</button>
+    </div>
+    
+    <button onclick="convertToCSS()">Convert to CSS</button>
+    
+    <div class="input-container">
+        <label for="cssOutput">Generated CSS Selector:</label>
+        <input type="text" id="cssOutput" readonly placeholder="CSS Selector will appear here">
+        <button onclick="copyOutput('cssOutput')">Copy</button>
     </div>
 
     <script>
@@ -57,19 +80,13 @@
         function getXPathForElement(element) {
             if (!element || element.nodeType !== 1) return '';
             
-            // Start constructing the XPath
             let xpath = '//' + element.tagName.toLowerCase();
 
-            // Handle ID if it exists
             if (element.id) {
                 xpath += '[@id="' + element.id + '"]';
-            }
-            // Handle class attribute if it exists
-            else if (element.className) {
+            } else if (element.className) {
                 xpath += '[@class="' + element.className + '"]';
-            } 
-            // Handle other attributes (you can extend this to include more attributes if needed)
-            else {
+            } else {
                 const attributes = element.attributes;
                 if (attributes.length > 0) {
                     let conditions = [];
@@ -89,25 +106,54 @@
         }
 
         function convertToXPath() {
-            // Get the HTML from the input box
             const htmlCode = document.getElementById('htmlInput').value;
-            
-            // Create a new DOM parser to parse the HTML string
             const parser = new DOMParser();
             const doc = parser.parseFromString(htmlCode, 'text/html');
-
-            // Select the first element in the parsed HTML
             const firstElement = doc.body.firstElementChild;
 
             if (firstElement) {
-                // Generate XPath for the first element
                 const xpath = getXPathForElement(firstElement);
-                
-                // Output the XPath in the second input box
                 document.getElementById('xpathOutput').value = xpath;
             } else {
                 document.getElementById('xpathOutput').value = 'No valid element found in HTML';
             }
+        }
+
+        // Function to convert XPath to CSS in the format: tag[attribute="value"]
+        function xpathToCSS(xpath) {
+            const regex = /\/\/(\w+)\[@(\w+)="([^"]+)"\]/;  // Regex to match the XPath pattern
+            const match = xpath.match(regex);
+
+            if (match) {
+                const tag = match[1];     // Tag name (e.g., h4)
+                const attr = match[2];    // Attribute (e.g., class or id)
+                const value = match[3];   // Value of the attribute (e.g., name)
+
+                // Return CSS selector in the format: tag[attribute="value"]
+                return `${tag}[${attr}="${value}"]`;
+            }
+
+            return 'Invalid XPath';
+        }
+
+        function convertToCSS() {
+            const xpathCode = document.getElementById('xpathInput').value;
+            const cssSelector = xpathToCSS(xpathCode);
+            document.getElementById('cssOutput').value = cssSelector;
+        }
+
+        // Function to clear input boxes
+        function clearInput(inputId) {
+            document.getElementById(inputId).value = '';
+        }
+
+        // Function to copy output values to the clipboard
+        function copyOutput(outputId) {
+            const outputElement = document.getElementById(outputId);
+            outputElement.select();
+            outputElement.setSelectionRange(0, 99999); // For mobile devices
+            document.execCommand("copy");
+            alert("Copied the text: " + outputElement.value);
         }
     </script>
 
