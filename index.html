@@ -194,9 +194,9 @@ function convertToCustomFunction() {
 
     // Step 2: Transform the provided JavaScript code
     convertedCode += jsCode.replace(/@js:/g, '') // Remove "@js:"
-        .replace(/return\s+(\w+)\.map\(x\s*=>\s*`(.*?)`\);/g, (match, imgVar) => {
-            // Replace the return statement and format correctly
-            return `final = ${imgVar}.map(x => \`${h1}${x}\`);\nvar jsonString = JSON.stringify(final);\nreturn jsonString;\n`;
+        .replace(/return\s+urls/g, (match) => {
+            // Adding the if condition to check the value of num
+            return `if (num > 0) {\n    var jsonString = JSON.stringify(urls);\n    return jsonString;\n} else {\n    return JSON.stringify([]); // Return empty array if num is 0 or undefined\n}`;
         });
 
     // Step 3: Close the function
