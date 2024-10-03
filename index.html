@@ -50,36 +50,36 @@
      <p>使用方法: 将 HTML 代码（例如 <code>&lt;div class="intro"&gt;</code>）输入，将会转换成 <code>//div[@class="intro"]</code>。</p>
     <!-- HTML to XPath Converter -->
     <div class="input-container">
-        <label for="htmlInput">Input HTML Code:</label>
+        <label for="htmlInput">HTML代码:</label>
         <textarea id="htmlInput" rows="6" placeholder="输入html code"></textarea>
-        <button onclick="clearInput('htmlInput')">Clear</button>
+        <button onclick="clearInput('htmlInput')">清除</button>
     </div>
     
     <button onclick="convertToXPath()">转Xpath</button>
     
     <div class="input-container">
-        <label for="xpathOutput">Generated XPath:</label>
+        <label for="xpathOutput">Xpath转换结果:</label>
         <input type="text" id="xpathOutput" readonly placeholder="Xpath转换结果">
-        <button onclick="copyOutput('xpathOutput')">Copy</button>
+        <button onclick="copyOutput('xpathOutput')">复制</button>
     </div>
     
       <h2>Xpath 转CSS器（漫鸭版本）</h2>
       
-       <p>Convert your JavaScript snippets into a custom function format with ease. This tool will add necessary comments and transform map function calls into JSON stringifications.</p>
+       <p>把Xpath的代码()输入了,会转成div[class="intro"] </p>
 
     <!-- XPath to CSS Converter -->
     <div class="input-container">
-        <label for="xpathInput">Input XPath Code:</label>
+        <label for="xpathInput">Xpath代码:</label>
         <textarea id="xpathInput" rows="2" placeholder="输入Xpath代码"></textarea>
-        <button onclick="clearInput('xpathInput')">Clear</button>
+        <button onclick="clearInput('xpathInput')">清除</button>
     </div>
     
     <button onclick="convertToCSS()">Convert to CSS</button>
     
     <div class="input-container">
-        <label for="cssOutput">Generated CSS Selector:</label>
+        <label for="cssOutput">Css转换结果:</label>
         <input type="text" id="cssOutput" readonly placeholder="CSS转换结果">
-        <button onclick="copyOutput('cssOutput')">Copy</button>
+        <button onclick="copyOutput('cssOutput')">复制</button>
     </div>
     
         
@@ -91,7 +91,7 @@
     <div class="input-container">
         <label for="jsInput">Input JavaScript Code:</label>
         <textarea id="jsInput" rows="12" placeholder="Paste your JavaScript code here"></textarea>
-        <button onclick="clearInput('jsInput')">Clear</button>
+        <button onclick="clearInput('jsInput')">清除</button>
     </div>
     
     <button onclick="convertToCustomFunction()">Convert to Custom Function</button>
@@ -100,7 +100,7 @@
     <div class="input-container">
         <label for="jsOutput">Converted Function Code:</label>
         <textarea id="jsOutput" rows="12" readonly placeholder="Converted JavaScript code will appear here"></textarea>
-        <button onclick="copyOutput('jsOutput')">Copy</button>
+        <button onclick="copyOutput('jsOutput')">复制</button>
     </div>
 
     <script>
