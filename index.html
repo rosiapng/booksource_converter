@@ -148,20 +148,21 @@
 
         // Function to convert XPath to CSS in the format: tag[attribute="value"]
         function xpathToCSS(xpath) {
-            const regex = /\/\/(\w+)\[@(\w+)="([^"]+)"\]/;  // Regex to match the XPath pattern
-            const match = xpath.match(regex);
+    // Regex to match the XPath pattern and capture tag, attribute, and value
+    const regex = /\/\/(\w+)\[@(\w+)="([^"]+)"\](?:\/\w+)?/;  // Updated regex
+    const match = xpath.match(regex);
 
-            if (match) {
-                const tag = match[1];     // Tag name (e.g., h4)
-                const attr = match[2];    // Attribute (e.g., class or id)
-                const value = match[3];   // Value of the attribute (e.g., name)
+    if (match) {
+        const tag = match[1];     // Tag name (e.g., div)
+        const attr = match[2];    // Attribute (e.g., class or id)
+        const value = match[3];   // Value of the attribute (e.g., intro)
 
-                // Return CSS selector in the format: tag[attribute="value"]
-                return `${tag}[${attr}="${value}"]`;
-            }
+        // Return CSS selector in the format: tag[attribute="value"]
+        return `${tag}[${attr}="${value}"]`;
+    }
 
-            return 'Invalid XPath';
-        }
+    return 'Invalid XPath';
+}
 
         function convertToCSS() {
             const xpathCode = document.getElementById('xpathInput').value;
