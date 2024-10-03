@@ -185,26 +185,26 @@
         
       
         // Function to convert the input JS code to a custom format
-        function convertToCustomFunction() {
-            let jsCode = document.getElementById('jsInput').value;
+        // Function to convert the input JS code to a custom format
+function convertToCustomFunction() {
+    let jsCode = document.getElementById('jsInput').value;
 
-            // Step 1: Add "powered by RosiaP'ng" into the function definition
-            let convertedCode = `function MYAnalysis(result) {\n//powered by RosiaP'ng,\n`;
+    // Step 1: Start the function definition with a comment
+    let convertedCode = `function MYAnalysis(result) {\n//powered by RosiaP'ng\n\n`;
 
-            // Step 2: Extract the variable used before '.map()'
-            convertedCode += jsCode.replace(/@js:/g, '') // Remove "@js:"
-                .replace(/return\s+(\w+)\.map\(x\s*=>\s*`(.*?)`\);/g, (match, imgVar) => {
-                    // Replace the return statement with JSON conversion
-                    return `var jsonString = JSON.stringify(${imgVar});\nreturn jsonString;`;
-                });
+    // Step 2: Transform the provided JavaScript code
+    convertedCode += jsCode.replace(/@js:/g, '') // Remove "@js:"
+        .replace(/return\s+(\w+)\.map\(x\s*=>\s*`(.*?)`\);/g, (match, imgVar) => {
+            // Replace the return statement and format correctly
+            return `final = ${imgVar}.map(x => \`${h1}${x}\`);\nvar jsonString = JSON.stringify(final);\nreturn jsonString;\n`;
+        });
 
-            // Step 3: Close the function
-            convertedCode += `\n}`;
+    // Step 3: Close the function
+    convertedCode += `\n}`;
 
-            // Output the converted code
-            document.getElementById('jsOutput').value = convertedCode;
-        }
-        
+    // Output the converted code
+    document.getElementById('jsOutput').value = convertedCode;
+}
         
     </script>
 
