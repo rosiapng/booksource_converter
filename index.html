@@ -184,8 +184,7 @@
 }
         
       
-        // Function to convert the input JS code to a custom format
-function convertToCustomFunction() {
+        function convertToCustomFunction() {
     let jsCode = document.getElementById('jsInput').value;
 
     // Step 1: Start the function definition with a comment
@@ -193,9 +192,9 @@ function convertToCustomFunction() {
 
     // Step 2: Transform the provided JavaScript code
     convertedCode += jsCode.replace(/@js:/g, '') // Remove "@js:"
-        .replace(/return\s+urls/g, (match) => {
-            // Adding the if condition to check the value of num
-            return `var jsonString = JSON.stringify(urls);\nreturn jsonString;\n`;
+        .replace(/return\s+(\w+)\s*;/g, (match, urlsVariable) => {
+            // Replace the return statement while preserving the variable name
+            return `var jsonString = JSON.stringify(${urlsVariable});\nreturn jsonString;\n`;
         });
 
     // Step 3: Close the function
