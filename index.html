@@ -55,7 +55,7 @@
         <button onclick="clearInput('htmlInput')">清除</button>
     </div>
     
-    <button onclick="convertToXPath()">转Xpath</button>
+    <button onclick="convertToXPath()">转换Xpath代码</button>
     
     <div class="input-container">
         <label for="xpathOutput">Xpath转换结果:</label>
@@ -65,8 +65,7 @@
     
       <h2>Xpath 转CSS器（漫鸭版本）</h2>
       
-       <p>把Xpath的代码()输入了,会转成div[class="intro"] </p>
-
+       <p>输入 XPath 代码（例如 <code>//div[@class="intro"]</code>），将会转换成 <code>div[class="intro"]</code>。</p>
     <!-- XPath to CSS Converter -->
     <div class="input-container">
         <label for="xpathInput">Xpath代码:</label>
@@ -74,10 +73,10 @@
         <button onclick="clearInput('xpathInput')">清除</button>
     </div>
     
-    <button onclick="convertToCSS()">Convert to CSS</button>
+    <button onclick="convertToCSS()">转换CSS代码</button>
     
     <div class="input-container">
-        <label for="cssOutput">Css转换结果:</label>
+        <label for="cssOutput">CSS转换结果:</label>
         <input type="text" id="cssOutput" readonly placeholder="CSS转换结果">
         <button onclick="copyOutput('cssOutput')">复制</button>
     </div>
