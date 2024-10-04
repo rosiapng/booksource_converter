@@ -1,5 +1,9 @@
 body {
     font-family: Arial, sans-serif;
+    background-image: url('https://rosiapng.github.io/booksource_converter/css/bgindex.jpg'); /* Background image */
+    background-size: cover; /* Cover the entire viewport */
+    background-repeat: no-repeat; /* Prevent the background from repeating */
+    background-attachment: fixed; /* Keep the background fixed during scrolling */
 }
 
 .input-container {
@@ -70,3 +74,15 @@ button:hover {
 .nav-button:hover {
     background-color: #0056b3; /* Changes color on hover */
 }
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+    position: absolute; /* Position overlay */
+    top: 0; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1; /* Ensure overlay is behind content */
+}
+
+
