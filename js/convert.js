@@ -43,21 +43,21 @@
 
         // Function to convert XPath to CSS in the format: tag[attribute="value"]
 function xpathToCSS(xpath) {
-    // Regex to match XPath patterns with tag, optional attribute, and value, or attribute-only selection
-    const regex = /\/{1,2}(\w+)(?:\[@(\w+)="([^"]+)"\])?(?:\/@(\w+))?/g;
+    // Regex to match XPath patterns with tag, optional attribute, and value, or attribute-only selection or text()
+    const regex = /\/{1,2}(\w+)(?:\[@(\w+)="([^"]+)"\])?(?:\/@(\w+))?(?:\/text\(\))?/g;
     let cssSelector = '';
     let match;
 
     // Loop through each match of the XPath pattern
     while ((match = regex.exec(xpath)) !== null) {
-        const tag = match[1];       // Tag name (e.g., ul, img, div)
+        const tag = match[1];       // Tag name (e.g., ul, img, div, a)
         const attr = match[2];      // Attribute (e.g., id or class)
         const value = match[3];     // Value of the attribute (e.g., newlist)
         const attrOnly = match[4];  // Attribute only (e.g., src)
 
-        // If the XPath ends with an attribute like /@src, we only keep the tag (e.g., img)
-        if (attrOnly) {
-            cssSelector += tag; // Just append the tag, skipping the attribute
+        // If the XPath ends with an attribute like /@src, or text(), we only keep the tag (e.g., img, a)
+        if (attrOnly || xpath.includes('text()')) {
+            cssSelector += tag; // Just append the tag, skipping the attribute or text()
             continue;
         }
 
@@ -77,7 +77,6 @@ function xpathToCSS(xpath) {
     // Return the final CSS selector or indicate if no valid match was found
     return cssSelector || 'Invalid XPath';
 }
-
 
         function convertToCSS() {
             const xpathCode = document.getElementById('xpathInput').value;
