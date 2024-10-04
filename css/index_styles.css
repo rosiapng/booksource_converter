@@ -1,22 +1,28 @@
- body {
-            font-family: Arial, sans-serif;
-        }
-        .input-container {
-            margin: 20px 0;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        textarea, input[type="text"] {
-            width: calc(100% - 100px); /* Adjusted width for buttons */
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            display: inline-block;
-        }
-        button {
+body {
+    font-family: Arial, sans-serif;
+}
+
+.input-container {
+    margin: 20px 0;
+    padding-bottom: 20px; /* Adds space between the input/output and buttons */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+textarea, input[type="text"] {
+    width: calc(100% - 100px); /* Adjusted width for buttons */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 10px; /* Adds space between the input/output fields and buttons */
+}
+
+button {
     padding: 10px 20px;
     font-size: 16px;
     background-color: #007BFF;
@@ -31,9 +37,11 @@
 button:hover {
     background-color: #0056b3;
 }
-        .action-buttons {
-            display: inline-block;
-        }
+
+.action-buttons {
+    display: inline-block;
+}
+
 .big-title {
     text-align: center;
     font-weight: bold;
