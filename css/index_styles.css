@@ -48,33 +48,25 @@ button:hover {
     font-size: 36px; /* Adjust size as needed */
     margin-top: 20px;
 }
+
 /* Navigation box styling */
 .nav-box {
-    border: 2px solid #007BFF; /* Adds a border around the navigation */
-    padding: 10px;             /* Adds padding inside the box */
-    width: fit-content;        /* Ensures the box fits the content size */
-    margin-bottom: 20px;       /* Adds space below the nav box */
-    margin-left: 0;            /* Aligns the box to the left */
+    margin-bottom: 20px; /* Adds space below the nav box */
 }
 
-/* Navigation link styling */
-.nav-links {
-    list-style: none;
-    padding: 0;
+/* Navigation button styling */
+.nav-button {
+    display: inline-block; /* Displays links inline */
+    padding: 10px 20px;   /* Adds padding to the button */
+    background-color: #007BFF; /* Button background color */
+    color: white; /* Text color */
+    text-decoration: none; /* Removes underline from link */
+    border-radius: 4px; /* Rounds corners */
+    font-size: 18px; /* Button text size */
+    margin-right: 10px; /* Adds space between buttons */
+    transition: background-color 0.3s; /* Smooth transition effect */
 }
 
-.nav-links li {
-    display: inline-block;      /* Displays links inline */
-    margin: 0 15px;             /* Adds space between links */
-}
-
-.nav-links a {
-    text-decoration: none;
-    font-size: 18px;
-    color: #007BFF;
-    font-weight: bold;
-}
-
-.nav-links a:hover {
-    color: #0056b3;
+.nav-button:hover {
+    background-color: #0056b3; /* Changes color on hover */
 }
