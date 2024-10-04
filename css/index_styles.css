@@ -101,3 +101,9 @@ button:hover {
 .nav-button:hover {
     background-color: #F06292; /* Changes color on hover */
 }
+
+.author {
+    text-align: right;
+    margin-right: 20px;
+    font-style: italic;
+}
