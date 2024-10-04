@@ -17,18 +17,20 @@
             display: inline-block;
         }
         button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-left: 10px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px; /* Adjusts the horizontal space */
+    margin-top: 10px; /* Adds vertical space between the input and button */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
         .action-buttons {
             display: inline-block;
         }
