@@ -4,6 +4,7 @@ body {
     background-size: cover; /* Cover the entire viewport */
     background-repeat: no-repeat; /* Prevent the background from repeating */
     background-attachment: fixed; /* Keep the background fixed during scrolling */
+    position: relative; /* Added to ensure overlay is positioned correctly */
 }
 
 .overlay {
@@ -14,6 +15,21 @@ body {
     right: 0;
     bottom: 0;
     z-index: -1; /* Ensure overlay is behind content */
+}
+
+/* New overlay for the background image */
+.bg-overlay {
+    background-image: url('https://rosiapng.github.io/booksource_converter/css/bgindex.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.5; /* Adjusted opacity for background image */
+    z-index: -2; /* Keeps it behind the main overlay */
 }
 
 /* Your existing styles below */
