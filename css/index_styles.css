@@ -66,7 +66,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #F06292;
 }
 
 .action-buttons {
@@ -99,5 +99,5 @@ button:hover {
 }
 
 .nav-button:hover {
-    background-color: #0056b3; /* Changes color on hover */
+    background-color: #F06292; /* Changes color on hover */
 }
