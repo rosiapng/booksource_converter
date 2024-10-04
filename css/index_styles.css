@@ -48,20 +48,24 @@ button:hover {
     font-size: 36px; /* Adjust size as needed */
     margin-top: 20px;
 }
-/* Navigation styling */
-nav {
-    text-align: center;
-    margin-bottom: 20px;
+/* Navigation box styling */
+.nav-box {
+    border: 2px solid #007BFF; /* Adds a border around the navigation */
+    padding: 10px;             /* Adds padding inside the box */
+    width: fit-content;        /* Ensures the box fits the content size */
+    margin-bottom: 20px;       /* Adds space below the nav box */
+    margin-left: 0;            /* Aligns the box to the left */
 }
 
+/* Navigation link styling */
 .nav-links {
     list-style: none;
     padding: 0;
 }
 
 .nav-links li {
-    display: inline;
-    margin: 0 15px;
+    display: inline-block;      /* Displays links inline */
+    margin: 0 15px;             /* Adds space between links */
 }
 
 .nav-links a {
