@@ -6,6 +6,17 @@ body {
     background-attachment: fixed; /* Keep the background fixed during scrolling */
 }
 
+.overlay {
+    background-color: rgba(255, 255, 255, 0.5); /* White with 50% opacity */
+    position: fixed; /* Position overlay fixed to cover entire screen */
+    top: 0; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1; /* Ensure overlay is behind content */
+}
+
+/* Your existing styles below */
 .input-container {
     margin: 20px 0;
     padding-bottom: 20px; /* Adds space between the input/output and buttons */
@@ -74,15 +85,3 @@ button:hover {
 .nav-button:hover {
     background-color: #0056b3; /* Changes color on hover */
 }
-
-.overlay {
-    background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
-    position: absolute; /* Position overlay */
-    top: 0; 
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1; /* Ensure overlay is behind content */
-}
-
-
