@@ -32,3 +32,9 @@
         .action-buttons {
             display: inline-block;
         }
+.big-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 36px; /* Adjust size as needed */
+    margin-top: 20px;
+}
