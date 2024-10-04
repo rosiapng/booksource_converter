@@ -43,7 +43,7 @@
 
         // Function to convert XPath to CSS in the format: tag[attribute="value"]
 function xpathToCSS(xpath) {
-    // Regex to match XPath patterns with tag, optional attribute, and value
+    // Regex to match XPath patterns with tag, optional attribute, and value, or attribute-only selection
     const regex = /\/{1,2}(\w+)(?:\[@(\w+)="([^"]+)"\])?(?:\/@(\w+))?/g;
     let cssSelector = '';
     let match;
@@ -55,9 +55,10 @@ function xpathToCSS(xpath) {
         const value = match[3];     // Value of the attribute (e.g., newlist)
         const attrOnly = match[4];  // Attribute only (e.g., src)
 
-        // Skip the XPath that only selects an attribute (e.g., /@src)
+        // If the XPath ends with an attribute like /@src, we only keep the tag (e.g., img)
         if (attrOnly) {
-            continue; // Skip appending the attribute-only selection
+            cssSelector += tag; // Just append the tag, skipping the attribute
+            continue;
         }
 
         // Build the CSS selector part by part
