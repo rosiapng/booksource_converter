@@ -89,7 +89,7 @@ button:hover {
 .nav-button {
     display: inline-block; /* Displays links inline */
     padding: 10px 20px;   /* Adds padding to the button */
-    background-color: #007BFF; /* Button background color */
+    background-color: #F8BBD0; /* Button background color */
     color: white; /* Text color */
     text-decoration: none; /* Removes underline from link */
     border-radius: 4px; /* Rounds corners */
