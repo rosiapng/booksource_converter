@@ -29,6 +29,7 @@
     <textarea id="htmlInput" rows="10" placeholder='<li class="prev"><a id="s1" href="/fenlei/1/1.html">玄幻</a></li>'></textarea>
     <button onclick="convertHtmlToJson()">Convert to JSON</button>
     <button onclick="clearInput('htmlInput')">Clear</button>
+    <button onclick="pasteText('htmlInput')">Paste</button>
 </div>
 
 <!-- Output Box for JSON Format -->
@@ -67,6 +68,18 @@
         function clearInput(inputId) {
             document.getElementById(inputId).value = '';
         
+        // Function to paste text from clipboard
+    function pasteText(inputId) {
+        navigator.clipboard.readText().then(
+            text => {
+                document.getElementById(inputId).value = text;
+            }
+        ).catch(
+            err => {
+                console.error('Failed to read clipboard contents: ', err);
+            }
+        );
+    }
 </script>
 
 </body>
