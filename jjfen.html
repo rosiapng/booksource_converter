@@ -23,24 +23,20 @@
 <h1>极简源发现转换工具<h1>
 <p>Paste the HTML list below and click "Convert to JSON" to get the JSON format.</p>
 
-<!-- Input Box for HTML List -->
+<!-- Input/Output Box for HTML List and JSON -->
 <div class="input-container">
-    <label for="htmlInput">HTML Input:</label>
-    <textarea id="htmlInput" rows="10" placeholder='<li class="prev"><a id="s1" href="/fenlei/1/1.html">玄幻</a></li>'></textarea>
-    <button onclick="convertHtmlToJson()">Convert to JSON</button>
-    <button onclick="clearInput('htmlInput')">Clear</button>
-    <button onclick="pasteText('htmlInput')">Paste</button>
-</div>
-
-<!-- Output Box for JSON Format -->
-<div class="input-container">
-    <label for="jsonOutput">JSON Output:</label>
-    <textarea id="jsonOutput" rows="10" readonly placeholder="Converted JSON will appear here"></textarea>
-    <button onclick="copyOutput('jsonOutput')">Copy to Clipboard</button>
+    <label for="htmlInput">HTML Input / JSON Output:</label>
+    <textarea id="htmlInput" rows="10" placeholder='<li><a href="/all/" title="书库,书库大全">书库大全</a></li>'></textarea>
+    <div class="button-container">
+        <button onclick="convertHtmlToJson()">Convert to JSON</button>
+        <button onclick="clearInput('htmlInput')">Clear</button>
+        <button onclick="pasteText('htmlInput')">Paste</button>
+    </div>
 </div>
 
 <script>
-     function convertHtmlToJson() {
+    // Function to convert HTML list to JSON
+    function convertHtmlToJson() {
         const input = document.getElementById('htmlInput').value;
         const parser = new DOMParser();
         const doc = parser.parseFromString(input, 'text/html');
@@ -54,21 +50,16 @@
             jsonArray.push({ name, value });
         });
 
-        document.getElementById('jsonOutput').value = JSON.stringify(jsonArray, null, 4);
+        // Replace input with the converted JSON
+        document.getElementById('htmlInput').value = JSON.stringify(jsonArray, null, 4);
     }
-    
-    function copyOutput(outputId) {
-        const outputElement = document.getElementById(outputId);
-        outputElement.select();
-        document.execCommand('copy');
-        alert('Copied to clipboard!');
+
+    // Function to clear the input/output field
+    function clearInput(inputId) {
+        document.getElementById(inputId).value = '';
     }
-    
-      // Function to clear input boxes
-        function clearInput(inputId) {
-            document.getElementById(inputId).value = '';
-        
-        // Function to paste text from clipboard
+
+    // Function to paste text from clipboard
     function pasteText(inputId) {
         navigator.clipboard.readText().then(
             text => {
