@@ -57,7 +57,7 @@
 
 
     <script>
-              // Function to handle both query strings and key-value pairs
+// Function to handle both query strings and key-value pairs
 function convertToJSON() {
     const input = document.getElementById('queryStringInput').value.trim();
     const jsonObject = {};
@@ -72,11 +72,10 @@ function convertToJSON() {
         // Handle key-value pair format (e.g., searchkey: 都市, searchtype: articlename)
         const lines = input.split('\n');
         lines.forEach(line => {
-            const splitIndex = line.indexOf(':');
-            if (splitIndex !== -1) {
-                const key = line.slice(0, splitIndex).trim();
-                const value = line.slice(splitIndex + 1).trim();
-                jsonObject[key] = value || ''; // Assign empty string if value is missing
+            const [key, ...rest] = line.split(':');
+            const value = rest.join(':').trim(); // join in case value contains ":"
+            if (key) {
+                jsonObject[key.trim()] = value || ''; // Assign empty string if value is missing
             }
         });
     }
@@ -84,7 +83,6 @@ function convertToJSON() {
     // Output the JSON result
     document.getElementById('jsonOutput').value = JSON.stringify(jsonObject, null, 4);
 }
-
 // Function to convert double quotes to single quotes
         function convertQuotes() {
             const input = document.getElementById('doubleQuoteInput').value;
