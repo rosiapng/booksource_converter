@@ -39,26 +39,23 @@
 </div>
 
 <script>
-    function convertHtmlToJson() {
+     function convertHtmlToJson() {
         const input = document.getElementById('htmlInput').value;
         const parser = new DOMParser();
         const doc = parser.parseFromString(input, 'text/html');
         const listItems = doc.querySelectorAll('li a');
-        const jsonResult = [];
+        const jsonArray = [];
 
         listItems.forEach(item => {
-            const name = item.textContent + '小说';
-            const value = item.href.match(/\/fenlei\/(\d+)\//)[1];
-            jsonResult.push({ name, value });
+            const name = item.textContent.trim();  // Extract visible text (name)
+            const value = item.getAttribute('href'); // Extract href attribute and rename it to 'value'
+
+            jsonArray.push({ name, value });
         });
 
-        document.getElementById('jsonOutput').value = JSON.stringify(jsonResult, null, 4);
+        document.getElementById('jsonOutput').value = JSON.stringify(jsonArray, null, 4);
     }
-
-    function clearInput(inputId) {
-        document.getElementById(inputId).value = '';
-    }
-
+    
     function copyOutput(outputId) {
         const outputElement = document.getElementById(outputId);
         outputElement.select();
