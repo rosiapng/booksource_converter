@@ -4,28 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Query String to JSON Converter</title>
- <link rel="stylesheet" href="https://rosiapng.github.io/booksource_converter/css/index_styles.css">
+    <link rel="stylesheet" href="https://rosiapng.github.io/booksource_converter/css/index_styles.css">
 </head>
 <body>
 <!-- Navigation Links in Button Form -->
-     <h2 class="big-title">傻瓜极简写源工具</h2>
+    <h2 class="big-title">傻瓜极简写源工具</h2>
     <div class="nav-box">
         <nav>
             <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/index.html">书源语法转换器(xpath,css)</a>
             <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/manyajs.html">傻瓜式益达转漫鸭正文JS器</a>
             <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/jijian.html">傻瓜极简写源工具</a>
-        
-           </nav>
+        </nav>
     </div>
     
-<h1>极简Params转Json器</h1>
+    <h1>极简Params转Json器</h1>
     <p>可以把<strong>searchkey=%E9%97%AA%E5%A9%9A&Submit=</strong> 转成JSON.</p>
 
     <!-- Input Box for Query String -->
     <div class="input-container">
         <label for="queryStringInput">Param:</label>
         <textarea id="queryStringInput" rows="4" placeholder="Enter the query string"></textarea>
-        <button onclick="convertQueryToJSON()">转JSON</button>
+        <button onclick="convertToJSON()">转JSON</button>
         <button onclick="clearInput('queryStringInput')">清空</button>
     </div>
 
@@ -35,7 +34,6 @@
         <textarea id="jsonOutput" rows="6" placeholder="转Json格式" readonly></textarea>
         <button onclick="copyOutput('jsonOutput')">复制</button>
     </div>
-
 
     <h1>把xpath转换成前置get的格式</h1>
     <p>把xpath(")转换成(')</p>
@@ -55,36 +53,34 @@
         <button onclick="copyOutput('singleQuoteOutput')">复制</button>
     </div>
 
-
     <script>
-// Function to handle both query strings and key-value pairs
-function convertToJSON() {
-    const input = document.getElementById('queryStringInput').value.trim();
-    const jsonObject = {};
+        // Function to handle both query strings and key-value pairs
+        function convertToJSON() {
+            const input = document.getElementById('queryStringInput').value.trim();
+            const jsonObject = {};
 
-    if (input.includes('=') && !input.includes(':')) {
-        // Handle query string format (e.g., searchkey=%E9%97%AA%E5%A9%9A&Submit=)
-        const params = new URLSearchParams(input);
-        for (const [key, value] of params.entries()) {
-            jsonObject[key] = decodeURIComponent(value);
-        }
-    } else {
-        // Handle key-value pair format (e.g., searchkey: 都市, searchtype: articlename)
-        const lines = input.split('\n');
-        lines.forEach(line => {
-            if (line.includes(':')) {
-                const [key, value] = line.split(/:(.*)/).map(str => str.trim()); // Split only at the first colon
-                jsonObject[key] = value || ''; // Assign empty string if value is missing
+            if (input.includes('=') && !input.includes(':')) {
+                // Handle query string format (e.g., searchkey=%E9%97%AA%E5%A9%9A&Submit=)
+                const params = new URLSearchParams(input);
+                for (const [key, value] of params.entries()) {
+                    jsonObject[key] = decodeURIComponent(value);
+                }
+            } else {
+                // Handle key-value pair format (e.g., searchkey: 都市, searchtype: articlename)
+                const lines = input.split('\n');
+                lines.forEach(line => {
+                    if (line.includes(':')) {
+                        const [key, value] = line.split(/:(.*)/).map(str => str.trim()); // Split only at the first colon
+                        jsonObject[key] = value ? value.trim() : ''; // Assign empty string if value is missing
+                    }
+                });
             }
-        });
-    }
 
-    // Output the JSON result
-    document.getElementById('jsonOutput').value = JSON.stringify(jsonObject, null, 4);
-}
+            // Output the JSON result
+            document.getElementById('jsonOutput').value = JSON.stringify(jsonObject, null, 4);
+        }
 
-
-// Function to convert double quotes to single quotes
+        // Function to convert double quotes to single quotes
         function convertQuotes() {
             const input = document.getElementById('doubleQuoteInput').value;
 
@@ -98,6 +94,14 @@ function convertToJSON() {
         // Function to clear the input field
         function clearInput(inputId) {
             document.getElementById(inputId).value = '';
+        }
+
+        // Function to copy output to clipboard
+        function copyOutput(outputId) {
+            const outputElement = document.getElementById(outputId);
+            outputElement.select();
+            document.execCommand("copy");
+            alert("Copied to clipboard!");
         }
     </script>
 
