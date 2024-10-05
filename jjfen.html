@@ -58,6 +58,7 @@
 
 <div class="button-container">
     <button onclick="applyRegex()">Apply Regex</button>
+    <button onclick="matchRegex()">Match</button>
 </div>
 
 <script>
@@ -73,7 +74,7 @@
             const name = item.textContent.trim();  // Extract visible text (name)
             const value = item.getAttribute('href'); // Extract href attribute and rename it to 'value'
 
-            jsonArray.push({ name,value });
+            jsonArray.push({ name, value });
         });
 
         // Replace input with the converted JSON
@@ -98,11 +99,10 @@
         );
     }
 
-    // Function to apply regex
-    function applyRegex() {
+    // Function to match regex and display matches
+    function matchRegex() {
         const inputText = document.getElementById('htmlInput').value;
         const regexPattern = document.getElementById('regexPattern').value;
-        const replacement = document.getElementById('regexReplacement').value;
 
         try {
             const regex = new RegExp(regexPattern, 'g'); // Create regex with global flag
@@ -110,9 +110,20 @@
 
             // Display matches in the regexMatches box
             document.getElementById('regexMatches').value = matches ? matches.join('\n') : 'No matches found';
+        } catch (error) {
+            document.getElementById('regexMatches').value = 'Invalid regex pattern';
+        }
+    }
 
-            // Replace matches if replacement string is provided, otherwise remove matches
-            const updatedText = inputText.replace(regex, replacement);
+    // Function to apply regex and replace matches
+    function applyRegex() {
+        const inputText = document.getElementById('htmlInput').value;
+        const regexPattern = document.getElementById('regexPattern').value;
+        const replacement = document.getElementById('regexReplacement').value;
+
+        try {
+            const regex = new RegExp(regexPattern, 'g'); // Create regex with global flag
+            const updatedText = inputText.replace(regex, replacement); // Replace matches with replacement string
 
             // Display the result in the same input/output box
             document.getElementById('htmlInput').value = updatedText;
