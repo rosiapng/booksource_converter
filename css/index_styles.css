@@ -94,8 +94,19 @@ button:hover {
     text-decoration: none; /* Removes underline from link */
     border-radius: 4px; /* Rounds corners */
     font-size: 18px; /* Button text size */
-    margin-right: 20px; /* Increased space between buttons */
+    margin-right: 20px; /* Space between buttons */
+    margin-bottom: 10px; /* Add some space below buttons */
     transition: background-color 0.3s; /* Smooth transition effect */
+}
+
+@media (max-width: 600px) {
+    .nav-button {
+        display: block; /* Stack buttons vertically */
+        width: 100%; /* Make buttons take up full width */
+        margin-right: 0; /* Remove right margin */
+        margin-bottom: 10px; /* Add space between buttons */
+        text-align: center; /* Center the button text */
+    }
 }
 
 .nav-button:hover {
