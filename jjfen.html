@@ -23,6 +23,9 @@
 <h1>极简源发现转换工具<h1>
 <p>Paste the HTML list below and click "Convert to JSON" to get the JSON format.</p>
 
+<h1>HTML to JSON Converter</h1>
+<p>Paste your HTML list below and click "Convert to JSON" to get the JSON output in the same box.</p>
+
 <!-- Input/Output Box for HTML List and JSON -->
 <div class="input-container">
     <label for="htmlInput">HTML Input / JSON Output:</label>
@@ -32,6 +35,29 @@
         <button onclick="clearInput('htmlInput')">Clear</button>
         <button onclick="pasteText('htmlInput')">Paste</button>
     </div>
+</div>
+
+<h2>Regex Tool</h2>
+<!-- Input box for regex pattern -->
+<div class="input-container">
+    <label for="regexPattern">Regex Pattern:</label>
+    <input type="text" id="regexPattern" placeholder="Enter regex pattern (e.g., \\d+ for digits)">
+</div>
+
+<!-- Input box to display regex matches -->
+<div class="input-container">
+    <label for="regexMatches">Regex Matches:</label>
+    <textarea id="regexMatches" rows="4" readonly placeholder="Matches will appear here"></textarea>
+</div>
+
+<!-- Input box for replacement string -->
+<div class="input-container">
+    <label for="regexReplacement">Replacement String (leave empty to clear matches):</label>
+    <input type="text" id="regexReplacement" placeholder="Enter replacement string">
+</div>
+
+<div class="button-container">
+    <button onclick="applyRegex()">Apply Regex</button>
 </div>
 
 <script>
@@ -47,7 +73,7 @@
             const name = item.textContent.trim();  // Extract visible text (name)
             const value = item.getAttribute('href'); // Extract href attribute and rename it to 'value'
 
-            jsonArray.push({ name, value });
+            jsonArray.push({ name,value });
         });
 
         // Replace input with the converted JSON
@@ -70,6 +96,29 @@
                 console.error('Failed to read clipboard contents: ', err);
             }
         );
+    }
+
+    // Function to apply regex
+    function applyRegex() {
+        const inputText = document.getElementById('htmlInput').value;
+        const regexPattern = document.getElementById('regexPattern').value;
+        const replacement = document.getElementById('regexReplacement').value;
+
+        try {
+            const regex = new RegExp(regexPattern, 'g'); // Create regex with global flag
+            const matches = inputText.match(regex); // Find all matches
+
+            // Display matches in the regexMatches box
+            document.getElementById('regexMatches').value = matches ? matches.join('\n') : 'No matches found';
+
+            // Replace matches if replacement string is provided, otherwise remove matches
+            const updatedText = inputText.replace(regex, replacement);
+
+            // Display the result in the same input/output box
+            document.getElementById('htmlInput').value = updatedText;
+        } catch (error) {
+            document.getElementById('regexMatches').value = 'Invalid regex pattern';
+        }
     }
 </script>
 
