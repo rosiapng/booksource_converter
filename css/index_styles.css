@@ -99,15 +99,7 @@ button:hover {
     transition: background-color 0.3s; /* Smooth transition effect */
 }
 
-@media (max-width: 600px) {
-    .nav-button {
-        display: block; /* Stack buttons vertically */
-        width: 100%; /* Make buttons take up full width */
-        margin-right: 0; /* Remove right margin */
-        margin-bottom: 10px; /* Add space between buttons */
-        text-align: center; /* Center the button text */
-    }
-}
+
 
 .nav-button:hover {
     background-color: #F06292; /* Changes color on hover */
@@ -117,4 +109,14 @@ button:hover {
     text-align: right;
     margin-right: 20px;
     font-style: italic;
+}
+
+@media (max-width: 600px) {
+    .nav-button {
+        display: block; /* Stack buttons vertically */
+        width: 100%; /* Make buttons take up full width */
+        margin-right: 0; /* Remove right margin */
+        margin-bottom: 10px; /* Add space between buttons */
+        text-align: center; /* Center the button text */
+    }
 }
