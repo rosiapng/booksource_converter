@@ -36,6 +36,26 @@
         <button onclick="copyOutput('jsonOutput')">复制</button>
     </div>
 
+
+    <h1>把xpath转换成前置get的格式</h1>
+    <p>把xpath(")转换成(')</p>
+
+    <!-- Input Box for XPath with Double Quotes -->
+    <div class="input-container">
+        <label for="doubleQuoteInput">Xpath格式:</label>
+        <textarea id="doubleQuoteInput" rows="4" placeholder='//div[@class="intro indent"]'></textarea>
+        <button onclick="convertQuotes()">转换前置Xpath格式</button>
+        <button onclick="clearInput('doubleQuoteInput')">清空</button>
+    </div>
+
+    <!-- Output Box for XPath with Single Quotes -->
+    <div class="input-container">
+        <label for="singleQuoteOutput">前置XPath格式:</label>
+        <textarea id="singleQuoteOutput" rows="4" placeholder="Converted XPath will appear here" readonly></textarea>
+        <button onclick="copyOutput('singleQuoteOutput')">复制</button>
+    </div>
+
+
     <script>
               // Function to handle both query strings and key-value pairs
         function convertToJSON() {
@@ -63,6 +83,18 @@
             document.getElementById('jsonOutput').value = JSON.stringify(jsonObject, null, 4);
         }
 
+
+// Function to convert double quotes to single quotes
+        function convertQuotes() {
+            const input = document.getElementById('doubleQuoteInput').value;
+
+            // Replace all double quotes with single quotes
+            const converted = input.replace(/"/g, "'");
+
+            // Output the converted result
+            document.getElementById('singleQuoteOutput').value = converted;
+        }
+        
         // Function to clear the input field
         function clearInput(inputId) {
             document.getElementById(inputId).value = '';
