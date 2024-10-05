@@ -96,13 +96,13 @@
             document.getElementById(inputId).value = '';
         }
 
-        // Function to copy output to clipboard
         function copyOutput(outputId) {
-            const outputElement = document.getElementById(outputId);
-            outputElement.select();
-            document.execCommand("copy");
-            alert("Copied to clipboard!");
-        }
+    const outputElement = document.getElementById(outputId);
+    outputElement.select();
+    outputElement.setSelectionRange(0, 99999); // For mobile devices
+    document.execCommand("copy");
+    // Removed the alert
+}
     </script>
 
 </body>
