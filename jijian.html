@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Query String to JSON Converter</title>
+</head>
+<body>
+
+    <h1>Query String to JSON Converter</h1>
+    <p>Enter a query string like <strong>searchkey=%E9%97%AA%E5%A9%9A&Submit=</strong> in the input box to convert it to JSON format.</p>
+
+    <!-- Input Box for Query String -->
+    <div class="input-container">
+        <label for="queryStringInput">Input Query String:</label>
+        <textarea id="queryStringInput" rows="4" placeholder="Enter the query string"></textarea>
+        <button onclick="convertQueryToJSON()">Convert to JSON</button>
+        <button onclick="clearInput('queryStringInput')">Clear Input</button>
+    </div>
+
+    <!-- Output Box for JSON Format -->
+    <div class="input-container">
+        <label for="jsonOutput">Converted JSON:</label>
+        <textarea id="jsonOutput" rows="6" placeholder="Converted JSON will appear here" readonly></textarea>
+        <button onclick="copyOutput('jsonOutput')">Copy Output</button>
+    </div>
+
+    <script>
+        // Function to convert query string to JSON
+        function convertQueryToJSON() {
+            const queryString = document.getElementById('queryStringInput').value;
+
+            // Create a URLSearchParams object to parse the query string
+            const params = new URLSearchParams(queryString);
+            const jsonObject = {};
+
+            // Iterate through each parameter and decode it into JSON
+            for (const [key, value] of params.entries()) {
+                jsonObject[key] = decodeURIComponent(value);
+            }
+
+            // Output the JSON result
+            document.getElementById('jsonOutput').value = JSON.stringify(jsonObject, null, 4);
+        }
+
+        // Function to copy output to clipboard
+        function copyOutput(outputId) {
+            const outputElement = document.getElementById(outputId);
+            outputElement.select();
+            document.execCommand("copy");
+        }
+
+        // Function to clear the input field
+        function clearInput(inputId) {
+            document.getElementById(inputId).value = '';
+        }
+    </script>
+
+</body>
+</html>
