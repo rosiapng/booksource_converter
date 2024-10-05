@@ -23,7 +23,7 @@
 <h1>极简源发现转换工具<h1>
 <p>Paste the HTML list below and click "Convert to JSON" to get the JSON format.</p>
 
-<h1>HTML to JSON Converter</h1>
+<h1>HTML to JSON 极简发现格式</h1>
 <p>Paste your HTML list below and click "Convert to JSON" to get the JSON output in the same box.</p>
 
 <!-- Input/Output Box for HTML List and JSON -->
@@ -31,9 +31,9 @@
     <label for="htmlInput">HTML Input / JSON Output:</label>
     <textarea id="htmlInput" rows="10" placeholder='<li><a href="/all/" title="书库,书库大全">书库大全</a></li>'></textarea>
     <div class="button-container">
-        <button onclick="convertHtmlToJson()">Convert to JSON</button>
-        <button onclick="clearInput('htmlInput')">Clear</button>
-        <button onclick="pasteText('htmlInput')">Paste</button>
+        <button onclick="convertHtmlToJson()">转换发现格式</button>
+        <button onclick="clearInput('htmlInput')">清空</button>
+        <button onclick="pasteText('htmlInput')">粘贴</button>
     </div>
 </div>
 
@@ -49,6 +49,9 @@
     <label for="regexMatches">Regex Matches:</label>
     <textarea id="regexMatches" rows="4" readonly placeholder="Matches will appear here"></textarea>
 </div>
+<div class="button-container">
+    <button onclick="matchRegex()">匹配</button>
+</div>
 
 <!-- Input box for replacement string -->
 <div class="input-container">
@@ -57,8 +60,8 @@
 </div>
 
 <div class="button-container">
-    <button onclick="applyRegex()">Apply Regex</button>
-    <button onclick="matchRegex()">Match</button>
+    <button onclick="applyRegex()">转换</button>
+   
 </div>
 
 <script>
