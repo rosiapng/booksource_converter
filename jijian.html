@@ -58,31 +58,32 @@
 
     <script>
               // Function to handle both query strings and key-value pairs
-        function convertToJSON() {
-            const input = document.getElementById('queryStringInput').value.trim();
-            const jsonObject = {};
+function convertToJSON() {
+    const input = document.getElementById('queryStringInput').value.trim();
+    const jsonObject = {};
 
-            if (input.includes('=') && !input.includes(':')) {
-                // Handle query string format (e.g., searchkey=%E9%97%AA%E5%A9%9A&Submit=)
-                const params = new URLSearchParams(input);
-                for (const [key, value] of params.entries()) {
-                    jsonObject[key] = decodeURIComponent(value);
-                }
-            } else {
-                // Handle key-value pair format (e.g., searchkey: 都市, searchtype: articlename)
-                const lines = input.split('\n');
-                lines.forEach(line => {
-                    const [key, value] = line.split(':').map(str => str.trim());
-                    if (key) {
-                        jsonObject[key] = value || '';
-                    }
-                });
-            }
-
-            // Output the JSON result
-            document.getElementById('jsonOutput').value = JSON.stringify(jsonObject, null, 4);
+    if (input.includes('=') && !input.includes(':')) {
+        // Handle query string format (e.g., searchkey=%E9%97%AA%E5%A9%9A&Submit=)
+        const params = new URLSearchParams(input);
+        for (const [key, value] of params.entries()) {
+            jsonObject[key] = decodeURIComponent(value);
         }
+    } else {
+        // Handle key-value pair format (e.g., searchkey: 都市, searchtype: articlename)
+        const lines = input.split('\n');
+        lines.forEach(line => {
+            const splitIndex = line.indexOf(':');
+            if (splitIndex !== -1) {
+                const key = line.slice(0, splitIndex).trim();
+                const value = line.slice(splitIndex + 1).trim();
+                jsonObject[key] = value || ''; // Assign empty string if value is missing
+            }
+        });
+    }
 
+    // Output the JSON result
+    document.getElementById('jsonOutput').value = JSON.stringify(jsonObject, null, 4);
+}
 
 // Function to convert double quotes to single quotes
         function convertQuotes() {
