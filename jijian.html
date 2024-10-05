@@ -37,28 +37,30 @@
     </div>
 
     <script>
-        // Function to convert query string to JSON
-        function convertQueryToJSON() {
-            const queryString = document.getElementById('queryStringInput').value;
-
-            // Create a URLSearchParams object to parse the query string
-            const params = new URLSearchParams(queryString);
+              // Function to handle both query strings and key-value pairs
+        function convertToJSON() {
+            const input = document.getElementById('queryStringInput').value.trim();
             const jsonObject = {};
 
-            // Iterate through each parameter and decode it into JSON
-            for (const [key, value] of params.entries()) {
-                jsonObject[key] = decodeURIComponent(value);
+            if (input.includes('=') && !input.includes(':')) {
+                // Handle query string format (e.g., searchkey=%E9%97%AA%E5%A9%9A&Submit=)
+                const params = new URLSearchParams(input);
+                for (const [key, value] of params.entries()) {
+                    jsonObject[key] = decodeURIComponent(value);
+                }
+            } else {
+                // Handle key-value pair format (e.g., searchkey: 都市, searchtype: articlename)
+                const lines = input.split('\n');
+                lines.forEach(line => {
+                    const [key, value] = line.split(':').map(str => str.trim());
+                    if (key) {
+                        jsonObject[key] = value || '';
+                    }
+                });
             }
 
             // Output the JSON result
             document.getElementById('jsonOutput').value = JSON.stringify(jsonObject, null, 4);
-        }
-
-        // Function to copy output to clipboard
-        function copyOutput(outputId) {
-            const outputElement = document.getElementById(outputId);
-            outputElement.select();
-            document.execCommand("copy");
         }
 
         // Function to clear the input field
