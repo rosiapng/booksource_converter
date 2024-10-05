@@ -94,7 +94,7 @@ button:hover {
     text-decoration: none; /* Removes underline from link */
     border-radius: 4px; /* Rounds corners */
     font-size: 18px; /* Button text size */
-    margin-right: 10px; /* Adds space between buttons */
+    margin-right: 20px; /* Increased space between buttons */
     transition: background-color 0.3s; /* Smooth transition effect */
 }
 
