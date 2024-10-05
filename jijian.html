@@ -72,10 +72,9 @@ function convertToJSON() {
         // Handle key-value pair format (e.g., searchkey: 都市, searchtype: articlename)
         const lines = input.split('\n');
         lines.forEach(line => {
-            const [key, ...rest] = line.split(':');
-            const value = rest.join(':').trim(); // join in case value contains ":"
-            if (key) {
-                jsonObject[key.trim()] = value || ''; // Assign empty string if value is missing
+            if (line.includes(':')) {
+                const [key, value] = line.split(/:(.*)/).map(str => str.trim()); // Split only at the first colon
+                jsonObject[key] = value || ''; // Assign empty string if value is missing
             }
         });
     }
@@ -83,6 +82,8 @@ function convertToJSON() {
     // Output the JSON result
     document.getElementById('jsonOutput').value = JSON.stringify(jsonObject, null, 4);
 }
+
+
 // Function to convert double quotes to single quotes
         function convertQuotes() {
             const input = document.getElementById('doubleQuoteInput').value;
