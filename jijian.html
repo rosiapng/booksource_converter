@@ -8,6 +8,7 @@
 </head>
 <body>
 <!-- Navigation Links in Button Form -->
+    <h1>傻瓜极简写源工具</h1>
     <div class="nav-box">
         <nav>
             <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/index.html">书源语法转换器(xpath,css)</a>
@@ -17,22 +18,22 @@
            </nav>
     </div>
     
-    <h1>Query String to JSON Converter</h1>
-    <p>Enter a query string like <strong>searchkey=%E9%97%AA%E5%A9%9A&Submit=</strong> in the input box to convert it to JSON format.</p>
+<h1>极简Params转Json器</h1>
+    <p>可以把<strong>searchkey=%E9%97%AA%E5%A9%9A&Submit=</strong> 转成JSON.</p>
 
     <!-- Input Box for Query String -->
     <div class="input-container">
-        <label for="queryStringInput">Input Query String:</label>
+        <label for="queryStringInput">Param:</label>
         <textarea id="queryStringInput" rows="4" placeholder="Enter the query string"></textarea>
-        <button onclick="convertQueryToJSON()">Convert to JSON</button>
-        <button onclick="clearInput('queryStringInput')">Clear Input</button>
+        <button onclick="convertQueryToJSON()">转JSON</button>
+        <button onclick="clearInput('queryStringInput')">清空</button>
     </div>
 
     <!-- Output Box for JSON Format -->
     <div class="input-container">
-        <label for="jsonOutput">Converted JSON:</label>
-        <textarea id="jsonOutput" rows="6" placeholder="Converted JSON will appear here" readonly></textarea>
-        <button onclick="copyOutput('jsonOutput')">Copy Output</button>
+        <label for="jsonOutput">转 JSON:</label>
+        <textarea id="jsonOutput" rows="6" placeholder="转Json格式" readonly></textarea>
+        <button onclick="copyOutput('jsonOutput')">复制</button>
     </div>
 
     <script>
