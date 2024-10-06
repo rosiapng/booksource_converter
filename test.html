@@ -147,24 +147,45 @@ button:hover {
 function getXPathForElement(element) {
     if (!element || element.nodeType !== 1) return ''; // Ensure the element is an element node
 
-    // Start with the tag name
-    let xpath = '//' + element.tagName.toLowerCase();
+    let xpath = '//' + element.tagName.toLowerCase(); // Start with the tag name
 
-    // Add attribute conditions
+    // Special handling for <meta> elements
+    if (element.tagName.toLowerCase() === 'meta') {
+        const property = element.getAttribute('property');
+        const name = element.getAttribute('name');
+
+        if (property) {
+            xpath += `[@property="${property}"]`; // Handle property attributes
+        } else if (name) {
+            xpath += `[@name="${name}"]`; // Handle name attributes
+        }
+        return xpath; // Return immediately for meta tags
+    }
+
+    // Handle attributes for other elements
     const attributes = element.attributes;
     if (attributes.length > 0) {
         let conditions = [];
         for (let i = 0; i < attributes.length; i++) {
             let attr = attributes[i];
-            // Include all attributes in the conditions
-            // This will include properties for meta tags as well
-            conditions.push(`@${attr.name}="${attr.value}"`);
+            // Exclude 'id' and 'class' if needed, but keep all other attributes
+            if (attr.name !== "id" && attr.name !== "class") {
+                conditions.push(`@${attr.name}="${attr.value}"`);
+            }
         }
 
         // Combine all attribute conditions
         if (conditions.length > 0) {
             xpath += '[' + conditions.join(' and ') + ']'; // Combine attributes into one predicate
         }
+    }
+
+    // Check for id and class attributes last to add them if they exist
+    if (element.id) {
+        xpath += `[@id="${element.id}"]`;
+    } 
+    if (element.className) {
+        xpath += `[@class="${element.className}"]`;
     }
 
     return xpath; // Return the constructed XPath
@@ -189,9 +210,6 @@ function convertToXPath() {
     // Join the XPath results with a line break or choose to return only the first element
     document.getElementById('xpathOutput').value = xpaths.join('\n');
 }
-
-// Example usage of the convertToXPath function
-// This can be triggered by a button in your HTML
         // Function to convert XPath to CSS in the format: tag[attribute="value"]
 function xpathToCSS(xpath) {
     // Regex to match XPath patterns with tag, optional attribute, and value, or attribute-only selection or text()
