@@ -1,1 +1,332 @@
-var _0xods='jsjiami.com.v7';(function(_0x3beccc,_0x1b6dcc,_0x1fae11,_0xc04a69,_0x488554,_0x45b5ba,_0x44bbea){return _0x3beccc=_0x3beccc>>0x2,_0x45b5ba='hs',_0x44bbea='hs',function(_0x1e391b,_0x137178,_0x20463f,_0x3e37f2,_0x58c095){const _0x67a681=_0x2f8c;_0x3e37f2='tfi',_0x45b5ba=_0x3e37f2+_0x45b5ba,_0x58c095='up',_0x44bbea+=_0x58c095,_0x45b5ba=_0x20463f(_0x45b5ba),_0x44bbea=_0x20463f(_0x44bbea),_0x20463f=0x0;const _0x4797b9=_0x1e391b();while(!![]&&--_0xc04a69+_0x137178){try{_0x3e37f2=parseInt(_0x67a681(0x273,'#)[N'))/0x1+-parseInt(_0x67a681(0x290,'26Ii'))/0x2+parseInt(_0x67a681(0x1ba,'si9R'))/0x3+parseInt(_0x67a681(0x1e7,'0uL%'))/0x4*(parseInt(_0x67a681(0x227,'t9y9'))/0x5)+parseInt(_0x67a681(0x1ec,'0uL%'))/0x6*(parseInt(_0x67a681(0x259,'FIxM'))/0x7)+-parseInt(_0x67a681(0x279,'kZYn'))/0x8*(-parseInt(_0x67a681(0x1ac,'b1de'))/0x9)+-parseInt(_0x67a681(0x21a,'l%aa'))/0xa;}catch(_0x5eb24c){_0x3e37f2=_0x20463f;}finally{_0x58c095=_0x4797b9[_0x45b5ba]();if(_0x3beccc<=_0xc04a69)_0x20463f?_0x488554?_0x3e37f2=_0x58c095:_0x488554=_0x58c095:_0x20463f=_0x58c095;else{if(_0x20463f==_0x488554['replace'](/[LrtfERFbVTJUDIlSpGNn=]/g,'')){if(_0x3e37f2===_0x137178){_0x4797b9['un'+_0x45b5ba](_0x58c095);break;}_0x4797b9[_0x44bbea](_0x58c095);}}}}}(_0x1fae11,_0x1b6dcc,function(_0x9c186f,_0xb0836d,_0x427df9,_0x900e7a,_0x100502,_0x36ccd3,_0x419416){return _0xb0836d='\x73\x70\x6c\x69\x74',_0x9c186f=arguments[0x0],_0x9c186f=_0x9c186f[_0xb0836d](''),_0x427df9='\x72\x65\x76\x65\x72\x73\x65',_0x9c186f=_0x9c186f[_0x427df9]('\x76'),_0x900e7a='\x6a\x6f\x69\x6e',(0x185fc1,_0x9c186f[_0x900e7a](''));});}(0x324,0x72da8,_0x3ffb,0xcb),_0x3ffb)&&(_0xods=0x8f2);function getXPathForElement(_0x33a2f8){const _0x5eb5e9=_0x2f8c,_0x4a5d40={'ZuQld':function(_0x54713b,_0x79d105){return _0x54713b+_0x79d105;},'OKBBI':_0x5eb5e9(0x1c2,'VpBB'),'YyvZb':function(_0x136bd7,_0x1be1e6){return _0x136bd7(_0x1be1e6);},'khdMl':function(_0x30eb1f,_0x3c7fc2){return _0x30eb1f(_0x3c7fc2);},'uHEkh':function(_0x18bb88,_0xb91b37){return _0x18bb88!==_0xb91b37;},'dJUtO':function(_0x495488,_0x5d0c06){return _0x495488===_0x5d0c06;},'Jqewz':'meta','faZIJ':function(_0x5042f3,_0x593f79){return _0x5042f3>_0x593f79;},'IaISp':function(_0x4a842f,_0x3ec960){return _0x4a842f<_0x3ec960;},'uDyaH':function(_0x144c23,_0x216d5f){return _0x144c23!==_0x216d5f;},'MRxwO':'class','DktFF':_0x5eb5e9(0x205,'PvdC'),'MYtuS':function(_0xb0650d,_0x1ef924){return _0xb0650d+_0x1ef924;},'qrouy':function(_0x5b3506,_0x55d55c){return _0x5b3506===_0x55d55c;},'BQFsL':'JHLEg','qKyrS':'HaQLu','cNUZe':_0x5eb5e9(0x20f,'Z&Mh')};if(!_0x33a2f8||_0x4a5d40[_0x5eb5e9(0x1f4,'VSTY')](_0x33a2f8[_0x5eb5e9(0x1de,'6sVP')],0x1))return'';let _0x583187=_0x4a5d40[_0x5eb5e9(0x196,'VpBB')]('//',_0x33a2f8[_0x5eb5e9(0x22c,'26Ii')]['toLowerCase']());if(_0x4a5d40[_0x5eb5e9(0x29f,'oI%W')](_0x33a2f8[_0x5eb5e9(0x232,']zq!')]['toLowerCase'](),_0x4a5d40[_0x5eb5e9(0x17c,'yl[P')])){const _0x290ef6=_0x33a2f8[_0x5eb5e9(0x281,'6sVP')]('property'),_0x195f77=_0x33a2f8[_0x5eb5e9(0x208,'*yrN')](_0x5eb5e9(0x1d2,'XSQa'));if(_0x290ef6)_0x583187+='[@property=\x22'+_0x290ef6+'\x22]';else _0x195f77&&(_0x583187+=_0x5eb5e9(0x264,'Z&Mh')+_0x195f77+'\x22]');return _0x583187;}const _0x582bb6=_0x33a2f8[_0x5eb5e9(0x1bd,'XYq(')];if(_0x4a5d40[_0x5eb5e9(0x239,']zq!')](_0x582bb6[_0x5eb5e9(0x1c1,'lPiF')],0x0)){let _0x4cd2e4=[];for(let _0x4b5819=0x0;_0x4a5d40[_0x5eb5e9(0x21e,'PvdC')](_0x4b5819,_0x582bb6[_0x5eb5e9(0x212,'MW4o')]);_0x4b5819++){let _0x26664a=_0x582bb6[_0x4b5819];_0x4a5d40['uDyaH'](_0x26664a['name'],'id')&&_0x4a5d40[_0x5eb5e9(0x17b,'yR&&')](_0x26664a['name'],_0x4a5d40[_0x5eb5e9(0x298,'f2Y4')])&&(_0x4a5d40[_0x5eb5e9(0x216,'P5&g')]!==_0x4a5d40[_0x5eb5e9(0x1dc,'#)[N')]?_0x53277d+=_0x4a5d40[_0x5eb5e9(0x19f,'yR&&')]('[',_0x32df6a[_0x5eb5e9(0x1a9,'yl[P')](_0x4a5d40[_0x5eb5e9(0x29c,'l%aa')]))+']':_0x4cd2e4[_0x5eb5e9(0x250,'Rh6h')]('@'+_0x26664a[_0x5eb5e9(0x26e,'yR&&')]+'=\x22'+_0x26664a[_0x5eb5e9(0x203,'Rh6h')]+'\x22'));}_0x4a5d40[_0x5eb5e9(0x220,'VSTY')](_0x4cd2e4[_0x5eb5e9(0x207,'KcbI')],0x0)&&(_0x583187+=_0x4a5d40[_0x5eb5e9(0x1ad,'sWky')]('[',_0x4cd2e4['join'](_0x4a5d40[_0x5eb5e9(0x285,'QmKj')]))+']');}if(_0x33a2f8['id']){if(_0x4a5d40[_0x5eb5e9(0x1fb,'kZYn')](_0x5eb5e9(0x1f8,'2YHR'),_0x4a5d40[_0x5eb5e9(0x1c8,'FIxM')]))_0x583187+='[@id=\x22'+_0x33a2f8['id']+'\x22]';else{const _0xce90d2=new _0x335f5d(_0x6d1ff8);for(const [_0x39067b,_0x458a5e]of _0xce90d2['entries']()){_0x48174b[_0x39067b]=_0x4a5d40[_0x5eb5e9(0x27b,'mWOv')](_0xb38a79,_0x458a5e);}}}return _0x33a2f8['className']&&(_0x4a5d40[_0x5eb5e9(0x180,'SLeg')](_0x4a5d40[_0x5eb5e9(0x19c,'f2Y4')],_0x4a5d40[_0x5eb5e9(0x25c,'bmv2')])?_0x12277e[_0x41305a]=_0x4a5d40[_0x5eb5e9(0x185,'SkpK')](_0x249182,_0x5c0e41):_0x583187+='[@class=\x22'+_0x33a2f8[_0x5eb5e9(0x23a,'SkpK')]+'\x22]'),_0x583187;}function convertToXPath(){const _0x2667ba=_0x2f8c,_0x1c53f5={'Mqwff':function(_0x305e90,_0x21badb){return _0x305e90(_0x21badb);},'NApZj':_0x2667ba(0x240,'P5&g'),'zjMQb':_0x2667ba(0x235,'2YHR'),'FCrSS':'xpathOutput'},_0x316a22=document[_0x2667ba(0x189,'ztR#')](_0x1c53f5[_0x2667ba(0x29d,'kZYn')])[_0x2667ba(0x19a,'NYMi')],_0xd828ef=new DOMParser(),_0x1ce82f=_0xd828ef[_0x2667ba(0x21d,'b1de')](_0x316a22,_0x1c53f5['zjMQb']),_0x43da08=_0x1ce82f['querySelectorAll'](_0x2667ba(0x1fd,'MW4o'));let _0x7b66b1=[];_0x43da08['forEach'](_0x4aaa84=>{const _0x478a38=_0x2667ba,_0x3f69a6=_0x1c53f5[_0x478a38(0x23d,'yl[P')](getXPathForElement,_0x4aaa84);if(_0x3f69a6)_0x7b66b1[_0x478a38(0x254,'f2Y4')](_0x3f69a6);}),document[_0x2667ba(0x23b,'lS#v')](_0x1c53f5['FCrSS'])[_0x2667ba(0x1d6,'0uL%')]=_0x7b66b1['join']('\x0a');}function xpathToCSS(_0x3f6301){const _0x413b11=_0x2f8c,_0x77b008={'tcYrN':_0x413b11(0x1ea,'QmKj'),'wIEXB':function(_0x1d2769,_0x3a1e56){return _0x1d2769&&_0x3a1e56;},'RfoqE':function(_0x27eb7d,_0x1238c1){return _0x27eb7d!==_0x1238c1;},'RAkqW':function(_0x3d80a6,_0x39440c){return _0x3d80a6===_0x39440c;},'YHCZI':_0x413b11(0x1af,'FXrw'),'yZinM':_0x413b11(0x18e,'0cow'),'IREoO':function(_0x3e460c,_0x5e0e25){return _0x3e460c===_0x5e0e25;},'NuJOS':_0x413b11(0x287,']zq!'),'hNYwB':function(_0x440228,_0x24d3f0){return _0x440228&&_0x24d3f0;},'iwmMW':function(_0x11fec3,_0x54e9f8){return _0x11fec3||_0x54e9f8;}},_0x4c4121=/\/{1,2}(\w+)(?:\[@(\w+)="([^"]+)"\])?(?:\/@(\w+))?(?:\/text\(\))?/g;let _0x5dd14='',_0x48e0e0;while(_0x77b008[_0x413b11(0x288,'Z&Mh')](_0x48e0e0=_0x4c4121['exec'](_0x3f6301),null)){if(_0x77b008[_0x413b11(0x246,'6sVP')](_0x413b11(0x1e9,'VSTY'),_0x77b008[_0x413b11(0x219,'l%aa')])){const _0x3fe17f=_0x48e0e0[0x1],_0x3f7b71=_0x48e0e0[0x2],_0x393f17=_0x48e0e0[0x3],_0x34f11a=_0x48e0e0[0x4];if(_0x34f11a||_0x3f6301['includes'](_0x77b008[_0x413b11(0x201,'26Ii')])){if(_0x77b008[_0x413b11(0x179,'%W^h')](_0x77b008[_0x413b11(0x213,'oI%W')],_0x77b008[_0x413b11(0x265,'Hjt%')])){_0x5dd14+=_0x3fe17f;continue;}else _0x30ca4b[_0x3564bf]=_0x1f2b28||'';}if(_0x77b008[_0x413b11(0x24f,'XYq(')](_0x3f7b71,_0x393f17)){if(_0x77b008[_0x413b11(0x17d,'Hjt%')](_0x413b11(0x1c7,'u[d('),'EpXVN'))_0x5dd14+=_0x3fe17f+'['+_0x3f7b71+'=\x22'+_0x393f17+'\x22]';else{const _0x7c4f7f=_0x4a889c[_0x413b11(0x1d1,'NYMi')][_0x413b11(0x202,'Jp$[')](),_0x23e375=_0x5bb361[_0x413b11(0x281,'6sVP')](_0x77b008['tcYrN']);_0x77b008[_0x413b11(0x295,'SLeg')](_0x7c4f7f,_0x23e375)&&_0x2197cd['push']({'name':_0x7c4f7f,'value':_0x23e375});}}else _0x5dd14+=_0x3fe17f;_0x4c4121[_0x413b11(0x26f,'SkpK')]<_0x3f6301[_0x413b11(0x28c,'t9y9')]&&(_0x5dd14+='>');}else _0x31e583[_0x413b11(0x1ed,'si9R')]({'name':_0x38fccb,'value':_0x27d981});}return _0x77b008['iwmMW'](_0x5dd14,'Invalid\x20XPath');}function convertToCSS(){const _0x2807ea=_0x2f8c,_0x3a9ed2={'bYbhU':_0x2807ea(0x1b1,'l%aa'),'IjwYW':_0x2807ea(0x1fe,'vZJm')},_0x4a49ef=document['getElementById'](_0x3a9ed2['bYbhU'])[_0x2807ea(0x224,'VpBB')],_0x1ba7f8=xpathToCSS(_0x4a49ef);document['getElementById'](_0x3a9ed2['IjwYW'])[_0x2807ea(0x29e,'VSTY')]=_0x1ba7f8;}function _0x3ffb(){const _0x563b84=(function(){return[_0xods,'LJbjUsjIniNGapfmFiGRr.VScEbolmS.LvtJ7TDI==','zeldGSk1WO4','W6CWW7PxbW','WRO/yG4O','FfelaSkfWQe','WPJcQazoiW','ESoppG','efiMpWq','jtTkqG','W6TkW47cRKtdSvRcMSo5mtldGSkYFG','WPmUWOpcMmoEeW','kmkGWOLqtW','WOBcUqa','hrBcJCkZWRa','WRNdImkMW4LI','WOVdGSk+W7Pb','qg0el8kb','BCoKWRBcTCkc','bSkFW4BdMCo5W6nQWPBcSWehA8kWWOu','r8kYqSou','Du9Wxq','qvyKWQBcOfmuDSopk8oWBSohW4zJ','D8ooWPtdTmo0','W4CqW6v3jXSgeMpdNW','WROLW6jdbq','aCkQitKUwCkMl8kTW4VcH2BcGHVdTwKPBbFdK8of','WQWHBW','y8kiW4NdJmkKB8kNDCkRvspdVq','WQFcH2ddGCo2','W6PLrbmIWQXBW7q','WOW7WOhcLSoE','WRBcRZ3dQ0n0zSkbebxcRCkD','j8kefMfhWO1MW6GPW5eYW44NW78Xg8oU','xSo/cueZ','oSoaWRZcGCkU','WPWtW5xdJMpcP8kGpmokW7pcNwnxbHOt','espcLq/dLSotW5C','WPlcJHZcKt40s8o3ySkEWOpcIt1F','lmkRiJOUvCktESkWW5RcHuRcLeVdShW','u8ojWOhcQSkNWR8ZW4pcUcWuDmkCWQq','WPakCSoLWRyyW43dOq','l2qjba','y8opkCkruSo1pG','WOSGW6RcUSkt','WONdTJldL8oXhKC8lG','WOxdP8ohlXXTp8kIW5a','WQSJW6VcSSkH','wum7WRNcJhSwBmow','W7LDW5y','CCopfmkwEq','vMddSSkxWRHHW4GchG','WRldK8oDWPnLiComW4qrWOOJjmoUBG','W50wW7LX','xmkCW5NdJ8k6','aCkHWQBdPNRdPGNcHG','aSk3WPahs8kCotxcLCkHrmopW4tcMW','WPxdL8k/W6nTW5NcTH81','v146WQhcOgC','BCovd14jW7anzmoxEmkEBY3dSq','WOiRqb5ArfVdHSkteJqDW6Kz','WQO/W58IWPJdO8kXW4juwY5IWO4x','ccpcGG','W5FcUv4EAa','fmo7W6pdJW','W7ddQMBcSW','yCopiSkQvG','WOhcQX9OaxWpdSk3Ea','WOmHrH5xqL4','qSonWPNcMSkU','WRzbWQO0WO0','WPJdRmoCn0zHlSk8','Axnar1S','gmk6WRBdOG','WR84AdiT','aIFcHGtdM8oBW5/cI8kXWP0hqrBdUW','W75kW53cJLddHfBcI8oJialdLq','WOxcNHVcVa','vmkLx8o8W4/cIY3cM8kTfCkzdaBdOa','wmoaWQ/dOSoLumk8','qmojWO3cM8oKWRiQW4VcUG','sSoDWRtdIG','kWHErmkxWQNdQ3NdSmkh','W7PoW5BcNK0','Ct7cVxOT','n8kVn2Hh','pcHt','WPtdIdpdQCoh','BuOoaSkfWOFdVetdHW','q8k1wmor','W7ldUwpcQXC','jM4yW6rN','WRRcLGzKiG','afyocci0ECka','BGxcGvCs','WRmfW67cL8koxmoWWQ3cJG','WRCgrCo9WPC','WPtdRmolkvPGoa','c8k0WRm','tmokWRRdGSo8FSk1wdTCrCoV'].concat((function(){return['WRpdHmoNaKm','W7pcMvKAwG','WOO/W7xcMCkR','AXZcNSkA','ww3dOmkqWOjbW40kaW','WPdcGM01W4a','W4acW7O','WPJcRajVig4sgmk7','W5hdSZbMWQnUWRtdQ3XjWPFcVq','lYdcGCkIWRySW45mESk+W5VdPq','WPBcS2tdN8od','hSo6W7ddMSokvxK6','WOBcPddcPtO','CmoloSkAx8o9nSo8fSoSW5f4n2O','W5vrbmk2WPtdKmkkkmo+dKyA','mIvkx8knW5K4WQVcPq','lItcJW92','tmo0WRpcTSkp','W59gWOVcMwZcJ8k3cCoLW4S','W5vIW4pcHNe','qmoEWPZcGG','WOW/WP/cLSoehfNdTSow','W6lcNueUs8oMDmoJWRNcRSkHDa','omkWmNTe','WOCJWO/cQmoY','FmoYohKg','h0q2W5nl','W4pcPfq1WOS','vmopo8kjsW','cxapgaO','W6ZcIu4FWRiMs2tdSaXMWPOaCq','xmo2WQdcTCkJ','eYpcNJtdKG','W6JdVwhcUqyP','tmoQk3qh','nYbpw8kkW4q','vZpcQ8kiWOi','vhhdINhcJSkkW5tcI8khWQ0VFa','WO8Hxtu','WRPsiCoxW5qCjG','mGRcGGNdKG','W5ScW6zSdq','W5OQW49bkG','WPuVrIHt','WQuLW53dQeO','WRJcUrdcOX0','W5z/bw8guNFdUCkCiJK','jSkKWQJdMKW','s8kdwCodW4K','E8oNWRFcRCkc','WQGPtmoBW44','WQOLW5r/kG','aSkFWPzRuW','WPNdTSosn3PRo8k6W4G','WRa2vmoMWOW','bCoXW6pdMSoEuNK','CdxcTSkuWPO','w8kCW4VdNSkM','CHBcPgKe','nxCnda','E2yMWQFcIW','W4KPW59TjW','aY/cKdG','hZHOz8km','pSkLoY0N','yXtcN8klWPD3','xMtdT8kPWQC','w8k0rSovW6RcGddcI8k3','lxCmhcO','hmk5WPDpvq','WOKtW4BdRNFcKmkOkCoiW6BcVh9ZbW','AmkcW63dK8ki','WRBcG3JdSCo/radcI8oBW4xdRfX8lW','a8oMW7RdMW','WP3dPZtdU8oZhem/oq9zW4PhlW','WO7dPZJdISk3ua','W7/cHu42WRS','fSkxWQP6sG','n2OaW5rUWOdcKSo2WQJdOCk3F8kSrG','vM3dP8khWQm','DeSfada','fJdcTWfb','jgyaW71N','WOVcK13dMmo3','CdNcK30L','aCo1W7/dG8oA','W4HxkCk5W7PiW47dTWaRqCkw','ANa8lZ0','W71AW5/cMvhdH0pcJCo+kXFdSSkvASoNW5m','WOtcObhcPGe','D1X1rxW','tHhcPN0','xWJcOSktWPy','BKOogW','WPmVwc5t','wNa5nJ3dTmo0W7pcNmksxbKbW4hcKu5bWPzAWPi7','WRldRSo5WQjU','vfDhg8kbWQFdULtdLSkTWRWeW7DIWOJcUG','WOpdP8opn1jMlG','AhGKnJ0'].concat((function(){return['gtZcLda','WRRcOcnpka','E8kcW4FdHW','oJNcVt5T','Bwq1kchdG8kGW7xcMSoCwd8FW4JdHe4','ca4vWRRcSw0jxq','FCoDW5DekG','fIVcNcBdM8oBW6pcM8kWWP0GDYRdQ8kOWP/dIa','i8oHW7ddL8ow','dmk4WRDirG','tmoCWPtcM8kJWPmWW5BcOYW','W6lcNueQu8o3A8oVWRxcR8kxAgDg','gZTVxCkS','bd/cP8osW74FW4mCiCk2W7PS','zCkFW4FdHa','Er7cSNq5','WPdcOxyJW7m','WQn0WRCSWPC','wmomWQJdVSoG','W6LhWRtdG8o1aCk4WPtcQgxcKLSI','sSkTW4ddImkXr8o7iW','Fmorf24a','yeLTqNbTACkTWRnJ','WPhcJYzqca','WP8YAHe+WQyqW6CzWQPdW74Uz8ouWO0vWQRdT8owzCkVESkEW5vde8kcgmk2W7ZdR8kVdem','zmoJWO/dLmoJ','x8kLrCoEW5FcHG','W7hcH2ldKmkZ','WRWuW7FcVSkRv8oTWR3cLflcSuaIaG','AGlcH2Oc','WQNcRNiXW7O3WRRcUfrcWRBcTHHTrqaXW5RcS8omW6y','W7WZW5Ljpa','WRhcTrnbgq','wgKHbCkS','EwmInsO','wCokWQNdOSoOvSk5stzaySoLjsC','FgldPCkfWQDgW41pcCk9W5TNWOWxfd7dGrGyWOnW','WQWuW6NcGCkg','otdcKmkrWRSlW5LjFCkOW5VdR2NcPHrX','WQuUW4ylWR3dQmkSW5jo','WPJcMrlcGsm','W79kW5BcJKVdOa','AhqOlHVdV8k6W7pcLSoCsW','zmorfN4','WPpdGSk/W6O','WPNdPSo9f1e','BvH3v21N','pItcMCkwWQC','WQ1woSo2W7y','rCkHr8omW4y','WOFcH0hdUmoe','FCkVc8ouW4lcMIpcLSkMeSo7eYddSCkeW4e','WQldPrJdSmol','WQtcQ3awW5a','omotWRNcMq','W6VcL1ekA8oRDSoV','B8ooWRVdG8oD','kgisace2lCoeeW','WQG2W5fN','vCoSW7SOlbtdRSk0W7G7Bsy','tMtcUJPGDqDV','yWJcNCkCWOzSWR8ebXpdMmotpJBcQCkxWO9JvLFdOubWWQKvhdv9WOxcHSoqySkng0zXWRhcLmkyWOZdTCoqW7hcMYlcU8kPWOZdMJBdMcldJSki','BfKla8kf','x8oOWQhcMSkr','E3pcSSknWRS2W5Dc','CLWLoSkc','WOGXW5TRjG','oh0rW7C','WQXiimo6','E3tdHmoxW7iRW71/ECkpW6a','WQSeW7dcKW','WRSHW4Xpi8kOW59mW4C8WOBdN8k5W4q','CSoLfNuk','zmoHfSkUwW','WPVdSCo2nunWpW','W4uVwJ8w','W7VcMuKY','WQKmW71HjW','oCotWRW','kgymadS','WR8/W4WcWOZdLSk9W5nosH51','WRVdISoZhLq','lMqm','m8kefNDoWOrUW64ZW4WFW5K8W7O','WPCAu8o0W50','WOaHyIPd','WPCUWOZcM8kkfLxdPmooa8kqESkVW6/dJLme','WOy9rXrdvuBdLSkj','WOWGvZDdrvpdKa','iSkaebjiWPjSW6uoW4WVW4KBW7L/qCkRWRtcIgRcKbRdP2FcImkgmshdJW83WPNOV5NPHPtdGaxdI2yQWPRdMtPTWOhcVSocoSkRlrCtmSoOW5SnW6nJn8ohW6blbuRcKwaOW6W+ttHIumk3irXdW7vw','hbJcMY/dUG','WRKOW4ik','hSkUWQNdV2O','eLaWpd8','BCoAWPNdSCok','WQpdL8ofWQnS','WRbypCo1W4ex','nIXxBSkBW4iRWRdcO8kDWP48'];}()));}()));}());_0x3ffb=function(){return _0x563b84;};return _0x3ffb();}function _0x2f8c(_0x3a1f37,_0x10cd02){const _0x3ffb38=_0x3ffb();return _0x2f8c=function(_0x2f8c14,_0x11765f){_0x2f8c14=_0x2f8c14-0x178;let _0x1dbe4c=_0x3ffb38[_0x2f8c14];if(_0x2f8c['IiZewE']===undefined){var _0x3ce1c5=function(_0x4a99a0){const _0x3ff0e7='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x53d830='',_0x4715cc='';for(let _0x54e8f6=0x0,_0x1c5871,_0x279528,_0x101739=0x0;_0x279528=_0x4a99a0['charAt'](_0x101739++);~_0x279528&&(_0x1c5871=_0x54e8f6%0x4?_0x1c5871*0x40+_0x279528:_0x279528,_0x54e8f6++%0x4)?_0x53d830+=String['fromCharCode'](0xff&_0x1c5871>>(-0x2*_0x54e8f6&0x6)):0x0){_0x279528=_0x3ff0e7['indexOf'](_0x279528);}for(let _0x55f4f8=0x0,_0x3691c7=_0x53d830['length'];_0x55f4f8<_0x3691c7;_0x55f4f8++){_0x4715cc+='%'+('00'+_0x53d830['charCodeAt'](_0x55f4f8)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x4715cc);};const _0x55f072=function(_0x3555bc,_0x1cfdf7){let _0x293084=[],_0x544de4=0x0,_0x18ea58,_0x19f095='';_0x3555bc=_0x3ce1c5(_0x3555bc);let _0x46f925;for(_0x46f925=0x0;_0x46f925<0x100;_0x46f925++){_0x293084[_0x46f925]=_0x46f925;}for(_0x46f925=0x0;_0x46f925<0x100;_0x46f925++){_0x544de4=(_0x544de4+_0x293084[_0x46f925]+_0x1cfdf7['charCodeAt'](_0x46f925%_0x1cfdf7['length']))%0x100,_0x18ea58=_0x293084[_0x46f925],_0x293084[_0x46f925]=_0x293084[_0x544de4],_0x293084[_0x544de4]=_0x18ea58;}_0x46f925=0x0,_0x544de4=0x0;for(let _0x41bed3=0x0;_0x41bed3<_0x3555bc['length'];_0x41bed3++){_0x46f925=(_0x46f925+0x1)%0x100,_0x544de4=(_0x544de4+_0x293084[_0x46f925])%0x100,_0x18ea58=_0x293084[_0x46f925],_0x293084[_0x46f925]=_0x293084[_0x544de4],_0x293084[_0x544de4]=_0x18ea58,_0x19f095+=String['fromCharCode'](_0x3555bc['charCodeAt'](_0x41bed3)^_0x293084[(_0x293084[_0x46f925]+_0x293084[_0x544de4])%0x100]);}return _0x19f095;};_0x2f8c['diCOsP']=_0x55f072,_0x3a1f37=arguments,_0x2f8c['IiZewE']=!![];}const _0xc8ad2d=_0x3ffb38[0x0],_0x71db05=_0x2f8c14+_0xc8ad2d,_0x3fb6ff=_0x3a1f37[_0x71db05];return!_0x3fb6ff?(_0x2f8c['Vilija']===undefined&&(_0x2f8c['Vilija']=!![]),_0x1dbe4c=_0x2f8c['diCOsP'](_0x1dbe4c,_0x11765f),_0x3a1f37[_0x71db05]=_0x1dbe4c):_0x1dbe4c=_0x3fb6ff,_0x1dbe4c;},_0x2f8c(_0x3a1f37,_0x10cd02);};function convertToJSON(){const _0x10e3be=_0x2f8c,_0x5a907d={'QxSIf':function(_0x1a85ee,_0x1c0dac){return _0x1a85ee||_0x1c0dac;},'jqeBX':function(_0x42f54d,_0x2d649c){return _0x42f54d||_0x2d649c;},'QPSPT':'htmlInput','pRhIf':_0x10e3be(0x19b,']xI%'),'KSoCQ':_0x10e3be(0x1b9,'PvdC'),'pLjin':function(_0x5417e9,_0x1d6bb2){return _0x5417e9===_0x1d6bb2;},'VaMLW':'DSthW','qvUuu':function(_0x3d8392,_0xe1c2ae){return _0x3d8392(_0xe1c2ae);},'pBieV':'AsCGw','lQPIf':_0x10e3be(0x21f,'SLeg')},_0x2a8203=document[_0x10e3be(0x244,'Jp$[')](_0x5a907d[_0x10e3be(0x236,'si9R')])[_0x10e3be(0x294,'SLeg')][_0x10e3be(0x210,'*yrN')](),_0x2b3db9={};if(_0x2a8203[_0x10e3be(0x23e,'Rh6h')]('=')&&!_0x2a8203[_0x10e3be(0x24e,'2YHR')](':')){if(_0x10e3be(0x293,'26Ii')===_0x5a907d[_0x10e3be(0x297,'ztR#')]){const [_0x4dc3fb,_0x43536e]=_0x3659eb['split'](':')[_0x10e3be(0x245,'26Ii')](_0x431480=>_0x431480[_0x10e3be(0x21b,'lPiF')]());_0x4dc3fb&&(_0x2f0f0b[_0x4dc3fb]=_0x5a907d[_0x10e3be(0x1a8,'u[d(')](_0x43536e,''));}else{const _0x55898e=new URLSearchParams(_0x2a8203);for(const [_0x1fb724,_0x1f579a]of _0x55898e[_0x10e3be(0x268,'2YHR')]()){_0x5a907d['pLjin'](_0x10e3be(0x1b6,'Hjt%'),_0x5a907d[_0x10e3be(0x1d9,'VpBB')])?_0x1899c7+=_0x10e3be(0x1bb,'yl[P')+_0x333a83+'\x22]':_0x2b3db9[_0x1fb724]=_0x5a907d['qvUuu'](decodeURIComponent,_0x1f579a);}}}else{if(_0x5a907d[_0x10e3be(0x270,'#)[N')]===_0x5a907d[_0x10e3be(0x190,'oI%W')]){const _0x2859d1=_0x2a8203['split']('\x0a');_0x2859d1[_0x10e3be(0x256,'PvdC')](_0x2d0439=>{const _0x46cef6=_0x10e3be,[_0x3509a6,_0x5b8b05]=_0x2d0439[_0x46cef6(0x226,'MW4o')](':')[_0x46cef6(0x20e,']zq!')](_0x329e8b=>_0x329e8b[_0x46cef6(0x18c,'FXrw')]());_0x3509a6&&(_0x2b3db9[_0x3509a6]=_0x5a907d['jqeBX'](_0x5b8b05,''));});}else{const _0xcea8d9=_0xf52b5a[_0x10e3be(0x296,'vZJm')](_0x49e89f),_0x2ddeab=_0xcea8d9[_0x10e3be(0x241,'b1de')](_0x512987=>_0x512987[_0x10e3be(0x195,'QmKj')]&&_0x512987[_0x10e3be(0x1a6,'NYMi')][_0x10e3be(0x1dd,'4MOZ')]()&&_0x512987[_0x10e3be(0x222,'UhOs')]&&_0x512987[_0x10e3be(0x238,']xI%')][_0x10e3be(0x21c,'XYq(')]())['map'](_0x4703d3=>({'name':_0x4703d3['title'][_0x10e3be(0x248,'t9y9')](),'value':_0x4703d3['url']['trim']()}));_0x5c8e05['getElementById'](_0x5a907d[_0x10e3be(0x1c6,'SLeg')])[_0x10e3be(0x19d,'XYq(')]=_0xec0658[_0x10e3be(0x272,'u[d(')](_0x2ddeab,null,0x4);}}document[_0x10e3be(0x211,']xI%')](_0x5a907d[_0x10e3be(0x282,'bmv2')])[_0x10e3be(0x206,'lS#v')]=JSON[_0x10e3be(0x280,'MW4o')](_0x2b3db9,null,0x4);}function clearInput(_0x58b86a){const _0x1d2a95=_0x2f8c;document[_0x1d2a95(0x1fa,'bmv2')](_0x58b86a)['value']='';}function copyOutput(_0x2effbe){const _0x381b49=_0x2f8c,_0x3508e3=document[_0x381b49(0x189,'ztR#')](_0x2effbe);_0x3508e3[_0x381b49(0x1d0,']xI%')](),_0x3508e3[_0x381b49(0x228,'bmv2')](0x0,0x1869f),document['execCommand'](_0x381b49(0x247,'FXrw'));}function convertToCustomFunction(){const _0x2fa8b9=_0x2f8c,_0xf24cdc={'NkmPC':_0x2fa8b9(0x1f1,'2YHR')};let _0x23ec1a=document['getElementById'](_0xf24cdc[_0x2fa8b9(0x29a,'Rh6h')])[_0x2fa8b9(0x262,'QmKj')],_0x545d48=_0x2fa8b9(0x1e4,'yR&&');_0x545d48+=_0x23ec1a[_0x2fa8b9(0x17a,'FXrw')](/@js:/g,''),_0x545d48+=_0x2fa8b9(0x200,'bmv2'),document[_0x2fa8b9(0x252,'26Ii')]('jsOutput')[_0x2fa8b9(0x224,'VpBB')]=_0x545d48;}function convertToJSON(){const _0xf503e=_0x2f8c,_0x14fd3c={'qLOpO':_0xf503e(0x1bf,'UhOs'),'QNQQE':_0xf503e(0x1ab,'NYMi'),'HHnoU':function(_0x53a1b0,_0x1a54b9){return _0x53a1b0!==_0x1a54b9;},'kDTuZ':_0xf503e(0x215,'0uL%'),'dBoDM':_0xf503e(0x28d,'XSQa'),'JSpNo':_0xf503e(0x24a,'u[d(')},_0x45c0da=document[_0xf503e(0x242,'XSQa')](_0x14fd3c[_0xf503e(0x209,'SkpK')])[_0xf503e(0x198,'FXrw')][_0xf503e(0x181,'mWOv')](),_0x211c8d={};if(_0x45c0da['includes']('=')&&!_0x45c0da[_0xf503e(0x1ff,'vZJm')](':')){const _0x415b42=new URLSearchParams(_0x45c0da);for(const [_0x158e21,_0x38cafc]of _0x415b42['entries']()){if(_0x14fd3c[_0xf503e(0x286,'5lj!')](_0xf503e(0x29b,'lPiF'),_0x14fd3c[_0xf503e(0x1e6,'l%aa')]))_0x211c8d[_0x158e21]=decodeURIComponent(_0x38cafc);else{const [_0x4ec798,_0x2ca63e]=_0x55a6d9[_0xf503e(0x1f6,'Z&Mh')](/:(.*)/)[_0xf503e(0x25d,'*yrN')](_0x3bf370=>_0x3bf370[_0xf503e(0x210,'*yrN')]());_0x3eda18[_0x4ec798]=_0x2ca63e?_0x2ca63e[_0xf503e(0x1e1,'VSTY')]():'';}}}else{if(_0x14fd3c['dBoDM']!=='BHguP'){const _0x3c1987=_0x45c0da['split']('\x0a');_0x3c1987[_0xf503e(0x292,'KcbI')](_0x34f
+    // Function to convert HTML element to XPath
+        function getXPathForElement(element) {
+            if (!element || element.nodeType !== 1) return ''; // Ensure the element is an element node
+
+            let xpath = '//' + element.tagName.toLowerCase(); // Start with the tag name
+
+            // Special handling for <meta> elements
+            if (element.tagName.toLowerCase() === 'meta') {
+                const property = element.getAttribute('property');
+                const name = element.getAttribute('name');
+
+                if (property) {
+                    xpath += `[@property="${property}"]`; // Handle property attributes
+                } else if (name) {
+                    xpath += `[@name="${name}"]`; // Handle name attributes
+                }
+                return xpath; // Return immediately for meta tags
+            }
+
+            // Handle attributes for other elements
+            const attributes = element.attributes;
+            if (attributes.length > 0) {
+                let conditions = [];
+                for (let i = 0; i < attributes.length; i++) {
+                    let attr = attributes[i];
+                    // Exclude 'id' and 'class' if needed, but keep all other attributes
+                    if (attr.name !== "id" && attr.name !== "class") {
+                        conditions.push(`@${attr.name}="${attr.value}"`);
+                    }
+                }
+
+                // Combine all attribute conditions
+                if (conditions.length > 0) {
+                    xpath += '[' + conditions.join(' and ') + ']'; // Combine attributes into one predicate
+                }
+            }
+
+            // Check for id and class attributes last to add them if they exist
+            if (element.id) {
+                xpath += `[@id="${element.id}"]`;
+            } 
+            if (element.className) {
+                xpath += `[@class="${element.className}"]`;
+            }
+
+            return xpath; // Return the constructed XPath
+        }
+
+        // Function to convert the HTML input to XPath
+        function convertToXPath() {
+            const htmlCode = document.getElementById('htmlInput').value;
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlCode, 'text/html');
+
+            // Select all elements within the document including <head> section
+            const elements = doc.querySelectorAll('head meta, body *'); // Select meta from head and all from body
+
+            // Prepare an array to hold the XPaths
+            let xpaths = [];
+            elements.forEach(element => {
+                const xpath = getXPathForElement(element);
+                if (xpath) xpaths.push(xpath); // Only add non-empty XPath
+            });
+
+            // Join the XPath results with a line break
+            document.getElementById('xpathOutput').value = xpaths.join('\n');
+        }
+
+        // Function to convert XPath to CSS in the format: tag[attribute="value"]
+function xpathToCSS(xpath) {
+    // Regex to match XPath patterns with tag, optional attribute, and value, or attribute-only selection or text()
+    const regex = /\/{1,2}(\w+)(?:\[@(\w+)="([^"]+)"\])?(?:\/@(\w+))?(?:\/text\(\))?/g;
+    let cssSelector = '';
+    let match;
+
+    // Loop through each match of the XPath pattern
+    while ((match = regex.exec(xpath)) !== null) {
+        const tag = match[1];       // Tag name (e.g., ul, img, div, a)
+        const attr = match[2];      // Attribute (e.g., id or class)
+        const value = match[3];     // Value of the attribute (e.g., newlist)
+        const attrOnly = match[4];  // Attribute only (e.g., src)
+
+        // If the XPath ends with an attribute like /@src, or text(), we only keep the tag (e.g., img, a)
+        if (attrOnly || xpath.includes('text()')) {
+            cssSelector += tag; // Just append the tag, skipping the attribute or text()
+            continue;
+        }
+
+        // Build the CSS selector part by part
+        if (attr && value) {
+            cssSelector += `${tag}[${attr}="${value}"]`;
+        } else {
+            cssSelector += tag;  // If no attribute, just add the tag
+        }
+
+        // If there are more tags to follow, add '>' to indicate direct descendant
+        if (regex.lastIndex < xpath.length) {
+            cssSelector += '>';
+        }
+    }
+
+    // Return the final CSS selector or indicate if no valid match was found
+    return cssSelector || 'Invalid XPath';
+}
+
+        function convertToCSS() {
+            const xpathCode = document.getElementById('xpathInput').value;
+            const cssSelector = xpathToCSS(xpathCode);
+            document.getElementById('cssOutput').value = cssSelector;
+        }
+
+      // Function to handle both query strings and key-value pairs
+        function convertToJSON() {
+            const input = document.getElementById('queryStringInput').value.trim();
+            const jsonObject = {};
+
+            if (input.includes('=') && !input.includes(':')) {
+                // Handle query string format (e.g., searchkey=%E9%97%AA%E5%A9%9A&Submit=)
+                const params = new URLSearchParams(input);
+                for (const [key, value] of params.entries()) {
+                    jsonObject[key] = decodeURIComponent(value);
+                }
+            } else {
+                // Handle key-value pair format (e.g., searchkey: 都市, searchtype: articlename)
+                const lines = input.split('\n');
+                lines.forEach(line => {
+                    const [key, value] = line.split(':').map(str => str.trim());
+                    if (key) {
+                        jsonObject[key] = value || '';
+                    }
+                });
+            }
+
+            // Output the JSON result
+            document.getElementById('jsonOutput').value = JSON.stringify(jsonObject, null, 4);
+        }
+
+
+        // Function to clear input boxes
+        function clearInput(inputId) {
+            document.getElementById(inputId).value = '';
+        }
+
+        function copyOutput(outputId) {
+    const outputElement = document.getElementById(outputId);
+    outputElement.select();
+    outputElement.setSelectionRange(0, 99999); // For mobile devices
+    document.execCommand("copy");
+    // Removed the alert
+}
+        
+        
+      
+        function convertToCustomFunction() {
+    let jsCode = document.getElementById('jsInput').value;
+
+    // Step 1: Start the function definition with a comment
+    let convertedCode = `function MYAnalysis(result) {\n//powered by RosiaP'ng\n\n`;
+
+    // Step 2: Transform the provided JavaScript code
+    convertedCode += jsCode
+        .replace(/@js:/g, '') // Remove "@js:"
+        
+
+    // Step 3: Close the function
+    convertedCode += `var jsonString = JSON.stringify(这里)//put return code here
+
+return jsonString
+}`;
+
+    // Output the converted code
+    document.getElementById('jsOutput').value = convertedCode;
+}
+
+// Function to handle both params query strings and key-value pairs
+        function convertToJSON() {
+            const input = document.getElementById('queryStringInput').value.trim();
+            const jsonObject = {};
+
+            if (input.includes('=') && !input.includes(':')) {
+                // Handle query string format (e.g., searchkey=%E9%97%AA%E5%A9%9A&Submit=)
+                const params = new URLSearchParams(input);
+                for (const [key, value] of params.entries()) {
+                    jsonObject[key] = decodeURIComponent(value);
+                }
+            } else {
+                // Handle key-value pair format (e.g., searchkey: 都市, searchtype: articlename)
+                const lines = input.split('\n');
+                lines.forEach(line => {
+                    if (line.includes(':')) {
+                        const [key, value] = line.split(/:(.*)/).map(str => str.trim()); // Split only at the first colon
+                        jsonObject[key] = value ? value.trim() : ''; // Assign empty string if value is missing
+                    }
+                });
+            }
+
+            // Output the JSON result
+            document.getElementById('jsonOutput').value = JSON.stringify(jsonObject, null, 4);
+        }
+
+        // Function to convert前置 double quotes to single quotes
+        function convertQuotes() {
+            const input = document.getElementById('doubleQuoteInput').value;
+
+            // Replace all double quotes with single quotes
+            const converted = input.replace(/"/g, "'");
+
+            // Output the converted result
+            document.getElementById('singleQuoteOutput').value = converted;
+        }
+        
+        //源发现Js
+        // Function to convert HTML list to JSON
+function convertHtmlToJson() {
+    const input = document.getElementById('htmlInput').value;
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(input, 'text/html');
+    
+    // Select all <a> elements, regardless of whether they are inside <li> or not
+    const listItems = doc.querySelectorAll('a');
+    const jsonArray = [];
+
+    listItems.forEach(item => {
+        const name = item.textContent.trim();  // Extract visible text (name)
+        const value = item.getAttribute('href'); // Extract href attribute and rename it to 'value'
+
+        if (name && value) {
+            jsonArray.push({ name, value });
+        }
+    });
+
+    // Replace input with the converted JSON
+    document.getElementById('htmlInput').value = JSON.stringify(jsonArray, null, 4);
+}
+        // Function to paste text from clipboard
+    function pasteText(inputId) {
+        navigator.clipboard.readText().then(
+            text => {
+                document.getElementById(inputId).value = text;
+            }
+        ).catch(
+            err => {
+                console.error('Failed to read clipboard contents: ', err);
+            }
+        );
+    }
+
+
+    // Function to match regex and display matches
+    function matchRegex() {
+        const inputText = document.getElementById('htmlInput').value;
+        const regexPattern = document.getElementById('regexPattern').value;
+
+        try {
+            const regex = new RegExp(regexPattern, 'g'); // Create regex with global flag
+            const matches = inputText.match(regex); // Find all matches
+
+            // Display matches in the regexMatches box
+            document.getElementById('regexMatches').value = matches ? matches.join('\n') : 'No matches found';
+        } catch (error) {
+            document.getElementById('regexMatches').value = 'Invalid regex pattern';
+        }
+    }
+
+    // Function to apply regex and replace matches
+    function applyRegex() {
+        const inputText = document.getElementById('htmlInput').value;
+        const regexPattern = document.getElementById('regexPattern').value;
+        const replacement = document.getElementById('regexReplacement').value;
+
+        try {
+            const regex = new RegExp(regexPattern, 'g'); // Create regex with global flag
+            const updatedText = inputText.replace(regex, replacement); // Replace matches with replacement string
+
+            // Display the result in the same input/output box
+            document.getElementById('htmlInput').value = updatedText;
+        } catch (error) {
+            document.getElementById('regexMatches').value = 'Invalid regex pattern';
+        }
+    }
+
+// Function to copy text from input/output field
+function copyText(inputId) {
+    const text = document.getElementById(inputId).value;
+    navigator.clipboard.writeText(text).catch(
+        err => {
+            console.error('Failed to copy text: ', err);
+        }
+    );
+}
+
+//阅读转换极简发现
+
+  function yueconvertJson() {
+    const input = document.getElementById('htmlInput').value.trim();
+
+    // Check if the input is a JSON array or a custom 'title::url' format
+    try {
+        // Attempt to parse the input as JSON
+        const jsonArray = JSON.parse(input);
+
+        // Convert JSON input (same as before)
+        const converted = jsonArray
+            .filter(item => item.title && item.title.trim() && item.url && item.url.trim()) // Check both title and url
+            .map(item => ({
+                name: item.title.trim(),  // Get the title as name
+                value: item.url.trim()    // Get the url as value
+            }));
+
+        // Replace the input field with the converted JSON
+        document.getElementById('htmlInput').value = JSON.stringify(converted, null, 4); // Output to 'htmlInput'
+    } catch (error) {
+        // If the input is not JSON, treat it as the custom format
+        const lines = input.split('\n');
+        const converted = lines
+            .filter(line => line.includes('::'))  // Only process lines with the '::' format
+            .map(line => {
+                const parts = line.split('::');
+                const name = parts[0].trim();  // The part before '::' is the name
+                const value = parts[1] ? parts[1].trim() : '';  // The part after '::' is the value
+
+                // Only include the item if both name and value are present and non-empty
+                if (name && value) {
+                    return { name, value };
+                }
+            })
+            .filter(item => item); // Filter out any undefined items
+
+        // Replace the input field with the converted JSON
+        document.getElementById('htmlInput').value = JSON.stringify(converted, null, 4);
+    }
+}
