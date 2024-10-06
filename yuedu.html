@@ -60,20 +60,20 @@
 
     <script>
         function yueconvertJson() {
-            const htmlInput = document.getElementById('htmlInput').value;
+    const htmlInput = document.getElementById('htmlInput').value;
 
-            try {
-                const jsonArray = JSON.parse(htmlInput); 
-                const converted = jsonArray.map(item => ({
-                    name: item.title,
-                    value: item.url
-                }));
+    try {
+        const jsonArray = JSON.parse(htmlInput); 
+        const converted = jsonArray.map(item => ({
+            name: item.title,
+            value: item.url
+        })).filter(item => item.name && item.value); // Filter out empty values
 
-                document.getElementById('htmlInput').value = JSON.stringify(converted, null, 2);
-            } catch (error) {
-                document.getElementById('htmlInput').value = 'Error: Invalid JSON format';
-            }
-        }
+        document.getElementById('htmlInput').value = JSON.stringify(converted, null, 2);
+    } catch (error) {
+        document.getElementById('htmlInput').value = 'Error: Invalid JSON format';
+    }
+}
 
         function pasteText(inputId) {
             navigator.clipboard.readText().then(
