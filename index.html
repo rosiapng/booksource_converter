@@ -54,8 +54,74 @@
         <button onclick="copyOutput('cssOutput')">复制</button>
     </div>
     
-        
+            // Function to convert HTML element to XPath
+        function getXPathForElement(element) {
+            if (!element || element.nodeType !== 1) return ''; // Ensure the element is an element node
 
-    <script src="https://rosiapng.github.io/booksource_converter/js/convert.js"></script>
+            let xpath = '//' + element.tagName.toLowerCase(); // Start with the tag name
+
+            // Special handling for <meta> elements
+            if (element.tagName.toLowerCase() === 'meta') {
+                const property = element.getAttribute('property');
+                const name = element.getAttribute('name');
+
+                if (property) {
+                    xpath += `[@property="${property}"]`; // Handle property attributes
+                } else if (name) {
+                    xpath += `[@name="${name}"]`; // Handle name attributes
+                }
+                return xpath; // Return immediately for meta tags
+            }
+
+            // Handle attributes for other elements
+            const attributes = element.attributes;
+            if (attributes.length > 0) {
+                let conditions = [];
+                for (let i = 0; i < attributes.length; i++) {
+                    let attr = attributes[i];
+                    // Exclude 'id' and 'class' if needed, but keep all other attributes
+                    if (attr.name !== "id" && attr.name !== "class") {
+                        conditions.push(`@${attr.name}="${attr.value}"`);
+                    }
+                }
+
+                // Combine all attribute conditions
+                if (conditions.length > 0) {
+                    xpath += '[' + conditions.join(' and ') + ']'; // Combine attributes into one predicate
+                }
+            }
+
+            // Check for id and class attributes last to add them if they exist
+            if (element.id) {
+                xpath += `[@id="${element.id}"]`;
+            } 
+            if (element.className) {
+                xpath += `[@class="${element.className}"]`;
+            }
+
+            return xpath; // Return the constructed XPath
+        }
+
+        // Function to convert the HTML input to XPath
+        function convertToXPath() {
+            const htmlCode = document.getElementById('htmlInput').value;
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlCode, 'text/html');
+
+            // Select all elements within the document including <head> section
+            const elements = doc.querySelectorAll('head meta, body *'); // Select meta from head and all from body
+
+            // Prepare an array to hold the XPaths
+            let xpaths = [];
+            elements.forEach(element => {
+                const xpath = getXPathForElement(element);
+                if (xpath) xpaths.push(xpath); // Only add non-empty XPath
+            });
+
+            // Join the XPath results with a line break
+            document.getElementById('xpathOutput').value = xpaths.join('\n');
+        }
+
+
 </body>
 </html>
