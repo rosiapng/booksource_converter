@@ -290,22 +290,26 @@ function copyText(inputId) {
 }
 
 function yueconvertJson() {
-            const jsonInput = document.getElementById('jsonInput').value;
+    const jsonInput = document.getElementById('jsonInput').value;
 
-            try {
-                // Parse the JSON input
-                const jsonArray = JSON.parse(jsonInput);
+    try {
+        // Parse the JSON input
+        const jsonArray = JSON.parse(jsonInput);
 
-                // Convert to desired format
-                const converted = jsonArray.map(item => {
-                    return { name: item.title, value: item.url };
-                });
+        // Convert to the desired format and remove items with empty name or value
+        const converted = jsonArray
+            .map(item => {
+                const name = item.title ? item.title.trim() : ''; // Check if title exists
+                const value = item.url ? item.url.trim() : ''; // Check if url exists
 
-                // Display the output in JSON format
-                document.getElementById('jsonOutput').innerText = JSON.stringify(converted, null, 2);
-            } catch (error) {
-                document.getElementById('jsonOutput').innerText = 'Error: Invalid JSON format';
-            }
-        }
-        
-        
+                // Only return if both name and value are not empty
+                return name && value ? { name, value } : null;
+            })
+            .filter(item => item !== null); // Filter out any null items
+
+        // Display the output in JSON format
+        document.getElementById('jsonOutput').innerText = JSON.stringify(converted, null, 2);
+    } catch (error) {
+        document.getElementById('jsonOutput').innerText = 'Error: Invalid JSON format';
+    }
+}
