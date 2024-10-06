@@ -292,18 +292,18 @@ function copyText(inputId) {
 //阅读转换极简发现
 
   function yueconvertJson() {
-    const jsonInput = document.getElementById('htmlInput').value; // Updated to use 'htmlInput'
+    const jsonInput = document.getElementById('htmlInput').value;
 
     try {
         // Parse the JSON input
         const jsonArray = JSON.parse(jsonInput);
 
-        // Convert to the desired format and filter out empty values
+        // Convert to the desired format and filter out items with missing or empty 'title' or 'url'
         const converted = jsonArray
-            .filter(item => item.title && item.url) // Filter out items with empty title or url
+            .filter(item => item.title && item.title.trim() && item.url && item.url.trim()) // Check both title and url
             .map(item => ({
-                name: item.title.trim(), // Get the title as name
-                value: item.url.trim()   // Get the url as value
+                name: item.title.trim(),  // Get the title as name
+                value: item.url.trim()    // Get the url as value
             }));
 
         // Replace the input field with the converted JSON
