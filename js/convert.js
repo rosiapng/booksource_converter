@@ -307,9 +307,9 @@ function yueconvertJson() {
             })
             .filter(item => item !== null); // Filter out any null items
 
-        // Display the output in JSON format
-        document.getElementById('jsonOutput').innerText = JSON.stringify(converted, null, 2);
+        // Replace the input box content with the converted JSON
+        document.getElementById('jsonInput').value = JSON.stringify(converted, null, 4);
     } catch (error) {
-        document.getElementById('jsonOutput').innerText = 'Error: Invalid JSON format';
+        document.getElementById('jsonInput').value = 'Error: Invalid JSON format';
     }
 }
