@@ -290,8 +290,9 @@ function copyText(inputId) {
 }
 
 //阅读转换极简发现
-function yueconvertJson() {
-    const jsonInput = document.getElementById('jsonInput').value;
+
+  function yueconvertJson() {
+    const jsonInput = document.getElementById('htmlInput').value; // Updated to use 'htmlInput'
 
     try {
         // Parse the JSON input
@@ -306,9 +307,9 @@ function yueconvertJson() {
             }));
 
         // Replace the input field with the converted JSON
-        document.getElementById('jsonInput').value = JSON.stringify(converted, null, 4);
+        document.getElementById('htmlInput').value = JSON.stringify(converted, null, 4); // Output to 'htmlInput'
     } catch (error) {
         // Show error if JSON parsing fails
-        document.getElementById('jsonInput').value = 'Error: Invalid JSON format';
+        document.getElementById('htmlInput').value = 'Error: Invalid JSON format'; // Error in the same box
     }
 }
