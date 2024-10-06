@@ -146,34 +146,23 @@ button:hover {
     // Function to convert HTML to XPath
 function getXPathForElement(element) {
     if (!element || element.nodeType !== 1) return '';
-    
+
     let xpath = '//' + element.tagName.toLowerCase(); // Start with the tag name
 
-    // Handle id and class attributes first
-    if (element.id) {
-        xpath += '[@id="' + element.id + '"]'; // If id is present
-    }
-
-    // If no id, check for class
-    if (element.className) {
-        // Handle multiple classes
-        const classes = element.className.split(' ').map(cls => `@class="${cls}"`);
-        xpath += '[' + classes.join(' and ') + ']';
-    }
-
-    // Handle other attributes including property
+    // Handle attributes: prioritize id, class, then other attributes
     const attributes = element.attributes;
     if (attributes.length > 0) {
         let conditions = [];
+
         for (let i = 0; i < attributes.length; i++) {
             let attr = attributes[i];
-            // Exclude id and class attributes from here since they are already handled
-            if (attr.name !== "id" && attr.name !== "class") {
-                conditions.push(`@${attr.name}="${attr.value}"`);
-            }
+            // Add attribute conditions for all attributes
+            conditions.push(`@${attr.name}="${attr.value}"`);
         }
+
+        // Combine all attribute conditions
         if (conditions.length > 0) {
-            xpath += '[' + conditions.join(' and ') + ']'; // Combine other attributes
+            xpath += '[' + conditions.join(' and ') + ']'; // Combine attributes into one predicate
         }
     }
 
