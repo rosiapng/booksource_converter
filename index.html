@@ -21,19 +21,14 @@
         </nav>
     </div>
     
-    <h2>HTML 转Xpath器</h2>
-    
-     <p>使用方法: 将 HTML 代码（例如 <code>&lt;div class="intro"&gt;</code>）输入，将会转换成 <code>//div[@class="intro"]</code>。</p>
-    <!-- HTML to XPath Converter -->
+       <h2>HTML 转Xpath器</h2>
     <div class="input-container">
         <label for="htmlInput">HTML代码:</label>
-<textarea id="htmlInput" rows="6" placeholder="&lt;div class=&quot;intro&quot;&gt;"></textarea>
+        <textarea id="htmlInput" rows="6" placeholder="&lt;div class=&quot;intro&quot;&gt;"></textarea>
         <button onclick="convertToXPath()">转换Xpath代码</button>
         <button onclick="clearInput('htmlInput')">清除</button>
     </div>
-    
-    
-    
+
     <div class="input-container">
         <label for="xpathOutput">Xpath转换结果:</label>
         <textarea id="xpathOutput" rows="6" readonly placeholder="Xpath转换结果"></textarea>
