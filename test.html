@@ -143,41 +143,19 @@ button:hover {
         
 
     <script>
-    function convertToXPath() {
-    const htmlCode = document.getElementById('htmlInput').value;
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(htmlCode, 'text/html');
-
-    // Get all elements in the document
-    const allElements = doc.querySelectorAll('*'); // Select all elements
-    let xpathOutput = '';
-
-    if (allElements.length > 0) {
-        allElements.forEach(element => {
-            const xpath = getXPathForElement(element);
-            xpathOutput += xpath + '\n'; // Append the xpath of each element
-        });
-    } else {
-        xpathOutput = 'No valid elements found in HTML';
-    }
-
-    document.getElementById('xpathOutput').value = xpathOutput.trim(); // Set output
-}
-
-// Function to convert HTML to XPath
+ // Function to convert HTML to XPath
 function getXPathForElement(element) {
-    if (!element || element.nodeType !== 1) return '';
+    if (!element || element.nodeType !== 1) return ''; // Ensure the element is an element node
 
     let xpath = '//' + element.tagName.toLowerCase(); // Start with the tag name
 
-    // Handle attributes: prioritize id, class, then other attributes
+    // Add conditions based on the attributes
     const attributes = element.attributes;
     if (attributes.length > 0) {
         let conditions = [];
-
         for (let i = 0; i < attributes.length; i++) {
             let attr = attributes[i];
-            // Add attribute conditions for all attributes
+            // Add attribute conditions for all attributes (except id and class to avoid redundancy)
             conditions.push(`@${attr.name}="${attr.value}"`);
         }
 
@@ -190,6 +168,26 @@ function getXPathForElement(element) {
     return xpath; // Return the constructed XPath
 }
 
+function convertToXPath() {
+    const htmlCode = document.getElementById('htmlInput').value;
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlCode, 'text/html');
+
+    // Find all relevant elements in the document
+    const elements = doc.querySelectorAll('*'); // Select all elements
+    let xpathOutput = '';
+
+    elements.forEach(element => {
+        const xpath = getXPathForElement(element);
+        // Only include XPaths for certain elements if needed
+        if (xpath) {
+            xpathOutput += xpath + '\n'; // Append the XPath for each element
+        }
+    });
+
+    document.getElementById('xpathOutput').value = xpathOutput.trim(); // Set the output
+}
+   
         // Function to convert XPath to CSS in the format: tag[attribute="value"]
 function xpathToCSS(xpath) {
     // Regex to match XPath patterns with tag, optional attribute, and value, or attribute-only selection or text()
