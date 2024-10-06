@@ -26,7 +26,7 @@
 <!-- Input/Output Box for HTML List and JSON -->
 <h2>极简源发现转换工具</h2>
     
-<p>Paste your HTML list below and click "Convert to JSON" to get the JSON output in the same box.</p>
+<p>把发现的html代码转换成极简源发现格式，然后再用正则工具改，把全部代码复制去极简粘贴</p>
 
 <div class="input-container">
     <label for="htmlInput">HTML Input / JSON Output:</label>
@@ -45,13 +45,13 @@
 <h2>正则转换工具</h2>
 <!-- Input box for regex pattern -->
 <div class="input-container">
-    <label for="regexPattern">Regex Pattern:</label>
-    <input type="text" id="regexPattern" placeholder="Enter regex pattern (e.g., \\d+ for digits)">
+    <label for="regexPattern">正则要取的规则:</label>
+    <input type="text" id="regexPattern" placeholder="输入正则规则(e.g., \\d+ for digits)">
 </div>
 
 <!-- Input box to display regex matches -->
 <div class="input-container">
-    <label for="regexMatches">Regex Matches:</label>
+    <label for="regexMatches">正则匹配:</label>
     <textarea id="regexMatches" rows="4" readonly placeholder="Matches will appear here"></textarea>
 </div>
 <div class="button-container">
@@ -60,7 +60,7 @@
 
 <!-- Input box for replacement string -->
 <div class="input-container">
-    <label for="regexReplacement">Replacement String (leave empty to clear matches):</label>
+    <label for="regexReplacement">转换规则，要去除请就放空不必输入:</label>
     <input type="text" id="regexReplacement" placeholder="Enter replacement string">
 </div>
 
