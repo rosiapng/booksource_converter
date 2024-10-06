@@ -54,7 +54,8 @@
         <button onclick="copyOutput('cssOutput')">复制</button>
     </div>
     
-            // Function to convert HTML element to XPath
+            <script>
+        // Function to convert HTML element to XPath
         function getXPathForElement(element) {
             if (!element || element.nodeType !== 1) return ''; // Ensure the element is an element node
 
@@ -121,6 +122,63 @@
             // Join the XPath results with a line break
             document.getElementById('xpathOutput').value = xpaths.join('\n');
         }
+
+        // Function to clear input boxes
+        function clearInput(inputId) {
+            document.getElementById(inputId).value = '';
+        }
+
+        function copyOutput(outputId) {
+            const outputElement = document.getElementById(outputId);
+            outputElement.select();
+            outputElement.setSelectionRange(0, 99999); // For mobile devices
+            document.execCommand("copy");
+        }
+        
+        // Function to convert XPath to CSS in the format: tag[attribute="value"]
+function xpathToCSS(xpath) {
+    // Regex to match XPath patterns with tag, optional attribute, and value, or attribute-only selection or text()
+    const regex = /\/{1,2}(\w+)(?:\[@(\w+)="([^"]+)"\])?(?:\/@(\w+))?(?:\/text\(\))?/g;
+    let cssSelector = '';
+    let match;
+
+    // Loop through each match of the XPath pattern
+    while ((match = regex.exec(xpath)) !== null) {
+        const tag = match[1];       // Tag name (e.g., ul, img, div, a)
+        const attr = match[2];      // Attribute (e.g., id or class)
+        const value = match[3];     // Value of the attribute (e.g., newlist)
+        const attrOnly = match[4];  // Attribute only (e.g., src)
+
+        // If the XPath ends with an attribute like /@src, or text(), we only keep the tag (e.g., img, a)
+        if (attrOnly || xpath.includes('text()')) {
+            cssSelector += tag; // Just append the tag, skipping the attribute or text()
+            continue;
+        }
+
+        // Build the CSS selector part by part
+        if (attr && value) {
+            cssSelector += `${tag}[${attr}="${value}"]`;
+        } else {
+            cssSelector += tag;  // If no attribute, just add the tag
+        }
+
+        // If there are more tags to follow, add '>' to indicate direct descendant
+        if (regex.lastIndex < xpath.length) {
+            cssSelector += '>';
+        }
+    }
+
+    // Return the final CSS selector or indicate if no valid match was found
+    return cssSelector || 'Invalid XPath';
+}
+
+        function convertToCSS() {
+            const xpathCode = document.getElementById('xpathInput').value;
+            const cssSelector = xpathToCSS(xpathCode);
+            document.getElementById('cssOutput').value = cssSelector;
+        }
+        
+    </script>
 
 
 </body>
