@@ -143,19 +143,19 @@ button:hover {
         
 
     <script>
- // Function to convert HTML to XPath
+ // Function to convert HTML element to XPath
 function getXPathForElement(element) {
     if (!element || element.nodeType !== 1) return ''; // Ensure the element is an element node
 
     let xpath = '//' + element.tagName.toLowerCase(); // Start with the tag name
 
-    // Add conditions based on the attributes
+    // Add attribute conditions
     const attributes = element.attributes;
     if (attributes.length > 0) {
         let conditions = [];
         for (let i = 0; i < attributes.length; i++) {
             let attr = attributes[i];
-            // Add attribute conditions for all attributes (except id and class to avoid redundancy)
+            // Include all attributes in the conditions
             conditions.push(`@${attr.name}="${attr.value}"`);
         }
 
@@ -168,24 +168,21 @@ function getXPathForElement(element) {
     return xpath; // Return the constructed XPath
 }
 
+// Function to convert the HTML input to XPath
 function convertToXPath() {
     const htmlCode = document.getElementById('htmlInput').value;
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlCode, 'text/html');
 
-    // Find all relevant elements in the document
-    const elements = doc.querySelectorAll('*'); // Select all elements
-    let xpathOutput = '';
+    // Select the first element (or specific elements) from the parsed HTML
+    const firstElement = doc.body.firstElementChild;
 
-    elements.forEach(element => {
-        const xpath = getXPathForElement(element);
-        // Only include XPaths for certain elements if needed
-        if (xpath) {
-            xpathOutput += xpath + '\n'; // Append the XPath for each element
-        }
-    });
-
-    document.getElementById('xpathOutput').value = xpathOutput.trim(); // Set the output
+    if (firstElement) {
+        const xpath = getXPathForElement(firstElement);
+        document.getElementById('xpathOutput').value = xpath; // Set the output
+    } else {
+        document.getElementById('xpathOutput').value = 'No valid element found in HTML';
+    }
 }
    
         // Function to convert XPath to CSS in the format: tag[attribute="value"]
