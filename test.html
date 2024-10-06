@@ -147,47 +147,37 @@ button:hover {
 function getXPathForElement(element) {
     if (!element || element.nodeType !== 1) return '';
     
-    let xpath = '//' + element.tagName.toLowerCase();
+    let xpath = '//' + element.tagName.toLowerCase(); // Start with the tag name
 
+    // Handle id and class attributes first
     if (element.id) {
-        xpath += '[@id="' + element.id + '"]';
-    } else if (element.className) {
-        xpath += '[@class="' + element.className.split(' ').join(' and @class="') + '"]'; // Handle multiple classes
-    } else {
-        const attributes = element.attributes;
-        if (attributes.length > 0) {
-            let conditions = [];
-            for (let i = 0; i < attributes.length; i++) {
-                let attr = attributes[i];
-                if (attr.name !== "id" && attr.name !== "class") {
-                    conditions.push(`@${attr.name}="${attr.value}"`);
-                }
+        xpath += '[@id="' + element.id + '"]'; // If id is present
+    }
+
+    // If no id, check for class
+    if (element.className) {
+        // Handle multiple classes
+        const classes = element.className.split(' ').map(cls => `@class="${cls}"`);
+        xpath += '[' + classes.join(' and ') + ']';
+    }
+
+    // Handle other attributes including property
+    const attributes = element.attributes;
+    if (attributes.length > 0) {
+        let conditions = [];
+        for (let i = 0; i < attributes.length; i++) {
+            let attr = attributes[i];
+            // Exclude id and class attributes from here since they are already handled
+            if (attr.name !== "id" && attr.name !== "class") {
+                conditions.push(`@${attr.name}="${attr.value}"`);
             }
-            if (conditions.length > 0) {
-                xpath += '[' + conditions.join(' and ') + ']';
-            }
+        }
+        if (conditions.length > 0) {
+            xpath += '[' + conditions.join(' and ') + ']'; // Combine other attributes
         }
     }
 
-    // Traverse up to the parent node to build the full XPath
-    let currentNode = element;
-    while (currentNode && currentNode.nodeType === Node.ELEMENT_NODE) {
-        const nodeName = currentNode.tagName.toLowerCase();
-        const siblings = Array.from(currentNode.parentNode.children);
-        const sameTagSiblings = siblings.filter(sibling => sibling.tagName.toLowerCase() === nodeName);
-        
-        // Add an index to the XPath if there are multiple same-tag siblings
-        if (sameTagSiblings.length > 1) {
-            const index = sameTagSiblings.indexOf(currentNode) + 1; // XPath is 1-based index
-            xpath = `/${nodeName}[${index}]` + xpath;
-        } else {
-            xpath = '/' + nodeName + xpath;
-        }
-        
-        currentNode = currentNode.parentNode;
-    }
-
-    return xpath;
+    return xpath; // Return the constructed XPath
 }
 
         function convertToXPath() {
