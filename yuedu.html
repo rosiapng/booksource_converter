@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML to JSON Converter</title>
-<link rel="stylesheet" href="https://rosiapng.github.io/booksource_converter/css/index_styles.css">
+    <link rel="stylesheet" href="https://rosiapng.github.io/booksource_converter/css/index_styles.css">
 </head>
 <body>
-<!-- Navigation Links in Button Form -->
+    <!-- Navigation Links in Button Form -->
     <h2 class="big-title">极简源发现转换工具</h2>
     <p class="author">By 小猫咪Rosia P'ng</p>
     
@@ -16,129 +16,115 @@
             <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/index.html">书源语法转换器(xpath,css)</a>
             <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/manyajs.html">傻瓜式益达转漫鸭正文JS器</a>
             <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/jijian.html">傻瓜极简写源工具</a>
-                        <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/jjfen.html">极简源发现工具</a>
+            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/jjfen.html">极简源发现工具</a>
         </nav>
     </div>
     
+    <!-- Input/Output Box for HTML List and JSON -->
+    <h2>极简源发现转换工具</h2>
+    <p>Paste your HTML list below and click "Convert to JSON" to get the JSON output in the same box.</p>
 
-<!-- Input/Output Box for HTML List and JSON -->
-<h2>极简源发现转换工具</h2>
-    
-<p>Paste your HTML list below and click "Convert to JSON" to get the JSON output in the same box.</p>
+    <div class="input-container">
+        <label for="htmlInput">阅读源格式 / 极简JSON Output:</label>
+        <textarea id="htmlInput" rows="10" placeholder='put code here'></textarea>
+        <div class="button-container">
+            <button onclick="yueconvertJson()">转换发现格式</button>
+            <button onclick="clearInput('htmlInput')">清空</button>
+            <button onclick="pasteText('htmlInput')">粘贴</button>
+            <button onclick="copyText('htmlInput')">复制</button>
+        </div>
+    </div>
 
-<div class="input-container">
-    <label for="htmlInput">阅读源格式 / 极简JSON Output:</label>
-    <textarea id="htmlInput" rows="10" placeholder='put code here'></textarea>
+    <h2>正则转换工具</h2>
+    <div class="input-container">
+        <label for="regexPattern">Regex Pattern:</label>
+        <input type="text" id="regexPattern" placeholder="Enter regex pattern (e.g., \\d+ for digits)">
+    </div>
+
+    <div class="input-container">
+        <label for="regexMatches">Regex Matches:</label>
+        <textarea id="regexMatches" rows="4" readonly placeholder="Matches will appear here"></textarea>
+    </div>
     <div class="button-container">
-    <button onclick="yueconvertJson()">转换发现格式</button>
-    <button onclick="clearInput('htmlInput')">清空</button>
-    <button onclick="pasteText('htmlInput')">粘贴</button>
-    <button onclick="copyText('htmlInput')">复制</button> <!-- New Copy Button -->
-</div>
-</div>
+        <button onclick="matchRegex()">匹配</button>
+    </div>
 
-<h2>正则转换工具</h2>
-<!-- Input box for regex pattern -->
-<div class="input-container">
-    <label for="regexPattern">Regex Pattern:</label>
-    <input type="text" id="regexPattern" placeholder="Enter regex pattern (e.g., \\d+ for digits)">
-</div>
+    <div class="input-container">
+        <label for="regexReplacement">Replacement String (leave empty to clear matches):</label>
+        <input type="text" id="regexReplacement" placeholder="Enter replacement string">
+    </div>
 
-<!-- Input box to display regex matches -->
-<div class="input-container">
-    <label for="regexMatches">Regex Matches:</label>
-    <textarea id="regexMatches" rows="4" readonly placeholder="Matches will appear here"></textarea>
-</div>
-<div class="button-container">
-    <button onclick="matchRegex()">匹配</button>
-</div>
+    <div class="button-container">
+        <button onclick="applyRegex()">转换</button>
+    </div>
 
-<!-- Input box for replacement string -->
-<div class="input-container">
-    <label for="regexReplacement">Replacement String (leave empty to clear matches):</label>
-    <input type="text" id="regexReplacement" placeholder="Enter replacement string">
-</div>
-
-<div class="button-container">
-    <button onclick="applyRegex()">转换</button>
-   
-</div>
-
-<script>
-    function yueconvertJson() {
-            const jsonInput = document.getElementById('jsonInput').value;
+    <script>
+        function yueconvertJson() {
+            const htmlInput = document.getElementById('htmlInput').value;
 
             try {
-                // Parse the JSON input
-                const jsonArray = JSON.parse(jsonInput);
+                const jsonArray = JSON.parse(htmlInput); 
+                const converted = jsonArray.map(item => ({
+                    name: item.title,
+                    value: item.url
+                }));
 
-                // Convert to desired format
-                const converted = jsonArray.map(item => {
-                    return { name: item.title, value: item.url };
-                });
-
-                // Display the output in JSON format
-                document.getElementById('jsonOutput').innerText = JSON.stringify(converted, null, 2);
+                document.getElementById('htmlInput').value = JSON.stringify(converted, null, 2);
             } catch (error) {
-                document.getElementById('jsonOutput').innerText = 'Error: Invalid JSON format';
+                document.getElementById('htmlInput').value = 'Error: Invalid JSON format';
             }
         }
 
-    // Function to paste text from clipboard
-    function pasteText(inputId) {
-        navigator.clipboard.readText().then(
-            text => {
-                document.getElementById(inputId).value = text;
+        function pasteText(inputId) {
+            navigator.clipboard.readText().then(
+                text => {
+                    document.getElementById(inputId).value = text;
+                    alert('Text pasted successfully.');
+                }
+            ).catch(err => {
+                alert('Failed to read clipboard contents.');
+            });
+        }
+
+        function matchRegex() {
+            const inputText = document.getElementById('htmlInput').value;
+            const regexPattern = document.getElementById('regexPattern').value;
+
+            try {
+                const regex = new RegExp(regexPattern, 'g');
+                const matches = inputText.match(regex);
+                document.getElementById('regexMatches').value = matches ? matches.join('\n') : 'No matches found';
+            } catch (error) {
+                document.getElementById('regexMatches').value = 'Invalid regex pattern';
             }
-        ).catch(
-            err => {
-                console.error('Failed to read clipboard contents: ', err);
+        }
+
+        function applyRegex() {
+            const inputText = document.getElementById('htmlInput').value;
+            const regexPattern = document.getElementById('regexPattern').value;
+            const replacement = document.getElementById('regexReplacement').value;
+
+            try {
+                const regex = new RegExp(regexPattern, 'g');
+                const updatedText = inputText.replace(regex, replacement);
+                document.getElementById('htmlInput').value = updatedText;
+            } catch (error) {
+                document.getElementById('regexMatches').value = 'Invalid regex pattern';
             }
-        );
-    }
-
-    // Function to match regex and display matches
-    function matchRegex() {
-        const inputText = document.getElementById('htmlInput').value;
-        const regexPattern = document.getElementById('regexPattern').value;
-
-        try {
-            const regex = new RegExp(regexPattern, 'g'); // Create regex with global flag
-            const matches = inputText.match(regex); // Find all matches
-
-            // Display matches in the regexMatches box
-            document.getElementById('regexMatches').value = matches ? matches.join('\n') : 'No matches found';
-        } catch (error) {
-            document.getElementById('regexMatches').value = 'Invalid regex pattern';
         }
-    }
 
-    // Function to apply regex and replace matches
-    function applyRegex() {
-        const inputText = document.getElementById('htmlInput').value;
-        const regexPattern = document.getElementById('regexPattern').value;
-        const replacement = document.getElementById('regexReplacement').value;
-
-        try {
-            const regex = new RegExp(regexPattern, 'g'); // Create regex with global flag
-            const updatedText = inputText.replace(regex, replacement); // Replace matches with replacement string
-
-            // Display the result in the same input/output box
-            document.getElementById('htmlInput').value = updatedText;
-        } catch (error) {
-            document.getElementById('regexMatches').value = 'Invalid regex pattern';
+        function copyText(inputId) {
+            const text = document.getElementById(inputId).value;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Text copied to clipboard.');
+            }).catch(err => {
+                alert('Failed to copy text.');
+            });
         }
-    }
-    // Function to copy text from input/output field
-function copyText(inputId) {
-    const text = document.getElementById(inputId).value;
-    navigator.clipboard.writeText(text).catch(
-        err => {
-            console.error('Failed to copy text: ', err);
-        }
-    );
-}
-</script>
 
+        function clearInput(inputId) {
+            document.getElementById(inputId).value = '';
+        }
+    </script>
 </body>
 </html>
