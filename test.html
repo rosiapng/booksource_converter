@@ -157,6 +157,7 @@ function getXPathForElement(element) {
         for (let i = 0; i < attributes.length; i++) {
             let attr = attributes[i];
             // Include all attributes in the conditions
+            // This will include properties for meta tags as well
             conditions.push(`@${attr.name}="${attr.value}"`);
         }
 
@@ -175,10 +176,10 @@ function convertToXPath() {
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlCode, 'text/html');
 
-    // Use querySelectorAll to select all elements in the body or specific elements based on your needs
+    // Select all elements within the document
     const elements = doc.body.querySelectorAll('*');
 
-    // If you want to get the XPath for all elements, you can loop through them or just target one
+    // Prepare an array to hold the XPaths
     let xpaths = [];
     elements.forEach(element => {
         const xpath = getXPathForElement(element);
