@@ -3,282 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:url" content="https://example.com">
     <title>HTML to XPath & XPath to CSS Converter</title>
- <style>
- body {
-    font-family: Arial, sans-serif;
-    background-image: url('https://rosiapng.github.io/booksource_converter/css/bgindex.jpg'); /* Background image */
-    background-size: cover; /* Cover the entire viewport */
-    background-repeat: no-repeat; /* Prevent the background from repeating */
-    background-attachment: fixed; /* Keep the background fixed during scrolling */
-    position: relative; /* Added to ensure overlay is positioned correctly */
-}
+    <style>
+        /* Your CSS styles go here */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://rosiapng.github.io/booksource_converter/css/bgindex.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            position: relative;
+        }
 
-.overlay {
-    background-color: rgba(255, 255, 255, 0.5); /* White with 50% opacity */
-    position: fixed; /* Position overlay fixed to cover entire screen */
-    top: 0; 
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1; /* Ensure overlay is behind content */
-}
+        .input-container {
+            margin: 20px 0;
+        }
 
-/* New overlay for the background image */
-.bg-overlay {
-    background-image: url('https://rosiapng.github.io/booksource_converter/css/bgindex.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 0.5; /* Adjusted opacity for background image */
-    z-index: -2; /* Keeps it behind the main overlay */
-}
+        textarea, input[type="text"] {
+            width: calc(100% - 100px);
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
 
-/* Your existing styles below */
-.input-container {
-    margin: 20px 0;
-    padding-bottom: 20px; /* Adds space between the input/output and buttons */
-}
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #F8BBD0;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
 
-label {
-    display: block;
-    margin-bottom: 5px;
-}
+        button:hover {
+            background-color: #F06292;
+        }
 
-textarea, input[type="text"] {
-    width: calc(100% - 100px); /* Adjusted width for buttons */
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    display: inline-block;
-    margin-bottom: 10px; /* Adds space between the input/output fields and buttons */
-}
+        .big-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 36px;
+            margin-top: 20px;
+        }
 
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #F8BBD0;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-left: 10px; /* Adjusts the horizontal space */
-    margin-top: 10px; /* Adds vertical space between the input and button */
-}
-
-button:hover {
-    background-color: #F06292;
-}
-
-.action-buttons {
-    display: inline-block;
-}
-
-.big-title {
-    text-align: center;
-    font-weight: bold;
-    font-size: 36px; /* Adjust size as needed */
-    margin-top: 20px;
-}
-
-
-.author {
-    text-align: right;
-    margin-right: 20px;
-    font-style: italic;
-}
- 
- </style>
+        .author {
+            text-align: right;
+            margin-right: 20px;
+            font-style: italic;
+        }
+    </style>
 </head>
 <body>
 
     <h2 class="big-title">书源语法转换器(xpath,css)</h2>
     <p class="author">By 小猫咪Rosia P'ng</p>
- 
-    
+
     <h2>HTML 转Xpath器</h2>
-    
-     <p>使用方法: 将 HTML 代码（例如 <code>&lt;div class="intro"&gt;</code>）输入，将会转换成 <code>//div[@class="intro"]</code>。</p>
-    <!-- HTML to XPath Converter -->
     <div class="input-container">
         <label for="htmlInput">HTML代码:</label>
-<textarea id="htmlInput" rows="6" placeholder="&lt;div class=&quot;intro&quot;&gt;"></textarea>
+        <textarea id="htmlInput" rows="6" placeholder="&lt;div class=&quot;intro&quot;&gt;"></textarea>
         <button onclick="convertToXPath()">转换Xpath代码</button>
         <button onclick="clearInput('htmlInput')">清除</button>
     </div>
-    
-    
-    
+
     <div class="input-container">
         <label for="xpathOutput">Xpath转换结果:</label>
         <textarea id="xpathOutput" rows="6" readonly placeholder="Xpath转换结果"></textarea>
         <button onclick="copyOutput('xpathOutput')">复制</button>
     </div>
-    
-      <h2>Xpath 转CSS器（漫鸭版本）</h2>
-      
-       <p>使用方法: 输入 XPath 代码（例如 <code>//div[@class="intro"]</code>），将会转换成 <code>div[class="intro"]</code></p>
-    <!-- XPath to CSS Converter -->
-    <div class="input-container">
-        <label for="xpathInput">Xpath代码:</label>
-        <textarea id="xpathInput" rows="6" placeholder="输入Xpath代码"></textarea>
-        <button onclick="convertToCSS()">转换CSS代码</button>
-        <button onclick="clearInput('xpathInput')">清除</button>
-    </div>
-    
-
-    
-    <div class="input-container">
-        <label for="cssOutput">CSS转换结果:</label>
-        <textarea id="cssOutput" rows="6" readonly placeholder="CSS转换结果"></textarea>
-        <button onclick="copyOutput('cssOutput')">复制</button>
-    </div>
-    
-        
 
     <script>
- // Function to convert HTML element to XPath
-function getXPathForElement(element) {
-    if (!element || element.nodeType !== 1) return ''; // Ensure the element is an element node
+        // Function to convert HTML element to XPath
+        function getXPathForElement(element) {
+            if (!element || element.nodeType !== 1) return ''; // Ensure the element is an element node
 
-    let xpath = '//' + element.tagName.toLowerCase(); // Start with the tag name
+            let xpath = '//' + element.tagName.toLowerCase(); // Start with the tag name
 
-    // Special handling for <meta> elements
-    if (element.tagName.toLowerCase() === 'meta') {
-        const property = element.getAttribute('property');
-        const name = element.getAttribute('name');
+            // Special handling for <meta> elements
+            if (element.tagName.toLowerCase() === 'meta') {
+                const property = element.getAttribute('property');
+                const name = element.getAttribute('name');
 
-        if (property) {
-            xpath += `[@property="${property}"]`; // Handle property attributes
-        } else if (name) {
-            xpath += `[@name="${name}"]`; // Handle name attributes
-        }
-        return xpath; // Return immediately for meta tags
-    }
-
-    // Handle attributes for other elements
-    const attributes = element.attributes;
-    if (attributes.length > 0) {
-        let conditions = [];
-        for (let i = 0; i < attributes.length; i++) {
-            let attr = attributes[i];
-            // Exclude 'id' and 'class' if needed, but keep all other attributes
-            if (attr.name !== "id" && attr.name !== "class") {
-                conditions.push(`@${attr.name}="${attr.value}"`);
-            }
-        }
-
-        // Combine all attribute conditions
-        if (conditions.length > 0) {
-            xpath += '[' + conditions.join(' and ') + ']'; // Combine attributes into one predicate
-        }
-    }
-
-    // Check for id and class attributes last to add them if they exist
-    if (element.id) {
-        xpath += `[@id="${element.id}"]`;
-    } 
-    if (element.className) {
-        xpath += `[@class="${element.className}"]`;
-    }
-
-    return xpath; // Return the constructed XPath
-}
-
-// Function to convert the HTML input to XPath
-function convertToXPath() {
-    const htmlCode = document.getElementById('htmlInput').value;
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(htmlCode, 'text/html');
-
-    // Select all elements within the document
-    const elements = doc.body.querySelectorAll('*');
-
-    // Prepare an array to hold the XPaths
-    let xpaths = [];
-    elements.forEach(element => {
-        const xpath = getXPathForElement(element);
-        xpaths.push(xpath);
-    });
-
-    // Join the XPath results with a line break or choose to return only the first element
-    document.getElementById('xpathOutput').value = xpaths.join('\n');
-}
-        // Function to convert XPath to CSS in the format: tag[attribute="value"]
-function xpathToCSS(xpath) {
-    // Regex to match XPath patterns with tag, optional attribute, and value, or attribute-only selection or text()
-    const regex = /\/{1,2}(\w+)(?:\[@(\w+)="([^"]+)"\])?(?:\/@(\w+))?(?:\/text\(\))?/g;
-    let cssSelector = '';
-    let match;
-
-    // Loop through each match of the XPath pattern
-    while ((match = regex.exec(xpath)) !== null) {
-        const tag = match[1];       // Tag name (e.g., ul, img, div, a)
-        const attr = match[2];      // Attribute (e.g., id or class)
-        const value = match[3];     // Value of the attribute (e.g., newlist)
-        const attrOnly = match[4];  // Attribute only (e.g., src)
-
-        // If the XPath ends with an attribute like /@src, or text(), we only keep the tag (e.g., img, a)
-        if (attrOnly || xpath.includes('text()')) {
-            cssSelector += tag; // Just append the tag, skipping the attribute or text()
-            continue;
-        }
-
-        // Build the CSS selector part by part
-        if (attr && value) {
-            cssSelector += `${tag}[${attr}="${value}"]`;
-        } else {
-            cssSelector += tag;  // If no attribute, just add the tag
-        }
-
-        // If there are more tags to follow, add '>' to indicate direct descendant
-        if (regex.lastIndex < xpath.length) {
-            cssSelector += '>';
-        }
-    }
-
-    // Return the final CSS selector or indicate if no valid match was found
-    return cssSelector || 'Invalid XPath';
-}
-
-        function convertToCSS() {
-            const xpathCode = document.getElementById('xpathInput').value;
-            const cssSelector = xpathToCSS(xpathCode);
-            document.getElementById('cssOutput').value = cssSelector;
-        }
-
-      // Function to handle both query strings and key-value pairs
-        function convertToJSON() {
-            const input = document.getElementById('queryStringInput').value.trim();
-            const jsonObject = {};
-
-            if (input.includes('=') && !input.includes(':')) {
-                // Handle query string format (e.g., searchkey=%E9%97%AA%E5%A9%9A&Submit=)
-                const params = new URLSearchParams(input);
-                for (const [key, value] of params.entries()) {
-                    jsonObject[key] = decodeURIComponent(value);
+                if (property) {
+                    xpath += `[@property="${property}"]`; // Handle property attributes
+                } else if (name) {
+                    xpath += `[@name="${name}"]`; // Handle name attributes
                 }
-            } else {
-                // Handle key-value pair format (e.g., searchkey: 都市, searchtype: articlename)
-                const lines = input.split('\n');
-                lines.forEach(line => {
-                    const [key, value] = line.split(':').map(str => str.trim());
-                    if (key) {
-                        jsonObject[key] = value || '';
-                    }
-                });
+                return xpath; // Return immediately for meta tags
             }
 
-            // Output the JSON result
-            document.getElementById('jsonOutput').value = JSON.stringify(jsonObject, null, 4);
+            // Handle attributes for other elements
+            const attributes = element.attributes;
+            if (attributes.length > 0) {
+                let conditions = [];
+                for (let i = 0; i < attributes.length; i++) {
+                    let attr = attributes[i];
+                    // Exclude 'id' and 'class' if needed, but keep all other attributes
+                    if (attr.name !== "id" && attr.name !== "class") {
+                        conditions.push(`@${attr.name}="${attr.value}"`);
+                    }
+                }
+
+                // Combine all attribute conditions
+                if (conditions.length > 0) {
+                    xpath += '[' + conditions.join(' and ') + ']'; // Combine attributes into one predicate
+                }
+            }
+
+            // Check for id and class attributes last to add them if they exist
+            if (element.id) {
+                xpath += `[@id="${element.id}"]`;
+            } 
+            if (element.className) {
+                xpath += `[@class="${element.className}"]`;
+            }
+
+            return xpath; // Return the constructed XPath
         }
 
+        // Function to convert the HTML input to XPath
+        function convertToXPath() {
+            const htmlCode = document.getElementById('htmlInput').value;
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlCode, 'text/html');
+
+            // Select all elements within the document including <head> section
+            const elements = doc.querySelectorAll('head meta, body *'); // Select meta from head and all from body
+
+            // Prepare an array to hold the XPaths
+            let xpaths = [];
+            elements.forEach(element => {
+                const xpath = getXPathForElement(element);
+                if (xpath) xpaths.push(xpath); // Only add non-empty XPath
+            });
+
+            // Join the XPath results with a line break
+            document.getElementById('xpathOutput').value = xpaths.join('\n');
+        }
 
         // Function to clear input boxes
         function clearInput(inputId) {
@@ -286,151 +153,11 @@ function xpathToCSS(xpath) {
         }
 
         function copyOutput(outputId) {
-    const outputElement = document.getElementById(outputId);
-    outputElement.select();
-    outputElement.setSelectionRange(0, 99999); // For mobile devices
-    document.execCommand("copy");
-    // Removed the alert
-}
-        
-        
-      
-        function convertToCustomFunction() {
-    let jsCode = document.getElementById('jsInput').value;
-
-    // Step 1: Start the function definition with a comment
-    let convertedCode = `function MYAnalysis(result) {\n//powered by RosiaP'ng\n\n`;
-
-    // Step 2: Transform the provided JavaScript code
-    convertedCode += jsCode
-        .replace(/@js:/g, '') // Remove "@js:"
-        
-
-    // Step 3: Close the function
-    convertedCode += `var jsonString = JSON.stringify(这里)//put return code here
-
-return jsonString
-}`;
-
-    // Output the converted code
-    document.getElementById('jsOutput').value = convertedCode;
-}
-
-// Function to handle both query strings and key-value pairs
-        function convertToJSON() {
-            const input = document.getElementById('queryStringInput').value.trim();
-            const jsonObject = {};
-
-            if (input.includes('=') && !input.includes(':')) {
-                // Handle query string format (e.g., searchkey=%E9%97%AA%E5%A9%9A&Submit=)
-                const params = new URLSearchParams(input);
-                for (const [key, value] of params.entries()) {
-                    jsonObject[key] = decodeURIComponent(value);
-                }
-            } else {
-                // Handle key-value pair format (e.g., searchkey: 都市, searchtype: articlename)
-                const lines = input.split('\n');
-                lines.forEach(line => {
-                    if (line.includes(':')) {
-                        const [key, value] = line.split(/:(.*)/).map(str => str.trim()); // Split only at the first colon
-                        jsonObject[key] = value ? value.trim() : ''; // Assign empty string if value is missing
-                    }
-                });
-            }
-
-            // Output the JSON result
-            document.getElementById('jsonOutput').value = JSON.stringify(jsonObject, null, 4);
+            const outputElement = document.getElementById(outputId);
+            outputElement.select();
+            outputElement.setSelectionRange(0, 99999); // For mobile devices
+            document.execCommand("copy");
         }
-
-        // Function to convert double quotes to single quotes
-        function convertQuotes() {
-            const input = document.getElementById('doubleQuoteInput').value;
-
-            // Replace all double quotes with single quotes
-            const converted = input.replace(/"/g, "'");
-
-            // Output the converted result
-            document.getElementById('singleQuoteOutput').value = converted;
-        }
-        
-        //源发现Js
-          // Function to convert HTML list to JSON
-    function convertHtmlToJson() {
-        const input = document.getElementById('htmlInput').value;
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(input, 'text/html');
-        const listItems = doc.querySelectorAll('li a');
-        const jsonArray = [];
-
-        listItems.forEach(item => {
-            const name = item.textContent.trim();  // Extract visible text (name)
-            const value = item.getAttribute('href'); // Extract href attribute and rename it to 'value'
-
-            jsonArray.push({ name, value });
-        });
-
-        // Replace input with the converted JSON
-        document.getElementById('htmlInput').value = JSON.stringify(jsonArray, null, 4);
-    }
-
-        // Function to paste text from clipboard
-    function pasteText(inputId) {
-        navigator.clipboard.readText().then(
-            text => {
-                document.getElementById(inputId).value = text;
-            }
-        ).catch(
-            err => {
-                console.error('Failed to read clipboard contents: ', err);
-            }
-        );
-    }
-
-
-    // Function to match regex and display matches
-    function matchRegex() {
-        const inputText = document.getElementById('htmlInput').value;
-        const regexPattern = document.getElementById('regexPattern').value;
-
-        try {
-            const regex = new RegExp(regexPattern, 'g'); // Create regex with global flag
-            const matches = inputText.match(regex); // Find all matches
-
-            // Display matches in the regexMatches box
-            document.getElementById('regexMatches').value = matches ? matches.join('\n') : 'No matches found';
-        } catch (error) {
-            document.getElementById('regexMatches').value = 'Invalid regex pattern';
-        }
-    }
-
-    // Function to apply regex and replace matches
-    function applyRegex() {
-        const inputText = document.getElementById('htmlInput').value;
-        const regexPattern = document.getElementById('regexPattern').value;
-        const replacement = document.getElementById('regexReplacement').value;
-
-        try {
-            const regex = new RegExp(regexPattern, 'g'); // Create regex with global flag
-            const updatedText = inputText.replace(regex, replacement); // Replace matches with replacement string
-
-            // Display the result in the same input/output box
-            document.getElementById('htmlInput').value = updatedText;
-        } catch (error) {
-            document.getElementById('regexMatches').value = 'Invalid regex pattern';
-        }
-    }
-
-// Function to copy text from input/output field
-function copyText(inputId) {
-    const text = document.getElementById(inputId).value;
-    navigator.clipboard.writeText(text).catch(
-        err => {
-            console.error('Failed to copy text: ', err);
-        }
-    );
-}
-
-
     </script>
 </body>
 </html>
