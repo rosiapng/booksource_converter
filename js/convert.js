@@ -289,6 +289,7 @@ function copyText(inputId) {
     );
 }
 
+//阅读转换极简发现
 function yueconvertJson() {
     const jsonInput = document.getElementById('jsonInput').value;
 
@@ -296,20 +297,18 @@ function yueconvertJson() {
         // Parse the JSON input
         const jsonArray = JSON.parse(jsonInput);
 
-        // Convert to the desired format and remove items with empty name or value
+        // Convert to the desired format and filter out empty values
         const converted = jsonArray
-            .map(item => {
-                const name = item.title ? item.title.trim() : ''; // Check if title exists
-                const value = item.url ? item.url.trim() : ''; // Check if url exists
+            .filter(item => item.title && item.url) // Filter out items with empty title or url
+            .map(item => ({
+                name: item.title.trim(), // Get the title as name
+                value: item.url.trim()   // Get the url as value
+            }));
 
-                // Only return if both name and value are not empty
-                return name && value ? { name, value } : null;
-            })
-            .filter(item => item !== null); // Filter out any null items
-
-        // Replace the input box content with the converted JSON
+        // Replace the input field with the converted JSON
         document.getElementById('jsonInput').value = JSON.stringify(converted, null, 4);
     } catch (error) {
+        // Show error if JSON parsing fails
         document.getElementById('jsonInput').value = 'Error: Invalid JSON format';
     }
 }
