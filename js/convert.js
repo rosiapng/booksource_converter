@@ -291,7 +291,7 @@ function copyText(inputId) {
 
 //阅读转换极简发现
 
-  function yueconvfunction yueconvertJson() {
+  function yueconvertJson() {
     const input = document.getElementById('htmlInput').value.trim();
 
     // Check if the input is a JSON array or a custom 'title::url' format
@@ -329,4 +329,4 @@ function copyText(inputId) {
         // Replace the input field with the converted JSON
         document.getElementById('htmlInput').value = JSON.stringify(converted, null, 4);
     }
-}
+    }
