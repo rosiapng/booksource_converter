@@ -349,45 +349,7 @@ function copyText(inputId) {
 
 //阅读转换极简发现
 
-  function yueconvfunction yueconvertJson() {
-    const input = document.getElementById('htmlInput').value.trim();
-
-    // Check if the input is a JSON array or a custom 'title::url' format
-    try {
-        // Attempt to parse the input as JSON
-        const jsonArray = JSON.parse(input);
-
-        // Convert JSON input (same as before)
-        const converted = jsonArray
-            .filter(item => item.title && item.title.trim() && item.url && item.url.trim()) // Check both title and url
-            .map(item => ({
-                name: item.title.trim(),  // Get the title as name
-                value: item.url.trim()    // Get the url as value
-            }));
-
-        // Replace the input field with the converted JSON
-        document.getElementById('htmlInput').value = JSON.stringify(converted, null, 4); // Output to 'htmlInput'
-    } catch (error) {
-        // If the input is not JSON, treat it as the custom format
-        const lines = input.split('\n');
-        const converted = lines
-            .filter(line => line.includes('::'))  // Only process lines with the '::' format
-            .map(line => {
-                const parts = line.split('::');
-                const name = parts[0].trim();  // The part before '::' is the name
-                const value = parts[1] ? parts[1].trim() : '';  // The part after '::' is the value
-
-                // Only include the item if both name and value are present
-                if (name && value) {
-                    return { name, value };
-                }
-            })
-            .filter(item => item); // Filter out any undefined items
-
-        // Replace the input field with the converted JSON
-        document.getElementById('htmlInput').value = JSON.stringify(converted, null, 4);
-    }
-}
+  
     </script>
 
 
