@@ -172,7 +172,7 @@ return jsonString
     document.getElementById('jsOutput').value = convertedCode;
 }
 
-// Function to handle both query strings and key-value pairs
+// Function to handle both params query strings and key-value pairs
         function convertToJSON() {
             const input = document.getElementById('queryStringInput').value.trim();
             const jsonObject = {};
@@ -198,7 +198,7 @@ return jsonString
             document.getElementById('jsonOutput').value = JSON.stringify(jsonObject, null, 4);
         }
 
-        // Function to convert double quotes to single quotes
+        // Function to convert前置 double quotes to single quotes
         function convertQuotes() {
             const input = document.getElementById('doubleQuoteInput').value;
 
@@ -210,25 +210,28 @@ return jsonString
         }
         
         //源发现Js
-          // Function to convert HTML list to JSON
-    function convertHtmlToJson() {
-        const input = document.getElementById('htmlInput').value;
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(input, 'text/html');
-        const listItems = doc.querySelectorAll('li a');
-        const jsonArray = [];
+        // Function to convert HTML list to JSON
+function convertHtmlToJson() {
+    const input = document.getElementById('htmlInput').value;
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(input, 'text/html');
+    
+    // Select all <a> elements, regardless of whether they are inside <li> or not
+    const listItems = doc.querySelectorAll('a');
+    const jsonArray = [];
 
-        listItems.forEach(item => {
-            const name = item.textContent.trim();  // Extract visible text (name)
-            const value = item.getAttribute('href'); // Extract href attribute and rename it to 'value'
+    listItems.forEach(item => {
+        const name = item.textContent.trim();  // Extract visible text (name)
+        const value = item.getAttribute('href'); // Extract href attribute and rename it to 'value'
 
+        if (name && value) {
             jsonArray.push({ name, value });
-        });
+        }
+    });
 
-        // Replace input with the converted JSON
-        document.getElementById('htmlInput').value = JSON.stringify(jsonArray, null, 4);
-    }
-
+    // Replace input with the converted JSON
+    document.getElementById('htmlInput').value = JSON.stringify(jsonArray, null, 4);
+}
         // Function to paste text from clipboard
     function pasteText(inputId) {
         navigator.clipboard.readText().then(
