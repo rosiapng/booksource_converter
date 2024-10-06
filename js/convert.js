@@ -319,7 +319,7 @@ function copyText(inputId) {
                 const name = parts[0].trim();  // The part before '::' is the name
                 const value = parts[1] ? parts[1].trim() : '';  // The part after '::' is the value
 
-                // Only include the item if both name and value are present
+                // Only include the item if both name and value are present and non-empty
                 if (name && value) {
                     return { name, value };
                 }
@@ -329,4 +329,4 @@ function copyText(inputId) {
         // Replace the input field with the converted JSON
         document.getElementById('htmlInput').value = JSON.stringify(converted, null, 4);
     }
-    }
+}
