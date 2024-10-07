@@ -13,7 +13,7 @@
         textarea {
             width: 100%;
             height: 150px;
-            margin-bottom: 10px;
+            margin-bottom: 20px; /* Added space between the textarea and the dropdown */
         }
 
         pre {
@@ -36,13 +36,18 @@
             background-color: #45a049;
         }
 
-        .button-group {
-            margin-bottom: 10px;
-        }
-
         select {
             padding: 10px;
+            margin-bottom: 10px;
             margin-right: 10px;
+        }
+
+        .button-group {
+            margin-bottom: 20px; /* Spacing between buttons and textarea */
+        }
+
+        .copy-output-group {
+            margin-top: 20px; /* Spacing between the output and the copy button */
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify.min.js"></script>
@@ -61,12 +66,15 @@
     <div class="button-group">
         <button onclick="beautify()">Beautify</button>
         <button onclick="clearFields()">Clear</button>
-        <button onclick="copyOutput()">Copy Output</button>
         <button onclick="pasteInput()">Paste to Input</button>
     </div>
     
     <h2>Beautified Output:</h2>
     <pre id="output"></pre>
+
+    <div class="copy-output-group">
+        <button onclick="copyOutput()">Copy Output</button>
+    </div>
 
     <script>
         function beautify() {
