@@ -330,3 +330,23 @@ function copyText(inputId) {
         document.getElementById('htmlInput').value = JSON.stringify(converted, null, 4);
     }
 }
+
+function beautify() {
+            const input = document.getElementById('inputCode').value;
+            const type = document.getElementById('beautifyType').value;
+            
+            try {
+                let beautifiedCode;
+                if (type === 'json') {
+                    // Beautify JSON
+                    const parsedJSON = JSON.parse(input);
+                    beautifiedCode = JSON.stringify(parsedJSON, null, 4);
+                } else if (type === 'js') {
+                    // Beautify JavaScript using js-beautify
+                    beautifiedCode = js_beautify(input);
+                }
+                document.getElementById('output').textContent = beautifiedCode;
+            } catch (error) {
+                document.getElementById('output').textContent = 'Invalid input for the selected type!';
+            }
+        }
