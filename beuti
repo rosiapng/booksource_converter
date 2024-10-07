@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美化Js &Json</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ccc;
+            white-space: pre-wrap;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        select {
+            padding: 10px;
+            margin-right: 10px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify.min.js"></script>
+</head>
+<body>
+
+    <h1>Beautify JSON or JavaScript</h1>
+
+    <select id="beautifyType">
+        <option value="json">Beautify JSON</option>
+        <option value="js">Beautify JavaScript</option>
+    </select>
+
+    <textarea id="inputCode" placeholder="Enter JSON or JavaScript code here..."></textarea><br>
+    <button onclick="beautify()">Beautify</button>
+    
+    <h2>Beautified Output:</h2>
+    <pre id="output"></pre>
+
+    <script>
+        function beautify() {
+            const input = document.getElementById('inputCode').value;
+            const type = document.getElementById('beautifyType').value;
+            
+            try {
+                let beautifiedCode;
+                if (type === 'json') {
+                    // Beautify JSON
+                    const parsedJSON = JSON.parse(input);
+                    beautifiedCode = JSON.stringify(parsedJSON, null, 4);
+                } else if (type === 'js') {
+                    // Beautify JavaScript using js-beautify
+                    beautifiedCode = js_beautify(input);
+                }
+                document.getElementById('output').textContent = beautifiedCode;
+            } catch (error) {
+                document.getElementById('output').textContent = 'Invalid input for the selected type!';
+            }
+        }
+    </script>
+
+</body>
+</html>
