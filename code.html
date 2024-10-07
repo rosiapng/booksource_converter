@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #output {
+            background-color: #f4f4f4;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            white-space: pre-wrap;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 1em;
+        }
+        input {
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Run JavaScript Code</h1>
+    <p>Enter your JavaScript code below and click "Run":</p>
+    <input type="text" id="jsCode" placeholder="Enter JS code here" />
+    <button onclick="runCode()">Run</button>
+    <h2>Output:</h2>
+    <div id="output"></div>
+
+    <script>
+        function runCode() {
+            const code = document.getElementById('jsCode').value;
+            const output = document.getElementById('output');
+            try {
+                const result = eval(code);
+                output.textContent = result !== undefined ? result : 'Code executed successfully, no return value.';
+            } catch (error) {
+                output.textContent = 'Error: ' + error;
+            }
+        }
+    </script>
+</body>
+</html>
