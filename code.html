@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Run JavaScript</title>
+    <title>JavaScript Code Runner</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,6 +15,8 @@
             margin-top: 10px;
             border: 1px solid #ccc;
             white-space: pre-wrap;
+            height: 200px;
+            overflow-y: auto;
         }
         textarea, button {
             padding: 10px;
@@ -28,7 +30,7 @@
     </style>
 </head>
 <body>
-    <h1>Run JavaScript Code</h1>
+    <h1>JavaScript Code Runner</h1>
     <p>Enter your JavaScript code below and click "Run":</p>
     <textarea id="jsCode" placeholder="Enter JS code here"></textarea>
     <button onclick="runCode()">Run</button>
@@ -39,12 +41,28 @@
         function runCode() {
             const code = document.getElementById('jsCode').value;
             const output = document.getElementById('output');
+            
+            // Clear the output before running new code
+            output.textContent = '';
+
+            // Capture console.log output
+            const originalConsoleLog = console.log;
+            console.log = function(message) {
+                output.textContent += message + '\n';
+            };
+
             try {
+                // Execute the code
                 const result = eval(code);
-                output.textContent = result !== undefined ? result : 'Code executed successfully, no return value.';
+                if (result !== undefined) {
+                    output.textContent += 'Result: ' + result + '\n';
+                }
             } catch (error) {
-                output.textContent = 'Error: ' + error;
+                output.textContent += 'Error: ' + error + '\n';
             }
+
+            // Restore the original console.log
+            console.log = originalConsoleLog;
         }
     </script>
 </body>
