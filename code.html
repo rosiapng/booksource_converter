@@ -3,19 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Code Runner with Line Numbers</title>
+    <title>Dark Theme JavaScript Code Runner</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
+            background-color: #1e1e1e;
+            color: #ccc;
+        }
+        h1, h2 {
+            color: #fff;
         }
         .code-container {
             display: flex;
             width: 100%;
-            border: 1px solid #ccc;
+            border: 1px solid #333;
+            background-color: #2d2d2d;
         }
         .line-numbers {
-            background-color: #f4f4f4;
+            background-color: #2d2d2d;
             color: #888;
             padding: 10px;
             text-align: right;
@@ -31,25 +37,38 @@
             padding: 10px;
             font-family: monospace;
             resize: none;
+            background-color: #1e1e1e;
+            color: #f8f8f2;
+        }
+        textarea:focus {
+            outline: none;
         }
         #output {
-            background-color: #f4f4f4;
+            background-color: #1e1e1e;
             padding: 10px;
             margin-top: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #333;
             white-space: pre-wrap;
             height: 200px;
             overflow-y: auto;
+            color: #f8f8f2;
         }
         button {
             margin-top: 10px;
             padding: 10px;
             font-size: 1em;
+            background-color: #444;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
         }
     </style>
 </head>
 <body>
-    <h1>JavaScript Code Runner with Line Numbers</h1>
+    <h1>Dark Theme JavaScript Code Runner</h1>
     <p>Enter your JavaScript code below and click "Run":</p>
     <div class="code-container">
         <div class="line-numbers" id="lineNumbers"></div>
