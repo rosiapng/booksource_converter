@@ -3,11 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Code Runner</title>
+    <title>JavaScript Code Runner with Line Numbers</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
+        }
+        .code-container {
+            display: flex;
+            width: 100%;
+            border: 1px solid #ccc;
+        }
+        .line-numbers {
+            background-color: #f4f4f4;
+            color: #888;
+            padding: 10px;
+            text-align: right;
+            user-select: none;
+        }
+        .line-numbers span {
+            display: block;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            border: none;
+            padding: 10px;
+            font-family: monospace;
+            resize: none;
         }
         #output {
             background-color: #f4f4f4;
@@ -18,26 +41,41 @@
             height: 200px;
             overflow-y: auto;
         }
-        textarea, button {
+        button {
+            margin-top: 10px;
             padding: 10px;
             font-size: 1em;
-        }
-        textarea {
-            width: 100%;
-            height: 200px;
-            resize: none;
         }
     </style>
 </head>
 <body>
-    <h1>JavaScript Code Runner</h1>
+    <h1>JavaScript Code Runner with Line Numbers</h1>
     <p>Enter your JavaScript code below and click "Run":</p>
-    <textarea id="jsCode" placeholder="Enter JS code here"></textarea>
+    <div class="code-container">
+        <div class="line-numbers" id="lineNumbers"></div>
+        <textarea id="jsCode" placeholder="Enter JS code here" oninput="updateLineNumbers()" onscroll="syncScroll()"></textarea>
+    </div>
     <button onclick="runCode()">Run</button>
     <h2>Output:</h2>
     <div id="output"></div>
 
     <script>
+        function updateLineNumbers() {
+            const jsCode = document.getElementById('jsCode');
+            const lineNumbers = document.getElementById('lineNumbers');
+            const numberOfLines = jsCode.value.split('\n').length;
+            lineNumbers.innerHTML = '';
+            for (let i = 1; i <= numberOfLines; i++) {
+                lineNumbers.innerHTML += `<span>${i}</span>`;
+            }
+        }
+
+        function syncScroll() {
+            const jsCode = document.getElementById('jsCode');
+            const lineNumbers = document.getElementById('lineNumbers');
+            lineNumbers.scrollTop = jsCode.scrollTop;
+        }
+
         function runCode() {
             const code = document.getElementById('jsCode').value;
             const output = document.getElementById('output');
@@ -64,6 +102,9 @@
             // Restore the original console.log
             console.log = originalConsoleLog;
         }
+
+        // Initialize line numbers on page load
+        updateLineNumbers();
     </script>
 </body>
 </html>
