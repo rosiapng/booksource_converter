@@ -16,19 +16,21 @@
             border: 1px solid #ccc;
             white-space: pre-wrap;
         }
-        input, button {
+        textarea, button {
             padding: 10px;
             font-size: 1em;
         }
-        input {
-            width: 300px;
+        textarea {
+            width: 100%;
+            height: 200px;
+            resize: none;
         }
     </style>
 </head>
 <body>
     <h1>Run JavaScript Code</h1>
     <p>Enter your JavaScript code below and click "Run":</p>
-    <input type="text" id="jsCode" row="20" placeholder="Enter JS code here" />
+    <textarea id="jsCode" placeholder="Enter JS code here"></textarea>
     <button onclick="runCode()">Run</button>
     <h2>Output:</h2>
     <div id="output"></div>
