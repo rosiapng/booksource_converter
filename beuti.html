@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beautify JSON and JavaScript</title>
+    <title>美化Json和JS</title>
  <link rel="stylesheet" href="https://rosiapng.github.io/booksource_converter/css/index_styles.css">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.0/beautify.min.js"></script>
@@ -11,19 +11,34 @@
 
 <body>
 
-    <h1>Beautify JSON or JavaScript</h1>
+<h2 class="big-title">美化Json和JS</h2>
+    <p class="author">By 小猫咪Rosia P'ng</p>
+ <!-- Navigation Links in Button Form -->
+      <div class="nav-box">
+        <nav>
+            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/index.html">书源语法转换器(xpath,css)</a>
+            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/manyajs.html">傻瓜式益达转漫鸭正文JS器</a>
+            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/jijian.html">傻瓜极简写源工具</a>
+            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/jjfen.html">极简源发现工具</a>
+            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/yuedu.html">阅读源发现格式转换极简源发现</a>
+            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/beuti.html">美化Json和JS</a>
+        
+        </nav>
+    </div>
+    
+    <h1>美化Json和JS</h1>
 
     <select id="beautifyType">
-        <option value="json">Beautify JSON</option>
-        <option value="js">Beautify JavaScript</option>
+        <option value="json">美化 JSON</option>
+        <option value="js">美化 JavaScript</option>
     </select>
 
     <textarea class="beautify-input" id="inputCode" row="12" placeholder="Enter JSON or JavaScript code here..."></textarea><br>
 
     <div class="button-group">
-        <button onclick="beautify()">Beautify</button>
-        <button onclick="clearFields()">Clear</button>
-        <button onclick="pasteInput()">Paste to Input</button>
+        <button onclick="beautify()">美化</button>
+        <button onclick="clearFields()">清空</button>
+        <button onclick="pasteInput()">粘贴</button>
     </div>
     
     <h2>Beautified Output:</h2>
