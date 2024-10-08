@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto AES解密测试</title>
+    <link rel="stylesheet" href="https://rosiapng.github.io/booksource_converter/css/index_styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+</head>
+<body>
+
+<h2 class="aes-title">Crypto AES解密测试</h2>
+<p class="aes-author">By 小猫咪Rosia P'ng</p>
+
+<div class="nav-box">
+    <nav>
+        <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/index.html">书源语法转换器</a>
+        <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/manyajs.html">傻瓜式益达转漫鸭正文JS器</a>
+        <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/jijian.html">傻瓜极简写源工具</a>
+        <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/jjfen.html">极简源发现工具</a>
+        <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/yuedu.html">阅读源发现格式转换极简源发现</a>
+        <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/beuti.html">美化Json和JS</a>
+        <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/code.html">Js测试</a>
+        <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/base64.html">Base64和URI decode</a>
+        <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/aes.html">Crypto AES解密测试</a>
+    </nav>
+</div>
+
+<h1 class="aes-main-title">Crypto AES解密测试</h1>
+
+<label for="aesInput" class="aes-input-label">Input (Ciphertext):</label>
+<textarea id="aesInput" class="aes-input" rows="6" placeholder="Enter AES encrypted text..."></textarea>
+
+<label for="aesKey" class="aes-key-label">Decryption Key:</label>
+<input type="text" id="aesKey" class="aes-key" placeholder="Enter decryption key..."><br>
+
+<label for="aesIv" class="aes-iv-label">Initialization Vector (IV):</label>
+<input type="text" id="aesIv" class="aes-iv" placeholder="Enter IV..."><br>
+
+<button onclick="decryptAES()" class="aes-decrypt-button">Decrypt</button>
+<button onclick="clearFields()" class="aes-clear-button">Clear</button>
+
+<h2 class="aes-output-title">Decrypted Output:</h2>
+<pre id="aesOutput" class="aes-output" readonly></pre>
+
+<script>
+    function decryptAES() {
+        const ciphertext = document.getElementById('aesInput').value;
+        const key = CryptoJS.enc.Utf8.parse(document.getElementById('aesKey').value);
+        const iv = CryptoJS.enc.Utf8.parse(document.getElementById('aesIv').value);
+
+        try {
+            const decrypted = CryptoJS.AES.decrypt(ciphertext, key, { iv: iv });
+            const plaintext = decrypted.toString(CryptoJS.enc.Utf8);
+            
+            if (plaintext) {
+                document.getElementById('aesOutput').textContent = plaintext;
+            } else {
+                document.getElementById('aesOutput').textContent = 'Invalid decryption or empty result.';
+            }
+        } catch (error) {
+            document.getElementById('aesOutput').textContent = 'Error during decryption!';
+        }
+    }
+
+    function clearFields() {
+        document.getElementById('aesInput').value = '';
+        document.getElementById('aesKey').value = '';
+        document.getElementById('aesIv').value = '';
+        document.getElementById('aesOutput').textContent = '';
+    }
+</script>
+
+</body>
+</html>
