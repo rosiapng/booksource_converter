@@ -67,50 +67,65 @@
         }
 
         /* Navigation box styling */
-.nav-box {
-    margin-bottom: 20px; /* Adds space below the nav box */
-}
+        .nav-box {
+            margin-bottom: 20px;
+        }
 
-/* Navigation button styling */
-.nav-button {
-    display: inline-block; /* Displays links inline */
-    padding: 10px 20px;   /* Adds padding to the button */
-    background-color: #F8BBD0; /* Button background color */
-    color: white; /* Text color */
-    text-decoration: none; /* Removes underline from link */
-    border-radius: 4px; /* Rounds corners */
-    font-size: 18px; /* Button text size */
-    margin-right: 20px; /* Space between buttons */
-    margin-bottom: 10px; /* Add some space below buttons */
-    transition: background-color 0.3s; /* Smooth transition effect */
-}
+        .nav-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #F8BBD0;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 18px;
+            margin-right: 20px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
 
-
-
-.nav-button:hover {
-    background-color: #F06292; /* Changes color on hover */
-}
+        .nav-button:hover {
+            background-color: #F06292;
+        }
 
         .big-title {
-    text-align: center;
-    font-weight: bold;
-    font-size: 36px; /* Adjust size as needed */
-    margin-top: 20px;
-}
+            text-align: center;
+            font-weight: bold;
+            font-size: 36px;
+            margin-top: 20px;
+        }
 
-.author {
-    text-align: right;
-    margin-right: 20px;
-    font-style: italic;
-}
-        
+        .author {
+            text-align: right;
+            margin-right: 20px;
+            font-style: italic;
+        }
+
+        /* Custom input buttons */
+        .input-buttons {
+            margin-top: 10px;
+        }
+
+        .input-buttons button {
+            padding: 8px 12px;
+            margin-right: 5px;
+            background-color: #444;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .input-buttons button:hover {
+            background-color: #555;
+        }
     </style>
 </head>
 <body>
     <h2 class="big-title">Js测试</h2>
     <p class="author">By 小猫咪Rosia P'ng</p>
- <!-- Navigation Links in Button Form -->
-      <div class="nav-box">
+    
+    <!-- Navigation Links in Button Form -->
+    <div class="nav-box">
         <nav>
             <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/index.html">书源语法转换器(xpath,css)</a>
             <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/manyajs.html">傻瓜式益达转漫鸭正文JS器</a>
@@ -119,10 +134,9 @@
             <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/yuedu.html">阅读源发现格式转换极简源发现</a>
             <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/beuti.html">美化Json和JS</a>
             <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/code.html">Js测试</a>
-        
         </nav>
     </div>
-    
+
     <h1>JavaScript Code Runner</h1>
     <p>Enter your JavaScript code below and click "Run":</p>
     <div class="code-container">
@@ -130,6 +144,18 @@
         <textarea id="jsCode" placeholder="Enter JS code here" oninput="updateLineNumbers()" onscroll="syncScroll()"></textarea>
     </div>
     <button onclick="runCode()">Run</button>
+    <button onclick="copyCode()">Copy</button>
+    <button onclick="clearCode()">Clear</button>
+    
+    <!-- Custom input buttons for special characters -->
+    <div class="input-buttons">
+        <button onclick="insertCharacter('@')">@</button>
+        <button onclick="insertCharacter('=')">=</button>
+        <button onclick="insertCharacter(',')">,</button>
+        <button onclick="insertCharacter('`')">`</button>
+        <!-- Add more buttons here as needed -->
+    </div>
+
     <h2>Output:</h2>
     <div id="output"></div>
 
@@ -175,6 +201,35 @@
 
             // Restore the original console.log
             console.log = originalConsoleLog;
+        }
+
+        function copyCode() {
+            const jsCode = document.getElementById('jsCode');
+            jsCode.select();
+            document.execCommand('copy');
+            alert('Code copied to clipboard!');
+        }
+
+        function clearCode() {
+            document.getElementById('jsCode').value = '';
+            document.getElementById('output').textContent = '';
+            updateLineNumbers();
+        }
+
+        function insertCharacter(character) {
+            const jsCode = document.getElementById('jsCode');
+            const start = jsCode.selectionStart;
+            const end = jsCode.selectionEnd;
+            const text = jsCode.value;
+
+            // Insert the character at the cursor position
+            jsCode.value = text.slice(0, start) + character + text.slice(end);
+
+            // Move the cursor after the inserted character
+            jsCode.selectionStart = jsCode.selectionEnd = start + character.length;
+
+            // Update line numbers in case the inserted character adds new lines
+            updateLineNumbers();
         }
 
         // Initialize line numbers on page load
