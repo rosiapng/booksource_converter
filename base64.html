@@ -4,38 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Base64 and URL Decoder</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        textarea {
-            width: 100%;
-            height: 200px;
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-        }
-        select {
-            padding: 10px;
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-        .output {
-            background-color: #f4f4f4;
-            padding: 10px;
-        }
-    </style>
+  <link rel="stylesheet" href="https://rosiapng.github.io/booksource_converter/css/index_styles.css">
 </head>
 <body>
+     <h2 class="big-title">书源语法转换器(xpath,css)</h2>
+    <p class="author">By 小猫咪Rosia P'ng</p>
+ <!-- Navigation Links in Button Form -->
+      <div class="nav-box">
+        <nav>
+            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/index.html">书源语法转换器(xpath,css)</a>
+            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/manyajs.html">傻瓜式益达转漫鸭正文JS器</a>
+            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/jijian.html">傻瓜极简写源工具</a>
+            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/jjfen.html">极简源发现工具</a>
+            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/yuedu.html">阅读源发现格式转换极简源发现</a>
+            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/beuti.html">美化Json和JS</a>
+            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/code.html">Js测试</a>
+            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/base64.html">Base64和URI decode</a>
+        
+        </nav>
+    </div>
+    
 
     <h1>Base64 and URL Decoder</h1>
 
     <label for="inputBox">Input:</label>
-    <textarea id="inputBox" placeholder="Enter text here..."></textarea>
+    <textarea id="inputBox" class="input-box" placeholder="Enter text here..."></textarea>
 
     <label for="decodeType">Select Decode Type:</label>
     <select id="decodeType">
@@ -46,7 +39,7 @@
     <button onclick="decode()">Decode</button>
 
     <h2>Output (Decoded):</h2>
-    <textarea id="outputBox" class="output" readonly></textarea>
+    <textarea id="outputBox" class="output-box" readonly></textarea>
 
     <script>
         function decode() {
