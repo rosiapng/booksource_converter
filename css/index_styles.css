@@ -138,6 +138,68 @@ button:hover {
             margin-top: 20px; /* Spacing between the output and the copy button */
         }
 
+/* Styling for the input box */
+.input-box {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+/* Styling for the output box */
+.output-box {
+    width: 100%;
+    height: 200px;
+    background-color: #f4f4f4; /* Light grey background for better readability */
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 20px;
+    border: none; /* Remove border if necessary */
+    resize: none; /* Disable resizing */
+}
+
+/* Shared styling for select and buttons */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+/* Styling for the input box */
+.input-box {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+/* Styling for the output box */
+.output-box {
+    width: 100%;
+    height: 200px;
+    background-color: #f4f4f4;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 20px;
+    border: none;
+    resize: none;
+}
+
+/* Styling for the first select element (decoder-select) */
+.decoder-select {
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Styling for the second select element (other-select) */
+.other-select {
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+
+
 @media (max-width: 600px) {
     .nav-button {
         display: block; /* Stack buttons vertically */
