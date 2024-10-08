@@ -143,16 +143,25 @@
         <div class="line-numbers" id="lineNumbers"></div>
         <textarea id="jsCode" placeholder="Enter JS code here" oninput="updateLineNumbers()" onscroll="syncScroll()"></textarea>
     </div>
-    <button onclick="runCode()">Run</button>
-    <button onclick="copyCode()">Copy</button>
-    <button onclick="clearCode()">Clear</button>
+    <button onclick="runCode()">运行JS</button>
+    <button onclick="copyCode()">复制</button>
+    <button onclick="clearCode()">清空</button>
     
     <!-- Custom input buttons for special characters -->
     <div class="input-buttons">
-        <button onclick="insertCharacter('@')">@</button>
+        <button onclick="insertCharacter('@js:')">@js:</button>
         <button onclick="insertCharacter('=')">=</button>
         <button onclick="insertCharacter(',')">,</button>
         <button onclick="insertCharacter('`')">`</button>
+        <button onclick="insertCharacter('config[\\'url\\']')">config['url']</button>
+        <button onclick="insertCharacter('config[\\"cookies\\"]')">config["cookies"]</button>
+        <button onclick="insertCharacter('`@get{input}`')">`@get{input}`</button>
+        <button onclick="insertCharacter('`{{xpath}}`')">{{xpath}}</button>
+        <button onclick="insertCharacter('config.pageIndex')">config.pageIndex</button>
+        <button onclick="insertCharacter('config.url')">config.url</button>
+        <button onclick="insertCharacter('console.log(input)')">console.log(input)</button>
+        <button onclick="insertCharacter('<js>')">&lt;js&gt;</button>
+        <button onclick="insertCharacter('</js>')">&lt;/js&gt;</button>
         <!-- Add more buttons here as needed -->
     </div>
 
