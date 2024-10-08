@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base64 Decoder</title>
+    <title>Base64 and URL Decoder</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,6 +19,11 @@
             padding: 10px 20px;
             font-size: 16px;
         }
+        select {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
         .output {
             background-color: #f4f4f4;
             padding: 10px;
@@ -27,24 +32,37 @@
 </head>
 <body>
 
-    <h1>Base64 Decoder</h1>
+    <h1>Base64 and URL Decoder</h1>
 
-    <label for="inputBox">Input (Base64):</label>
-    <textarea id="inputBox" placeholder="Enter Base64 encoded text here..."></textarea>
+    <label for="inputBox">Input:</label>
+    <textarea id="inputBox" placeholder="Enter text here..."></textarea>
 
-    <button onclick="decodeBase64()">Decode</button>
+    <label for="decodeType">Select Decode Type:</label>
+    <select id="decodeType">
+        <option value="base64">Base64 Decode</option>
+        <option value="url">URL Decode</option>
+    </select>
+
+    <button onclick="decode()">Decode</button>
 
     <h2>Output (Decoded):</h2>
     <textarea id="outputBox" class="output" readonly></textarea>
 
     <script>
-        function decodeBase64() {
+        function decode() {
             const input = document.getElementById('inputBox').value;
+            const decodeType = document.getElementById('decodeType').value;
+            let output = '';
+
             try {
-                const decoded = atob(input); // Base64 decoding
-                document.getElementById('outputBox').value = decoded;
+                if (decodeType === 'base64') {
+                    output = atob(input); // Base64 decoding
+                } else if (decodeType === 'url') {
+                    output = decodeURIComponent(input); // URL decoding
+                }
+                document.getElementById('outputBox').value = output;
             } catch (error) {
-                document.getElementById('outputBox').value = 'Error: Invalid Base64 string';
+                document.getElementById('outputBox').value = 'Error: Invalid input for selected decode type';
             }
         }
     </script>
