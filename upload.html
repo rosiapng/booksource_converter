@@ -35,6 +35,7 @@
     <input type="text" id="input1" placeholder="Input 1" />
     <button id="pasteBtn1">粘贴</button>
     <button id="copyBtn1">复制</button>
+    <button id="clearBtn1">清除</button> <!-- Added clear button -->
 </div>
 
 <div>
@@ -42,6 +43,7 @@
     <textarea id="input2" rows="6" placeholder="Xpath转换结果"></textarea>
     <button id="pasteBtn2">粘贴</button>
     <button id="copyBtn2">复制</button>
+    <button id="clearBtn2">清除</button> <!-- Added clear button -->
 </div>
 
 <div>
@@ -49,11 +51,12 @@
     <input type="text" id="input3" placeholder="Input 3" />
     <button id="pasteBtn3">粘贴</button>
     <button id="copyBtn3">复制</button>
+    <button id="clearBtn3">清除</button> <!-- Added clear button -->
 </div>
 
 <script>
-    // Function to handle paste and copy for each input
-    function setupPasteCopy(pasteBtnId, copyBtnId, inputId) {
+    // Function to handle paste, copy, and clear for each input
+    function setupPasteCopyClear(pasteBtnId, copyBtnId, clearBtnId, inputId) {
         document.getElementById(pasteBtnId).addEventListener('click', async () => {
             try {
                 const text = await navigator.clipboard.readText();
@@ -72,12 +75,16 @@
                 console.error('Failed to copy to clipboard:', err);
             });
         });
+
+        document.getElementById(clearBtnId).addEventListener('click', () => {
+            document.getElementById(inputId).value = '';  // Clear the input or textarea
+        });
     }
 
-    // Call setupPasteCopy for each input with its corresponding buttons
-    setupPasteCopy('pasteBtn1', 'copyBtn1', 'input1');
-    setupPasteCopy('pasteBtn2', 'copyBtn2', 'input2');
-    setupPasteCopy('pasteBtn3', 'copyBtn3', 'input3');
+    // Call setupPasteCopyClear for each input with its corresponding buttons
+    setupPasteCopyClear('pasteBtn1', 'copyBtn1', 'clearBtn1', 'input1');
+    setupPasteCopyClear('pasteBtn2', 'copyBtn2', 'clearBtn2', 'input2');
+    setupPasteCopyClear('pasteBtn3', 'copyBtn3', 'clearBtn3', 'input3');
 </script>
 
 </body>
