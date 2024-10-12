@@ -5,80 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>美化Json和JS</title>
     <link rel="stylesheet" href="https://rosiapng.github.io/booksource_converter/css/index_styles.css">
-    
 </head>
 
 <body>
 
 <h2 class="big-title">上载极简仓库资料准备</h2>
-    <p class="author">By 小猫咪Rosia P'ng</p>
- <!-- Navigation Links in Button Form -->
-      <div class="nav-box">
-        <nav>
-            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/index.html">书源语法转换器(xpath,css)</a>
-            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/manyajs.html">傻瓜式益达转漫鸭正文JS器</a>
-            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/jijian.html">傻瓜极简写源工具</a>
-            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/jjfen.html">极简源发现工具</a>
-            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/yuedu.html">阅读源发现格式转换极简源发现</a>
-            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/beuti.html">美化Json和JS</a>
-            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/code.html">Js测试</a>
-            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/base64.html">Base64和URI decode</a>
-            <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/aes.html">Crypto AES解密测试</a>
-           <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/upload.html">上载极简仓库资料准备</a>
-        
-        </nav>
-    </div>
-    
-    <h1>上载极简仓库资料准备</h1> <!-- Updated title -->
+<p class="author">By 小猫咪Rosia P'ng</p>
 
-   <div>
+<!-- Navigation Links in Button Form -->
+<div class="nav-box">
+    <nav>
+        <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/index.html">书源语法转换器(xpath,css)</a>
+        <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/manyajs.html">傻瓜式益达转漫鸭正文JS器</a>
+        <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/jijian.html">傻瓜极简写源工具</a>
+        <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/jjfen.html">极简源发现工具</a>
+        <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/yuedu.html">阅读源发现格式转换极简源发现</a>
+        <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/beuti.html">美化Json和JS</a>
+        <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/code.html">Js测试</a>
+        <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/base64.html">Base64和URI decode</a>
+        <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/aes.html">Crypto AES解密测试</a>
+        <a class="nav-button" href="https://rosiapng.github.io/booksource_converter/upload.html">上载极简仓库资料准备</a>
+    </nav>
+</div>
+
+<h1>上载极简仓库资料准备</h1> <!-- Updated title -->
+
+<div>
     <label for="input1">源名字:</label>
-  <input type="text" id="input1" placeholder="Input 1" />
-  <button id="pasteBtn1">粘贴</button>
-  <button id="copyBtn1">复制</button>
+    <input type="text" id="input1" placeholder="Input 1" />
+    <button id="pasteBtn1">粘贴</button>
+    <button id="copyBtn1">复制</button>
 </div>
 
 <div>
-   <label for="input2">简介:</label>
-  <textarea id="input2" rows="6" readonly placeholder="Xpath转换结果"></textarea>
-  <button id="pasteBtn2">粘贴</button>
-  <button id="copyBtn2">复制</button>
+    <label for="input2">简介:</label>
+    <textarea id="input2" rows="6" readonly placeholder="Xpath转换结果"></textarea>
+    <button id="pasteBtn2">粘贴</button>
+    <button id="copyBtn2">复制</button>
 </div>
 
 <div>
-<label for="input3">URL地址:</label>
-  <input type="text" id="input3" placeholder="Input 3" />
-  <button id="pasteBtn3">粘贴</button>
-  <button id="copyBtn3">复制</button>
+    <label for="input3">URL地址:</label>
+    <input type="text" id="input3" placeholder="Input 3" />
+    <button id="pasteBtn3">粘贴</button>
+    <button id="copyBtn3">复制</button>
 </div>
 
+<script>
+    // Function to handle paste and copy for each input
+    function setupPasteCopy(pasteBtnId, copyBtnId, inputId) {
+        document.getElementById(pasteBtnId).addEventListener('click', async () => {
+            try {
+                const text = await navigator.clipboard.readText();
+                document.getElementById(inputId).value = text;
+            } catch (err) {
+                console.error('Failed to paste from clipboard:', err);
+            }
+        });
 
-    <script>
-       // Function to handle paste and copy for each input
-function setupPasteCopy(pasteBtnId, copyBtnId, inputId) {
-  document.getElementById(pasteBtnId).addEventListener('click', async () => {
-    try {
-      const text = await navigator.clipboard.readText();
-      document.getElementById(inputId).value = text;
-    } catch (err) {
-      console.error('Failed to paste from clipboard:', err);
+        document.getElementById(copyBtnId).addEventListener('click', () => {
+            const inputText = document.getElementById(inputId).value;
+
+            navigator.clipboard.writeText(inputText).then(() => {
+                console.log('Text copied to clipboard');
+            }).catch(err => {
+                console.error('Failed to copy to clipboard:', err);
+            });
+        });
     }
-  });
 
-  document.getElementById(copyBtnId).addEventListener('click', () => {
-    const inputText = document.getElementById(inputId).value;
-    
-    navigator.clipboard.writeText(inputText).then(() => {
-      console.log('Text copied to clipboard');
-    }).catch(err => {
-      console.error('Failed to copy to clipboard:', err);
-    });
-  });
-}
-
-
-
-    </script>
+    // Call setupPasteCopy for each input with its corresponding buttons
+    setupPasteCopy('pasteBtn1', 'copyBtn1', 'input1');
+    setupPasteCopy('pasteBtn2', 'copyBtn2', 'input2');
+    setupPasteCopy('pasteBtn3', 'copyBtn3', 'input3');
+</script>
 
 </body>
 </html>
