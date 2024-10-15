@@ -86,16 +86,18 @@
     </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/encoding-japanese/1.0.30/encoding.js"></script>
     <script>
-   function convertToGBK() {
+    function convertToGBK() {
             const urlEncodedInput = document.getElementById("urlEncodedInput").value;
 
             // Step 1: Decode the URL-encoded string
             const decodedString = decodeURIComponent(urlEncodedInput);
-            
+            console.log("Decoded String:", decodedString); // Debugging line
+
             try {
                 // Step 2: Convert string to byte array using Latin-1 encoding
                 const byteArray = [];
                 for (let i = 0; i < decodedString.length; i++) {
+                    // Push byte value for each character
                     byteArray.push(decodedString.charCodeAt(i) & 0xFF);
                 }
 
@@ -107,6 +109,7 @@
 
                 // Step 4: Convert decoded byte array to string
                 const gbkString = Encoding.codeToString(gbkDecoded);
+                console.log("GBK String:", gbkString); // Debugging line
 
                 // Display the decoded GBK string
                 document.getElementById("gbkOutput").value = gbkString;
@@ -115,6 +118,7 @@
             }
         }
 
+        
 
  </script>
 </body>
