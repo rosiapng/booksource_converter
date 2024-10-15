@@ -83,48 +83,27 @@
                 <script src="https://rosiapng.github.io/booksource_converter/js/convert.js">
         
     </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/encoding-japanese/1.0.30/encoding.js"></script>
+ <script src="https://r12a.github.io/app-conversion/conversionfunctions.js"></script>
     <script>
-    function convertToGBK() {
+        function convertToGBK() {
             const urlEncodedInput = document.getElementById("urlEncodedInput").value.trim();
             console.log("Input String:", urlEncodedInput); // Debugging line
-
-            // Check if input is properly formatted
-            if (!/^%[0-9A-F]{2}+$/.test(urlEncodedInput)) {
-                document.getElementById("gbkOutput").value = "Invalid input format.";
-                return;
-            }
 
             try {
                 // Step 1: Decode the URL-encoded string
                 const decodedString = decodeURIComponent(urlEncodedInput);
                 console.log("Decoded String:", decodedString); // Debugging line
 
-                // Step 2: Convert string to byte array using UTF-16 encoding
-                const byteArray = [];
-                for (let i = 0; i < decodedString.length; i++) {
-                    byteArray.push(decodedString.charCodeAt(i) & 0xFF);      // Lower byte
-                    byteArray.push((decodedString.charCodeAt(i) >> 8) & 0xFF); // Upper byte
-                }
-
-                // Step 3: Decode byte array from UTF-16 to GBK
-                const gbkDecoded = Encoding.convert(byteArray, {
-                    to: 'GBK',      // Convert to GBK
-                    from: 'UNICODE' // Source encoding is Unicode
-                });
-
-                // Step 4: Convert decoded byte array to string
-                const gbkString = Encoding.codeToString(gbkDecoded);
-                console.log("GBK String:", gbkString); // Debugging line
+                // Step 2: Convert the string to GBK using the conversion functions
+                const gbkEncoded = convertToGbk(decodedString); // Assuming the function is named this way
 
                 // Display the decoded GBK string
-                document.getElementById("gbkOutput").value = gbkString || "No result";
+                document.getElementById("gbkOutput").value = gbkEncoded || "No result";
             } catch (e) {
                 console.error("Error decoding input:", e.message); // Debugging line
                 document.getElementById("gbkOutput").value = "Error decoding input: " + e.message;
             }
         }
-
  </script>
 </body>
 </html>
