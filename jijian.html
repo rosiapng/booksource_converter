@@ -63,7 +63,7 @@
         <button onclick="copyOutput('singleQuoteOutput')">复制</button>
     </div>
 
-     <h1>URL-encoded 转 GBK</h1>
+    <h1>URL-encoded 转 GBK</h1>
     <p>输入URL编码字符串并将其转换为GBK编码</p>
 
     <!-- Input Box for URL-encoded string -->
@@ -83,23 +83,24 @@
                 <script src="https://rosiapng.github.io/booksource_converter/js/convert.js">
         
     </script>
-<script>
+ <script src="https://cdn.rawgit.com/ashtuchkin/iconv-lite/master/lib/iconv.js"></script>
+    <script>
         function convertToGBK() {
             const input = document.getElementById("urlEncodedInput").value;
             try {
                 // Decode the URL-encoded string (e.g., %CB%D1%CB%F7)
                 let decoded = decodeURIComponent(input);
 
-                // GBK conversion (simplified, as full GBK conversion needs a library)
-                // You can add a GBK mapping or a library for full conversion.
-                document.getElementById("gbkOutput").value = decoded;
+                // Convert the decoded string to GBK
+                const gbkBuffer = new TextEncoder().encode(decoded);
+                const gbkDecoded = iconv.decode(gbkBuffer, 'gbk');
+
+                // Display the result in the output textarea
+                document.getElementById("gbkOutput").value = gbkDecoded;
             } catch (e) {
                 document.getElementById("gbkOutput").value = "Error decoding input.";
             }
         }
-
-     
-    </script>
-
+ </script>
 </body>
 </html>
