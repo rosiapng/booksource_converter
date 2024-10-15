@@ -63,63 +63,60 @@
         <button onclick="copyOutput('singleQuoteOutput')">复制</button>
     </div>
 
-   <h1>URL-encoded 转 GBK</h1>
-    <p>输入URL编码字符串并将其转换为GBK编码</p>
+  <h1>Convert URL-encoded String to GBK</h1>
+    <p>输入 URL 编码字符串并将其转换为 GBK 编码</p>
 
-    <!-- Input Box for URL-encoded string -->
+    <!-- Input Box for URL-encoded String -->
     <div class="input-container">
-        <label for="urlEncodedInput">URL编码字符串:</label>
+        <label for="urlEncodedInput">输入 URL 编码字符串:</label>
         <textarea id="urlEncodedInput" rows="4" placeholder="%CB%D1%CB%F7"></textarea>
-        <button onclick="convertToGBK()">转换为GBK</button>
+        <button onclick="convertToGBK()">转换为 GBK</button>
         <button onclick="clearInput('urlEncodedInput')">清空</button>
     </div>
 
     <!-- Output Box for GBK-decoded string -->
     <div class="input-container">
-        <label for="gbkOutput">GBK字符串:</label>
-        <textarea id="gbkOutput" rows="4" placeholder="GBK解码结果" readonly></textarea>
+        <label for="gbkOutput">GBK 字符串:</label>
+        <textarea id="gbkOutput" rows="4" placeholder="GBK 解码结果" readonly></textarea>
         <button onclick="copyOutput('gbkOutput')">复制</button>
     </div>
-    
                 <script src="https://rosiapng.github.io/booksource_converter/js/convert.js">
         
     </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/encoding-japanese/1.0.30/encoding.js"></script>
     <script>
-   function convertToGBK() {
+     function convertToGBK() {
             const urlEncodedInput = document.getElementById("urlEncodedInput").value;
 
             // Step 1: Decode the URL-encoded string
             const decodedString = decodeURIComponent(urlEncodedInput);
             console.log("Decoded String:", decodedString); // Debugging line
 
-            try {
-                // Step 2: Convert string to byte array using UTF-16 encoding
-                const byteArray = [];
-                for (let i = 0; i < decodedString.length; i++) {
-                    // Push byte value for each character
-                    byteArray.push(decodedString.charCodeAt(i) & 0xFF);
-                    byteArray.push((decodedString.charCodeAt(i) >> 8) & 0xFF);
-                }
+            // Step 2: Convert string to byte array using UTF-16 encoding
+            const byteArray = [];
+            for (let i = 0; i < decodedString.length; i++) {
+                byteArray.push(decodedString.charCodeAt(i) & 0xFF);      // Lower byte
+                byteArray.push((decodedString.charCodeAt(i) >> 8) & 0xFF); // Upper byte
+            }
 
-                // Step 3: Decode byte array from UTF-16 to GBK
-                const gbkDecoded = Encoding.convert(byteArray, {
-                    to: 'GBK',      // Convert to GBK
-                    from: 'UNICODE' // Source encoding is Unicode
-                });
+            // Step 3: Decode byte array from UTF-16 to GBK
+            const gbkDecoded = Encoding.convert(byteArray, {
+                to: 'GBK',      // Convert to GBK
+                from: 'UNICODE' // Source encoding is Unicode
+            });
 
-                // Step 4: Convert decoded byte array to string
-                const gbkString = Encoding.codeToString(gbkDecoded);
-                console.log("GBK String:", gbkString); // Debugging line
+            // Step 4: Convert decoded byte array to string
+            const gbkString = Encoding.codeToString(gbkDecoded);
+            console.log("GBK String:", gbkString); // Debugging line
 
-                // Display the decoded GBK string
+            // Display the decoded GBK string
+            if (gbkString) {
                 document.getElementById("gbkOutput").value = gbkString;
-            } catch (e) {
-                document.getElementById("gbkOutput").value = "Error decoding input: " + e.message;
+            } else {
+                document.getElementById("gbkOutput").value = "No result";
             }
         }
 
-        
 
  </script>
 </body>
