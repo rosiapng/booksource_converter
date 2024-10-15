@@ -89,26 +89,30 @@
          function convertToGBK() {
             const input = document.getElementById("urlEncodedInput").value;
             try {
-                // Parse the URL-encoded string (%XX format) into bytes
+                // Initialize an empty byte array
                 const byteArray = [];
-                const urlEncodedParts = input.match(/%[0-9A-Fa-f]{2}/g); // Matches each %XX encoded byte
+
+                // Split the input into %XX parts and convert each to a byte
+                const regex = /%[0-9A-Fa-f]{2}/g;
+                const urlEncodedParts = input.match(regex);
 
                 if (urlEncodedParts) {
                     urlEncodedParts.forEach(part => {
-                        // Convert each %XX to a byte value and push to the byteArray
-                        byteArray.push(parseInt(part.slice(1), 16));
+                        // Extract the hex number and convert to a byte
+                        const byteValue = parseInt(part.slice(1), 16);
+                        byteArray.push(byteValue);
                     });
 
-                    // Use encoding.js to decode the byte array from GBK encoding
+                    // Decode the byte array from GBK to Unicode using encoding.js
                     const gbkDecoded = Encoding.convert(byteArray, {
                         to: 'UNICODE',  // Convert to Unicode
                         from: 'GBK'     // Source is GBK
                     });
 
-                    // Convert the decoded byte array into a readable string
+                    // Convert the decoded Unicode byte array into a string
                     const gbkString = Encoding.codeToString(gbkDecoded);
 
-                    // Display the GBK-decoded string
+                    // Display the decoded GBK string
                     document.getElementById("gbkOutput").value = gbkString;
                 } else {
                     document.getElementById("gbkOutput").value = "Invalid input format.";
@@ -117,6 +121,7 @@
                 document.getElementById("gbkOutput").value = "Error decoding input.";
             }
         }
+
  </script>
 </body>
 </html>
