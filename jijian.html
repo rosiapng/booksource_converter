@@ -63,7 +63,7 @@
         <button onclick="copyOutput('singleQuoteOutput')">复制</button>
     </div>
 
-    <h1>URL-encoded 转 GBK</h1>
+   <h1>URL-encoded 转 GBK</h1>
     <p>输入URL编码字符串并将其转换为GBK编码</p>
 
     <!-- Input Box for URL-encoded string -->
@@ -80,23 +80,35 @@
         <textarea id="gbkOutput" rows="4" placeholder="GBK解码结果" readonly></textarea>
         <button onclick="copyOutput('gbkOutput')">复制</button>
     </div>
+    
                 <script src="https://rosiapng.github.io/booksource_converter/js/convert.js">
         
     </script>
- <script src="https://cdn.rawgit.com/ashtuchkin/iconv-lite/master/lib/iconv.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/encoding-japanese/1.0.30/encoding.js"></script>
     <script>
         function convertToGBK() {
             const input = document.getElementById("urlEncodedInput").value;
             try {
-                // Decode the URL-encoded string (e.g., %CB%D1%CB%F7)
-                let decoded = decodeURIComponent(input);
+                // Decode URL-encoded string to raw bytes
+                const byteString = decodeURIComponent(input);
+                
+                // Convert the byte string to a byte array
+                const byteArray = [];
+                for (let i = 0; i < byteString.length; i++) {
+                    byteArray.push(byteString.charCodeAt(i) & 0xFF);
+                }
 
-                // Convert the decoded string to GBK
-                const gbkBuffer = new TextEncoder().encode(decoded);
-                const gbkDecoded = iconv.decode(gbkBuffer, 'gbk');
+                // Use encoding.js to decode the byte array from GBK encoding
+                const gbkDecoded = Encoding.convert(byteArray, {
+                    to: 'UNICODE',  // Convert to Unicode
+                    from: 'GBK'     // Source is GBK
+                });
 
-                // Display the result in the output textarea
-                document.getElementById("gbkOutput").value = gbkDecoded;
+                // Convert the decoded byte array into a readable string
+                const gbkString = Encoding.codeToString(gbkDecoded);
+
+                // Display the GBK-decoded string
+                document.getElementById("gbkOutput").value = gbkString;
             } catch (e) {
                 document.getElementById("gbkOutput").value = "Error decoding input.";
             }
