@@ -86,28 +86,32 @@
     </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/encoding-japanese/1.0.30/encoding.js"></script>
     <script>
-        function convertToGBK() {
-            const input = document.getElementById("inputString").value;
+   function convertToGBK() {
+            const urlEncodedInput = document.getElementById("urlEncodedInput").value;
+
+            // Step 1: Decode the URL-encoded string
+            const decodedString = decodeURIComponent(urlEncodedInput);
+            
             try {
-                // Step 1: Convert string to byte array using Latin-1 encoding
+                // Step 2: Convert string to byte array using Latin-1 encoding
                 const byteArray = [];
-                for (let i = 0; i < input.length; i++) {
-                    byteArray.push(input.charCodeAt(i) & 0xFF);  // Get byte value
+                for (let i = 0; i < decodedString.length; i++) {
+                    byteArray.push(decodedString.charCodeAt(i) & 0xFF);
                 }
 
-                // Step 2: Decode byte array from GBK to Unicode
+                // Step 3: Decode byte array from Latin-1 to GBK
                 const gbkDecoded = Encoding.convert(byteArray, {
-                    to: 'UNICODE',  // Convert to Unicode
-                    from: 'GBK'     // Source encoding is GBK
+                    to: 'GBK',      // Convert to GBK
+                    from: 'UNICODE' // Source encoding is Unicode
                 });
 
-                // Step 3: Convert decoded byte array to string
+                // Step 4: Convert decoded byte array to string
                 const gbkString = Encoding.codeToString(gbkDecoded);
 
                 // Display the decoded GBK string
                 document.getElementById("gbkOutput").value = gbkString;
             } catch (e) {
-                document.getElementById("gbkOutput").value = "Error decoding input.";
+                document.getElementById("gbkOutput").value = "Error decoding input: " + e.message;
             }
         }
 
