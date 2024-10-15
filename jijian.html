@@ -85,38 +85,38 @@
     </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/encoding-japanese/1.0.30/encoding.js"></script>
     <script>
-     function convertToGBK() {
+      function convertToGBK() {
             const urlEncodedInput = document.getElementById("urlEncodedInput").value;
 
-            // Step 1: Decode the URL-encoded string
-            const decodedString = decodeURIComponent(urlEncodedInput);
-            console.log("Decoded String:", decodedString); // Debugging line
+            try {
+                // Step 1: Decode the URL-encoded string
+                const decodedString = decodeURIComponent(urlEncodedInput);
+                console.log("Decoded String:", decodedString); // Debugging line
 
-            // Step 2: Convert string to byte array using UTF-16 encoding
-            const byteArray = [];
-            for (let i = 0; i < decodedString.length; i++) {
-                byteArray.push(decodedString.charCodeAt(i) & 0xFF);      // Lower byte
-                byteArray.push((decodedString.charCodeAt(i) >> 8) & 0xFF); // Upper byte
-            }
+                // Step 2: Convert string to byte array using UTF-16 encoding
+                const byteArray = [];
+                for (let i = 0; i < decodedString.length; i++) {
+                    byteArray.push(decodedString.charCodeAt(i) & 0xFF);      // Lower byte
+                    byteArray.push((decodedString.charCodeAt(i) >> 8) & 0xFF); // Upper byte
+                }
 
-            // Step 3: Decode byte array from UTF-16 to GBK
-            const gbkDecoded = Encoding.convert(byteArray, {
-                to: 'GBK',      // Convert to GBK
-                from: 'UNICODE' // Source encoding is Unicode
-            });
+                // Step 3: Decode byte array from UTF-16 to GBK
+                const gbkDecoded = Encoding.convert(byteArray, {
+                    to: 'GBK',      // Convert to GBK
+                    from: 'UNICODE' // Source encoding is Unicode
+                });
 
-            // Step 4: Convert decoded byte array to string
-            const gbkString = Encoding.codeToString(gbkDecoded);
-            console.log("GBK String:", gbkString); // Debugging line
+                // Step 4: Convert decoded byte array to string
+                const gbkString = Encoding.codeToString(gbkDecoded);
+                console.log("GBK String:", gbkString); // Debugging line
 
-            // Display the decoded GBK string
-            if (gbkString) {
-                document.getElementById("gbkOutput").value = gbkString;
-            } else {
-                document.getElementById("gbkOutput").value = "No result";
+                // Display the decoded GBK string
+                document.getElementById("gbkOutput").value = gbkString || "No result";
+            } catch (e) {
+                console.error("Error decoding input:", e.message); // Debugging line
+                document.getElementById("gbkOutput").value = "Error decoding input: " + e.message;
             }
         }
-
 
  </script>
 </body>
