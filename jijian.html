@@ -89,20 +89,24 @@
         function convertToGBK() {
             const input = document.getElementById("urlEncodedInput").value;
             try {
-                // Decode URL-encoded string
-                const decoded = decodeURIComponent(input);
-
-                // Convert decoded string to a byte array (UTF-16 to bytes)
+                // Extract the raw bytes from the URL-encoded string
                 const byteArray = [];
-                for (let i = 0; i < decoded.length; i++) {
-                    // Get the byte code for each character
-                    byteArray.push(decoded.charCodeAt(i));
+                for (let i = 0; i < input.length; i++) {
+                    if (input[i] === '%' && i + 2 < input.length) {
+                        // Get the hexadecimal value of the %XX encoding
+                        const hexValue = input.slice(i + 1, i + 3);
+                        const byteValue = parseInt(hexValue, 16);
+                        byteArray.push(byteValue);
+                        i += 2; // Skip over the next two characters
+                    } else {
+                        // If it's not a %XX encoded byte, skip it (or handle other characters if needed)
+                    }
                 }
 
-                // Decode byte array from GBK using encoding.js
+                // Decode byte array from GBK to Unicode using encoding.js
                 const gbkDecoded = Encoding.convert(byteArray, {
                     to: 'UNICODE',  // Convert to Unicode
-                    from: 'GBK'     // Source is GBK
+                    from: 'GBK'     // Source encoding is GBK
                 });
 
                 // Convert decoded byte array to string
