@@ -85,8 +85,15 @@
     </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/encoding-japanese/1.0.30/encoding.js"></script>
     <script>
-      function convertToGBK() {
-            const urlEncodedInput = document.getElementById("urlEncodedInput").value;
+    function convertToGBK() {
+            const urlEncodedInput = document.getElementById("urlEncodedInput").value.trim();
+            console.log("Input String:", urlEncodedInput); // Debugging line
+
+            // Check if input is properly formatted
+            if (!/^%[0-9A-F]{2}+$/.test(urlEncodedInput)) {
+                document.getElementById("gbkOutput").value = "Invalid input format.";
+                return;
+            }
 
             try {
                 // Step 1: Decode the URL-encoded string
