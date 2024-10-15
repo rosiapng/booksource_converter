@@ -86,30 +86,30 @@
     </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/encoding-japanese/1.0.30/encoding.js"></script>
     <script>
-        function convertToGBK() {
+         function convertToGBK() {
             const input = document.getElementById("urlEncodedInput").value;
             try {
-                // Extract the raw bytes from the URL-encoded string
+                // Step 1: Parse the URL-encoded string manually to get the raw byte values
                 const byteArray = [];
-                for (let i = 0; i < input.length; i++) {
+                let i = 0;
+                while (i < input.length) {
                     if (input[i] === '%' && i + 2 < input.length) {
-                        // Get the hexadecimal value of the %XX encoding
-                        const hexValue = input.slice(i + 1, i + 3);
+                        const hexValue = input.substring(i + 1, i + 3);
                         const byteValue = parseInt(hexValue, 16);
                         byteArray.push(byteValue);
-                        i += 2; // Skip over the next two characters
+                        i += 3;
                     } else {
-                        // If it's not a %XX encoded byte, skip it (or handle other characters if needed)
+                        i++;
                     }
                 }
 
-                // Decode byte array from GBK to Unicode using encoding.js
+                // Step 2: Convert the byte array from GBK to Unicode
                 const gbkDecoded = Encoding.convert(byteArray, {
                     to: 'UNICODE',  // Convert to Unicode
                     from: 'GBK'     // Source encoding is GBK
                 });
 
-                // Convert decoded byte array to string
+                // Step 3: Convert decoded byte array to string
                 const gbkString = Encoding.codeToString(gbkDecoded);
 
                 // Display the decoded GBK string
@@ -118,6 +118,7 @@
                 document.getElementById("gbkOutput").value = "Error decoding input.";
             }
         }
+
 
  </script>
 </body>
