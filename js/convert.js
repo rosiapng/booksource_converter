@@ -66,7 +66,10 @@
             document.getElementById('xpathOutput').value = xpaths.join('\n');
         }
 
-      function xpathToCSS(xpath) {
+    function xpathToCSS(xpath) {
+    // List of attributes and nodes to ignore if they appear at the end of XPath
+    const ignoredEndings = ['@src', '@href', '@data-src', '@data-original', 'text()'];
+    
     // Regex to match XPath patterns with tag, optional attribute, and value, or attribute-only selection
     const regex = /\/{1,2}(\w+)(?:\[@(\w+)="([^"]+)"\])?(?:\/@(\w+))?(?:\/text\(\))?/g;
     let cssSelector = '';
@@ -79,8 +82,12 @@
         const value = match[3];     // Value of the attribute (e.g., newlist)
         const attrOnly = match[4];  // Attribute only (e.g., src)
 
-        // If the XPath ends with an attribute or text(), skip adding more elements
-        if (xpath.includes('text()') && regex.lastIndex === xpath.length) {
+        // Check if the XPath ends with any ignored attributes or nodes
+        const xpathEnd = xpath.slice(regex.lastIndex - match[0].length).trim();
+        const isEndingIgnored = ignoredEndings.some(ending => xpathEnd.endsWith(ending));
+
+        // If it ends with an ignored attribute or text(), stop adding more elements
+        if (isEndingIgnored && regex.lastIndex === xpath.length) {
             break;
         }
 
@@ -92,7 +99,7 @@
         }
 
         // If there are more tags to follow, add '>' to indicate direct descendant
-        if (regex.lastIndex < xpath.length && !xpath.includes('text()', regex.lastIndex)) {
+        if (regex.lastIndex < xpath.length && !isEndingIgnored) {
             cssSelector += '>';
         }
     }
