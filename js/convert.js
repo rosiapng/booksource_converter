@@ -66,7 +66,7 @@
             document.getElementById('xpathOutput').value = xpaths.join('\n');
         }
 
-    function xpathToCSS(xpath) {
+   function xpathToCSS(xpath) {
     // List of attributes and nodes to ignore if they appear at the end of XPath
     const ignoredEndings = ['@src', '@href', '@data-src', '@data-original', 'text()'];
     
@@ -74,6 +74,7 @@
     const regex = /\/{1,2}(\w+)(?:\[@(\w+)="([^"]+)"\])?(?:\/@(\w+))?(?:\/text\(\))?/g;
     let cssSelector = '';
     let match;
+    let isLastSegmentIgnored = false;
 
     // Loop through each match of the XPath pattern
     while ((match = regex.exec(xpath)) !== null) {
@@ -82,14 +83,9 @@
         const value = match[3];     // Value of the attribute (e.g., newlist)
         const attrOnly = match[4];  // Attribute only (e.g., src)
 
-        // Check if the XPath ends with any ignored attributes or nodes
+        // Check if this is the last part of the XPath and if it's an ignored attribute or node
         const xpathEnd = xpath.slice(regex.lastIndex - match[0].length).trim();
-        const isEndingIgnored = ignoredEndings.some(ending => xpathEnd.endsWith(ending));
-
-        // If it ends with an ignored attribute or text(), stop adding more elements
-        if (isEndingIgnored && regex.lastIndex === xpath.length) {
-            break;
-        }
+        isLastSegmentIgnored = ignoredEndings.some(ending => xpathEnd.endsWith(ending)) && regex.lastIndex === xpath.length;
 
         // Build the CSS selector part by part
         if (attr && value) {
@@ -98,8 +94,8 @@
             cssSelector += tag;  // If no attribute, just add the tag
         }
 
-        // If there are more tags to follow, add '>' to indicate direct descendant
-        if (regex.lastIndex < xpath.length && !isEndingIgnored) {
+        // Add '>' to indicate direct descendant if this isn't the last ignored segment
+        if (regex.lastIndex < xpath.length && !isLastSegmentIgnored) {
             cssSelector += '>';
         }
     }
@@ -113,7 +109,6 @@ function convertToCSS() {
     const cssSelector = xpathToCSS(xpathCode);
     document.getElementById('cssOutput').value = cssSelector;
 }
-
 
       // Function to handle both query strings and key-value pairs
         function convertToJSON() {
