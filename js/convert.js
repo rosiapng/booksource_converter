@@ -66,9 +66,8 @@
             document.getElementById('xpathOutput').value = xpaths.join('\n');
         }
 
-        // Function to convert XPath to CSS in the format: tag[attribute="value"]
-function xpathToCSS(xpath) {
-    // Regex to match XPath patterns with tag, optional attribute, and value, or attribute-only selection or text()
+      function xpathToCSS(xpath) {
+    // Regex to match XPath patterns with tag, optional attribute, and value, or attribute-only selection
     const regex = /\/{1,2}(\w+)(?:\[@(\w+)="([^"]+)"\])?(?:\/@(\w+))?(?:\/text\(\))?/g;
     let cssSelector = '';
     let match;
@@ -80,10 +79,9 @@ function xpathToCSS(xpath) {
         const value = match[3];     // Value of the attribute (e.g., newlist)
         const attrOnly = match[4];  // Attribute only (e.g., src)
 
-        // If the XPath ends with an attribute like /@src, or text(), we only keep the tag (e.g., img, a)
-        if (attrOnly || xpath.includes('text()')) {
-            cssSelector += tag; // Just append the tag, skipping the attribute or text()
-            continue;
+        // If the XPath ends with an attribute or text(), skip adding more elements
+        if (xpath.includes('text()') && regex.lastIndex === xpath.length) {
+            break;
         }
 
         // Build the CSS selector part by part
@@ -94,7 +92,7 @@ function xpathToCSS(xpath) {
         }
 
         // If there are more tags to follow, add '>' to indicate direct descendant
-        if (regex.lastIndex < xpath.length) {
+        if (regex.lastIndex < xpath.length && !xpath.includes('text()', regex.lastIndex)) {
             cssSelector += '>';
         }
     }
@@ -103,11 +101,12 @@ function xpathToCSS(xpath) {
     return cssSelector || 'Invalid XPath';
 }
 
-        function convertToCSS() {
-            const xpathCode = document.getElementById('xpathInput').value;
-            const cssSelector = xpathToCSS(xpathCode);
-            document.getElementById('cssOutput').value = cssSelector;
-        }
+function convertToCSS() {
+    const xpathCode = document.getElementById('xpathInput').value;
+    const cssSelector = xpathToCSS(xpathCode);
+    document.getElementById('cssOutput').value = cssSelector;
+}
+
 
       // Function to handle both query strings and key-value pairs
         function convertToJSON() {
