@@ -149,7 +149,7 @@
     <p>在这里输入JavaScript代码 （推荐用电脑测）:</p>
     <div class="code-container">
         <div class="line-numbers" id="lineNumbers"></div>
-        <textarea id="jsCode" placeholder="Enter JS code here" oninput="updateLineNumbers()" onscroll="syncScroll()"></textarea>
+        <textarea id="jsCode" placeholder="Enter JS code here" oninput="updateLineNumbers(); autoExpand(this)" onscroll="syncScroll()"></textarea>
     </div>
     <button onclick="runCode()">运行JS</button>
     <button onclick="copyCode()">复制</button>
@@ -250,6 +250,13 @@
 
         // Initialize line numbers on page load
         updateLineNumbers();
+
+        function autoExpand(textarea) {
+    // Reset height to auto to get the correct scroll height
+    textarea.style.height = 'auto';
+    // Set the height to match the content
+    textarea.style.height = textarea.scrollHeight + 'px';
+            
     </script>
 </body>
 </html>
