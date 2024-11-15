@@ -67,43 +67,41 @@
     <p>输入 URL 编码字符串并将其转换为 GBK 编码</p>
 
     <!-- Input Box for URL-encoded String -->
-    <div class="input-container">
-        <label for="urlEncodedInput">输入 URL 编码字符串:</label>
-        <textarea id="urlEncodedInput" rows="4" placeholder="%CB%D1%CB%F7"></textarea>
-        <button onclick="convertToGBK()">转换为 GBK</button>
-        <button onclick="clearInput('urlEncodedInput')">清空</button>
-    </div>
+   <div class="input-container">
+    <label for="urlEncodedInput">输入 URL 编码字符串:</label>
+    <textarea id="urlEncodedInput" rows="4" placeholder="%CB%D1%CB%F7"></textarea>
+    <button onclick="convertToGBK()">转换为 GBK</button>
+    <button onclick="clearInput('urlEncodedInput')">清空</button>
+</div>
 
-    <!-- Output Box for GBK-decoded string -->
-    <div class="input-container">
-        <label for="gbkOutput">GBK 字符串:</label>
-        <textarea id="gbkOutput" rows="4" placeholder="GBK 解码结果" readonly></textarea>
-        <button onclick="copyOutput('gbkOutput')">复制</button>
-    </div>
+<!-- Output Box for GBK-decoded string -->
+<div class="input-container">
+    <label for="gbkOutput">GBK 字符串:</label>
+    <textarea id="gbkOutput" rows="4" placeholder="GBK 解码结果" readonly></textarea>
+    <button onclick="copyOutput('gbkOutput')">复制</button>
+</div>
+
+<script>
+    // Convert URL-encoded input to GBK using gbDecoder function
+    function convertToGBK() {
+        // Get the URL-encoded input
+        const input = document.getElementById('urlEncodedInput').value;
+
+        // Decode URL encoding to get the binary stream
+        const stream = decodeURIComponent(input);
+
+        // Use gbDecoder to get the final GBK-decoded output
+        const final = gbDecoder(stream);
+
+        // Set the GBK-decoded result to the output textarea
+        document.getElementById('gbkOutput').value = final;
+    }
+
+     </script>
                 <script src="https://rosiapng.github.io/booksource_converter/js/convert.js">
         
     </script>
- <script src="https://r12a.github.io/app-conversion/conversionfunctions.js"></script>
-    <script>
-        function convertToGBK() {
-            const urlEncodedInput = document.getElementById("urlEncodedInput").value.trim();
-            console.log("Input String:", urlEncodedInput); // Debugging line
-
-            try {
-                // Step 1: Decode the URL-encoded string
-                const decodedString = decodeURIComponent(urlEncodedInput);
-                console.log("Decoded String:", decodedString); // Debugging line
-
-                // Step 2: Convert the string to GBK using the conversion functions
-                const gbkEncoded = convertToGbk(decodedString); // Assuming the function is named this way
-
-                // Display the decoded GBK string
-                document.getElementById("gbkOutput").value = gbkEncoded || "No result";
-            } catch (e) {
-                console.error("Error decoding input:", e.message); // Debugging line
-                document.getElementById("gbkOutput").value = "Error decoding input: " + e.message;
-            }
-        }
- </script>
+ <script src="https://rosiapng.github.io/booksource_converter/js/gbk1.js"></script>
+    
 </body>
 </html>
