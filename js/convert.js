@@ -167,7 +167,7 @@ function convertToCSS() {
         
 
     // Step 3: Close the function
-    convertedCode += `var jsonString = JSON.stringify(这里)//put return code here
+    convertedCode += `\nvar jsonString = JSON.stringify(这里)//put return code here
 
 return jsonString
 }`;
