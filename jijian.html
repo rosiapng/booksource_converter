@@ -85,10 +85,8 @@
     // Convert URL-encoded input to GBK using gbDecoder function
     function convertToGBK() {
         // Get the URL-encoded input
-        const input = document.getElementById('urlEncodedInput').value;
+        const stream = document.getElementById('urlEncodedInput').value;
 
-        // Decode URL encoding to get the binary stream
-        const stream = decodeURIComponent(input);
 
         // Use gbDecoder to get the final GBK-decoded output
         const final = gbDecoder(stream);
