@@ -27,12 +27,12 @@
         
         </nav>
 
-<div>
+</div>
 
-        <h1 class="aes-main-title">Crypto AES解密测试</h1>
+        <h1 class="aes-main-title">Crypto 解密测试</h1>
         
         <label for="aesInput" class="aes-input-label">Input (Ciphertext):</label>
-        <textarea id="aesInput" class="aes-input" rows="6" placeholder="Enter AES encrypted text..."></textarea>
+        <textarea id="aesInput" class="aes-input" rows="6" placeholder="Enter encrypted text..."></textarea>
         
         <label for="aesKey" class="aes-key-label">Decryption Key:</label>
         <input type="text" id="aesKey" class="aes-key" placeholder="Enter decryption key...">
@@ -48,36 +48,48 @@
             <option value="Base64">Base64</option>
         </select><br>
         
-        <button onclick="decryptAES()" class="aes-decrypt-button">解码</button>
+        <label for="decryptMethod" class="decrypt-method-label">Decryption Method:</label>
+        <select id="decryptMethod">
+            <option value="AES">AES</option>
+            <option value="RC4">RC4</option>
+        </select><br>
+        
+        <button onclick="decrypt()" class="aes-decrypt-button">解码</button>
         <button onclick="clearFields()" class="aes-clear-button">清空</button>
         
         <h2 class="aes-output-title">Decrypted Output:</h2>
         <textarea id="aesOutput" class="aes-output" readonly rows="6"></textarea>
         
         <script>
-            function decryptAES() {
+            function decrypt() {
                 const ciphertext = document.getElementById('aesInput').value;
                 const keyInput = document.getElementById('aesKey').value;
                 const ivInput = document.getElementById('aesIv').value;
         
-                // Get selected encoding types
+                // Get selected encoding types and decryption method
                 const keyEncoding = document.getElementById('keyEncoding').value;
                 const ivEncoding = document.getElementById('ivEncoding').value;
+                const decryptMethod = document.getElementById('decryptMethod').value;
         
                 // Parse Key based on selected encoding
                 const key = keyEncoding === 'Base64' 
                     ? CryptoJS.enc.Base64.parse(keyInput)
                     : CryptoJS.enc.Utf8.parse(keyInput);
         
-                // Parse IV based on selected encoding
+                // Parse IV based on selected encoding (only used for AES)
                 const iv = ivEncoding === 'Base64' 
                     ? CryptoJS.enc.Base64.parse(ivInput)
                     : CryptoJS.enc.Utf8.parse(ivInput);
         
                 try {
-                    const decrypted = CryptoJS.AES.decrypt(ciphertext, key, { iv: iv });
+                    let decrypted;
+                    if (decryptMethod === 'AES') {
+                        decrypted = CryptoJS.AES.decrypt(ciphertext, key, { iv: iv });
+                    } else if (decryptMethod === 'RC4') {
+                        decrypted = CryptoJS.RC4.decrypt(ciphertext, key);
+                    }
+        
                     const plaintext = decrypted.toString(CryptoJS.enc.Utf8);
-                    
                     document.getElementById('aesOutput').textContent = plaintext || 'Invalid decryption or empty result.';
                 } catch (error) {
                     document.getElementById('aesOutput').textContent = 'Error during decryption!';
@@ -91,8 +103,11 @@
                 document.getElementById('aesOutput').textContent = '';
                 document.getElementById('keyEncoding').selectedIndex = 0;
                 document.getElementById('ivEncoding').selectedIndex = 0;
+                document.getElementById('decryptMethod').selectedIndex = 0;
             }
         </script>
+        
+
         
 
 </body>
