@@ -13,3 +13,7 @@
 >https://raw.githubusercontent.com/rosiapng/booksource_converter/refs/heads/main/convert.conf
 >```
 >复制链接在重写中导入即可访问[manya.com](https://manya.com)即可访问
+
+
+# GBK encoding Convertor 
+> 来自于 https://r12a.github.io/
