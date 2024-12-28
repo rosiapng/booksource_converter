@@ -22,12 +22,12 @@
     </nav>
 </div>
     
-   <h1>JSON to Text Converter</h1>
+ <h1>JSON to Text Converter</h1>
+    <textarea id="inputBox" placeholder="Paste your JSON here..."></textarea>
     <div>
+        <button onclick="convertJSON()">Convert</button>
         <button onclick="pasteInput()">Paste</button>
-        <textarea id="inputBox" placeholder="Paste your JSON here..."></textarea>
     </div>
-    <button onclick="convertJSON()">Convert</button>
     <h2>Converted Output:</h2>
     <div>
         <button onclick="copyOutput()">Copy</button>
