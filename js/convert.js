@@ -66,51 +66,56 @@
             document.getElementById('xpathOutput').value = xpaths.join('\n');
         }
 
-  function xpathToCSS(xpath) {
-    // List of attributes and nodes to ignore if they appear at the end of XPath
-    const ignoredEndings = ['@src', '@href', '@data-src', '@data-original', 'text()'];
-    
-    // Regex to match XPath patterns with tag, optional attribute, and value, or attribute-only selection
-    const regex = /\/{1,2}(\w+)(?:\[@(\w+)="([^"]+)"\])?(?:\/@(\w+))?(?:\/text\(\))?/g;
-    let cssSelector = '';
-    let match;
-
-    // Track if the current segment is the last valid segment
-    let isLastSegment = false;
-
-    // Loop through each match of the XPath pattern
-    while ((match = regex.exec(xpath)) !== null) {
-        const tag = match[1];       // Tag name (e.g., ul, img, div, a)
-        const attr = match[2];      // Attribute (e.g., id or class)
-        const value = match[3];     // Value of the attribute (e.g., newlist)
-        const attrOnly = match[4];  // Attribute only (e.g., src)
-
-        // Determine if this segment is the last non-ignored segment in the XPath
-        const nextIndex = regex.lastIndex;
-        isLastSegment = nextIndex === xpath.length || ignoredEndings.some(ending => xpath.slice(nextIndex).startsWith(ending));
-
-        // Build the CSS selector part by part
-        if (attr && value) {
-            cssSelector += `${tag}[${attr}="${value}"]`;
-        } else {
-            cssSelector += tag;  // If no attribute, just add the tag
+         function xpathToCSS(xpath) {
+            // List of attributes and nodes to ignore if they appear at the end of XPath
+            const ignoredEndings = ['@src', '@href', '@data-src', '@data-original', 'text()'];
+            
+            // Regex to match XPath patterns with tag, optional attribute, and value, or attribute-only selection
+            const regex = /\/{1,2}(\w+)(?:\[@(\w+)="([^"]+)"\])?(?:\/@(\w+))?(?:\/text\(\))?/g;
+            let cssSelector = '';
+            let match;
+        
+            // Track if the current segment is the last valid segment
+            let isLastSegment = false;
+        
+            // Loop through each match of the XPath pattern
+            while ((match = regex.exec(xpath)) !== null) {
+                const tag = match[1];       // Tag name (e.g., ul, img, div, a)
+                const attr = match[2];      // Attribute (e.g., id or class)
+                const value = match[3];     // Value of the attribute (e.g., newlist)
+                const attrOnly = match[4];  // Attribute only (e.g., src)
+        
+                // Determine if this segment is the last non-ignored segment in the XPath
+                const nextIndex = regex.lastIndex;
+                isLastSegment = nextIndex === xpath.length || ignoredEndings.some(ending => xpath.slice(nextIndex).startsWith(ending));
+        
+                // Build the CSS selector part by part
+                if (attr && value) {
+                    cssSelector += `${tag}[${attr}="${value}"]`;
+                } else {
+                    cssSelector += tag;  // If no attribute, just add the tag
+                }
+        
+                // Add '>' to indicate direct descendant if this is not the last segment
+                if (!isLastSegment) {
+                    cssSelector += '>';
+                }
+            }
+        
+            // Remove the last '>' if it is at the end and there's nothing after it
+            if (cssSelector.endsWith('>')) {
+                cssSelector = cssSelector.slice(0, -1);
+            }
+        
+            // Return the final CSS selector or indicate if no valid match was found
+            return cssSelector || 'Invalid XPath';
         }
-
-        // Add '>' to indicate direct descendant if this is not the last segment
-        if (!isLastSegment) {
-            cssSelector += '>';
+        
+        function convertToCSS() {
+            const xpathCode = document.getElementById('xpathInput').value;
+            const cssSelector = xpathToCSS(xpathCode);
+            document.getElementById('cssOutput').value = cssSelector;
         }
-    }
-
-    // Return the final CSS selector or indicate if no valid match was found
-    return cssSelector || 'Invalid XPath';
-}
-
-function convertToCSS() {
-    const xpathCode = document.getElementById('xpathInput').value;
-    const cssSelector = xpathToCSS(xpathCode);
-    document.getElementById('cssOutput').value = cssSelector;
-}
 
 
       // Function to handle both query strings and key-value pairs
