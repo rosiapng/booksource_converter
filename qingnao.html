@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON to Text Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            font-size: 16px;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ccc;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <h1>JSON to Text Converter</h1>
+    <textarea id="inputBox" placeholder="Paste your JSON here..."></textarea>
+    <button onclick="convertJSON()">Convert</button>
+    <h2>Converted Output:</h2>
+    <pre id="outputBox"></pre>
+
+    <script>
+        function convertJSON() {
+            const input = document.getElementById("inputBox").value;
+            const outputBox = document.getElementById("outputBox");
+            
+            try {
+                const data = JSON.parse(input);
+                const result = data.map(item => `${item.name} ${item.value}`).join("\n");
+                outputBox.textContent = result;
+            } catch (error) {
+                outputBox.textContent = "Invalid JSON! Please check your input.";
+            }
+        }
+    </script>
+</body>
+</html>
