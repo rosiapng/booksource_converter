@@ -22,13 +22,20 @@
     </nav>
 </div>
     
-    <h1>JSON to Text Converter</h1>
-    <textarea id="inputBox" placeholder="Paste your JSON here..."></textarea>
+   <h1>JSON to Text Converter</h1>
+    <div>
+        <button onclick="pasteInput()">Paste</button>
+        <textarea id="inputBox" placeholder="Paste your JSON here..."></textarea>
+    </div>
     <button onclick="convertJSON()">Convert</button>
     <h2>Converted Output:</h2>
-    <pre id="outputBox"></pre>
+    <div>
+        <button onclick="copyOutput()">Copy</button>
+        <pre id="outputBox"></pre>
+    </div>
 
     <script>
+        // Function to convert JSON to the desired text format
         function convertJSON() {
             const input = document.getElementById("inputBox").value;
             const outputBox = document.getElementById("outputBox");
@@ -40,6 +47,25 @@
             } catch (error) {
                 outputBox.textContent = "Invalid JSON! Please check your input.";
             }
+        }
+
+        // Function to copy the output to the clipboard
+        function copyOutput() {
+            const outputBox = document.getElementById("outputBox");
+            navigator.clipboard.writeText(outputBox.textContent).then(() => {
+                alert("Output copied to clipboard!");
+            }).catch(err => {
+                alert("Failed to copy: " + err);
+            });
+        }
+
+        // Function to paste from the clipboard into the input box
+        function pasteInput() {
+            navigator.clipboard.readText().then(text => {
+                document.getElementById("inputBox").value = text;
+            }).catch(err => {
+                alert("Failed to paste: " + err);
+            });
         }
     </script>
 </body>
