@@ -4,34 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSON to Text Converter</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        textarea {
-            width: 100%;
-            height: 200px;
-            font-size: 16px;
-            padding: 10px;
-            box-sizing: border-box;
-            margin-bottom: 20px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        pre {
-            background-color: #f4f4f4;
-            padding: 10px;
-            border: 1px solid #ccc;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/index_styles.css">
 </head>
 <body>
+    <div class="nav-box">
+    <nav>
+        <a class="nav-button" href="./index.html">书源语法转换器(xpath,css)</a>
+        <a class="nav-button" href="./manyajs.html">傻瓜式益达转漫鸭正文JS器</a>
+        <a class="nav-button" href="./jijian.html">傻瓜极简写源工具</a>
+        <a class="nav-button" href="./jjfen.html">极简源发现工具</a>
+        <a class="nav-button" href="./yuedu.html">阅读源发现格式转换极简源发现</a>
+        <a class="nav-button" href="./beuti.html">美化Json和JS</a>
+        <a class="nav-button" href="./code.html">Js测试</a>
+        <a class="nav-button" href="./base64.html">Base64和URI decode</a>
+        <a class="nav-button" href="./aes.html">Crypto AES解密测试</a>
+        <a class="nav-button" href="./upload.html">上载极简仓库资料准备</a>
+    </nav>
+</div>
+    
     <h1>JSON to Text Converter</h1>
     <textarea id="inputBox" placeholder="Paste your JSON here..."></textarea>
     <button onclick="convertJSON()">Convert</button>
