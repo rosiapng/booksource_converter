@@ -5,8 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSON to Text Converter</title>
     <link rel="stylesheet" href="./css/index_styles.css">
+    <style>
+        textarea {
+            width: 100%;
+            height: 200px; /* Increased height */
+            font-size: 16px;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
+    <h2 class="big-title">极简微光转换器</h2>
+    <p class="author">By 小猫咪Rosia P'ng</p>
+
     <div class="nav-box">
     <nav>
         <a class="nav-button" href="./index.html">书源语法转换器(xpath,css)</a>
@@ -19,54 +32,89 @@
         <a class="nav-button" href="./base64.html">Base64和URI decode</a>
         <a class="nav-button" href="./aes.html">Crypto AES解密测试</a>
         <a class="nav-button" href="./upload.html">上载极简仓库资料准备</a>
+        <a class="nav-button" href="./qingnao.html">极简微光转换器</a>
     </nav>
 </div>
     
- <h1>JSON to Text Converter</h1>
-    <textarea id="inputBox" placeholder="Paste your JSON here..."></textarea>
-    <div>
-        <button onclick="convertJSON()">Convert</button>
-        <button onclick="pasteInput()">Paste</button>
-    </div>
-    <h2>Converted Output:</h2>
-    <div>
-        <button onclick="copyOutput()">Copy</button>
-        <pre id="outputBox"></pre>
-    </div>
 
-    <script>
-        // Function to convert JSON to the desired text format
-        function convertJSON() {
-            const input = document.getElementById("inputBox").value;
-            const outputBox = document.getElementById("outputBox");
-            
-            try {
-                const data = JSON.parse(input);
-                const result = data.map(item => `${item.name} ${item.value}`).join("\n");
-                outputBox.textContent = result;
-            } catch (error) {
-                outputBox.textContent = "Invalid JSON! Please check your input.";
-            }
-        }
+<h2>极简微光发现转换器</h2>
+<textarea id="jsonInputBox" placeholder="[{
+    &quot;name&quot;: &quot;玄幻·奇幻&quot;,
+    &quot;value&quot;: &quot;xuanhuan&quot;
+}]"></textarea>
+<div>
+    <button onclick="convertJSON()">转微光发现格式</button>
+    <button onclick="pasteInput('jsonInputBox')">粘贴</button>
+    <button onclick="copyInput('jsonInputBox')">复制</button>
+</div>
 
-        // Function to copy the output to the clipboard
-        function copyOutput() {
-            const outputBox = document.getElementById("outputBox");
-            navigator.clipboard.writeText(outputBox.textContent).then(() => {
-                alert("Output copied to clipboard!");
-            }).catch(err => {
-                alert("Failed to copy: " + err);
-            });
-        }
+<h2>极简微光URL发现转换器</h2>
+<textarea id="stringInputBox" placeholder="https://www.qushucheng.com/fenlei/@{_fen}/@{pageIndex}/"></textarea>
+<div>
+    <button onclick="convertString()">转微光URL发现</button>
+    <button onclick="pasteInput('stringInputBox')">粘贴</button>
+</div>
+<h2>微光转换URL:</h2>
+<textarea id="stringOutputBox" readonly placeholder="转换结果"></textarea>
+<div>
+    <button onclick="copyStringOutput()">复制</button>
+</div>
 
-        // Function to paste from the clipboard into the input box
-        function pasteInput() {
-            navigator.clipboard.readText().then(text => {
-                document.getElementById("inputBox").value = text;
-            }).catch(err => {
-                alert("Failed to paste: " + err);
-            });
+<script>
+    // JSON to Text Conversion (Replace in the same input box)
+    function convertJSON() {
+        const inputBox = document.getElementById("jsonInputBox");
+        try {
+            const data = JSON.parse(inputBox.value);
+            const result = data.map(item => `${item.name} ${item.value}`).join("\n");
+            inputBox.value = result; // Replace the content of the input box
+        } catch (error) {
+            inputBox.value = "Invalid JSON! Please check your input.";
         }
-    </script>
+    }
+
+    // String Replacement Conversion
+    function convertString() {
+        const input = document.getElementById("stringInputBox").value;
+        const outputBox = document.getElementById("stringOutputBox");
+        try {
+            const replaced = input
+                .replace(/@\{_[^}]+\}/g, "@@@")
+                .replace(/@\{pageIndex\}/g, "{{QB.plus(page,,1)}}");
+            outputBox.value = replaced;
+        } catch (error) {
+            outputBox.value = "An error occurred during string replacement.";
+        }
+    }
+
+    // Copy String output
+    function copyStringOutput() {
+        const outputBox = document.getElementById("stringOutputBox");
+        navigator.clipboard.writeText(outputBox.value).then(() => {
+            alert("String Output copied to clipboard!");
+        }).catch(err => {
+            alert("Failed to copy: " + err);
+        });
+    }
+
+    // Copy Input Box Content
+    function copyInput(inputId) {
+        const inputBox = document.getElementById(inputId);
+        navigator.clipboard.writeText(inputBox.value).then(() => {
+            alert("Input copied to clipboard!");
+        }).catch(err => {
+            alert("Failed to copy: " + err);
+        });
+    }
+
+    // Paste into the specified input box
+    function pasteInput(inputId) {
+        navigator.clipboard.readText().then(text => {
+            document.getElementById(inputId).value = text;
+        }).catch(err => {
+            alert("Failed to paste: " + err);
+        });
+    }
+</script>
 </body>
 </html>
