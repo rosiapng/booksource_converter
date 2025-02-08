@@ -87,34 +87,46 @@
         }
     }
 
-    // Copy String output
-    function copyStringOutput() {
-        const outputBox = document.getElementById("stringOutputBox");
-        navigator.clipboard.writeText(outputBox.value).then(() => {
-            alert("String Output copied to clipboard!");
-        }).catch(err => {
-            alert("Failed to copy: " + err);
-        });
-    }
+   // Copy String output
+function copyStringOutput() {
+    const outputBox = document.getElementById("stringOutputBox");
+    navigator.clipboard.writeText(outputBox.value).then(() => {
+        showFeedback("String Output copied!");
+    }).catch(err => {
+        showFeedback("Failed to copy: " + err);
+    });
+}
 
-    // Copy Input Box Content
-    function copyInput(inputId) {
-        const inputBox = document.getElementById(inputId);
-        navigator.clipboard.writeText(inputBox.value).then(() => {
-            alert("Input copied to clipboard!");
-        }).catch(err => {
-            alert("Failed to copy: " + err);
-        });
-    }
+// Copy Input Box Content
+function copyInput(inputId) {
+    const inputBox = document.getElementById(inputId);
+    navigator.clipboard.writeText(inputBox.value).then(() => {
+        showFeedback("Input copied!");
+    }).catch(err => {
+        showFeedback("Failed to copy: " + err);
+    });
+}
 
-    // Paste into the specified input box
-    function pasteInput(inputId) {
-        navigator.clipboard.readText().then(text => {
-            document.getElementById(inputId).value = text;
-        }).catch(err => {
-            alert("Failed to paste: " + err);
-        });
-    }
+// Paste into the specified input box
+function pasteInput(inputId) {
+    navigator.clipboard.readText().then(text => {
+        document.getElementById(inputId).value = text;
+        showFeedback("Text pasted!");
+    }).catch(err => {
+        showFeedback("Failed to paste: " + err);
+    });
+}
+
+// Function to show feedback message
+function showFeedback(message) {
+    const feedbackBox = document.getElementById("feedback");
+    feedbackBox.textContent = message;
+    feedbackBox.style.display = "block";
+    
+    setTimeout(() => {
+        feedbackBox.style.display = "none";
+    }, 2000); // Hide after 2 seconds
+}
 </script>
 </body>
 </html>
