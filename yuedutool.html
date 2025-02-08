@@ -45,7 +45,7 @@ function $$(selector) { return document.querySelectorAll(selector); }</script>
 <button onclick="getInput4(2,4);" class="bt4">一排四个</button>
 
 <button onclick="copyText()" id="bt2">一键复制</button>
-
+<button onclick="pasteText()" id="bt5">粘贴</button>
 
 
 <p id="success">复制成功！</p><br><br><br>
@@ -77,9 +77,10 @@ function $$(selector) { return document.querySelectorAll(selector); }</script>
                         </div>
                     </div>
                     <div class="col-sm-8">
-                        <input type="button" onclick="return onMatch();" value="验证匹配内容" class="btn btn-success">
-                        <input type="button" onclick="Empty();" value="清空输入框" class="btn btn-danger">
+                       <button onclick="onMatch();" class="btn btn-success">验证匹配内容</button>
+<button onclick="Empty();" class="btn btn-danger">清空输入框</button>
 <button onclick="copyText3()">一键复制</button>
+<button onclick="pasteText3()">粘贴</button>
                     </div>
                 </div>
                 <div class="form-group">
@@ -381,5 +382,23 @@ function Empty() {
     $("#textReplace").value="";
     $("#textReplaceResult").value="";
     $("#textSour").select();
+}
+
+var pasteText = function() {
+    navigator.clipboard.readText().then(text => {
+        document.getElementById('input').value = text;
+    });
+}
+
+var pasteText2 = function() {
+    navigator.clipboard.readText().then(text => {
+        document.getElementById('textReplaceResult').value = text;
+    });
+}
+
+var pasteText3 = function() {
+    navigator.clipboard.readText().then(text => {
+        document.getElementById('textMatchResult').value = text;
+    });
 }
 </script>
