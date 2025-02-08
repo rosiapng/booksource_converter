@@ -163,6 +163,24 @@ var copyText3 = function() {
           },500)
 }
 
+var pasteText = function() {
+    navigator.clipboard.readText().then(text => {
+        document.getElementById('input').value = text;
+    });
+}
+
+var pasteText2 = function() {
+    navigator.clipboard.readText().then(text => {
+        document.getElementById('textReplaceResult').value = text;
+    });
+}
+
+var pasteText3 = function() {
+    navigator.clipboard.readText().then(text => {
+        document.getElementById('textMatchResult').value = text;
+    });
+}
+
 </script>
 
 
@@ -383,21 +401,5 @@ function Empty() {
     $("#textSour").select();
 }
 
-var pasteText = function() {
-    var input = document.getElementById('input');
-    input.focus();
-    document.execCommand('paste');
-};
 
-var pasteText2 = function() {
-    var input = document.getElementById('textReplaceResult');
-    input.focus();
-    document.execCommand('paste');
-};
-
-var pasteText3 = function() {
-    var input = document.getElementById('textMatchResult');
-    input.focus();
-    document.execCommand('paste');
-};
 </script>
