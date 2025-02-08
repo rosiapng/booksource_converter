@@ -61,12 +61,16 @@ function $$(selector) { return document.querySelectorAll(selector); }</script>
 
 
 <p>正则表达式匹配替换</p>
- <div class="form-group">
-                    <div class="col-sm-12">
-                        <textarea class="form-control" onmouseover="this.focus();" id="textSour" name="textSour" rows="10" style="max-height: 2222px;" placeholder="请输入要验证的文本"></textarea>
-                    <button onclick="pasteText2()" class="bt4">粘贴</button>
-                    </div>
-                </div>
+
+<div class="form-group">
+    <div class="col-sm-12">
+        <textarea class="form-control" onmouseover="this.focus();" id="textSour" name="textSour" rows="10" style="max-height: 2222px;" placeholder="请输入要验证的文本"></textarea>
+        <div> <!-- Added div to make button appear below -->
+            <button onclick="pasteText2()" class="bt4">粘贴</button>
+        </div>
+    </div>
+</div>
+
                 <div class="form-group">
                     <div class="col-sm-12">
                         <div class="input-group">
