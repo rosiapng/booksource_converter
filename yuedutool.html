@@ -7,13 +7,13 @@
 
     <style>
         textarea {
-            width: 100%;
-            height: 200px; /* Increased height */
-            font-size: 16px;
-            padding: 10px;
-            box-sizing: border-box;
-            margin-bottom: 10px;
-        }
+    width: 100%;
+    height: 200px; /* Increased height */
+    font-size: 16px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
     </style>
     <link rel="stylesheet" href="./css/index_styles.css">
 </head>
@@ -45,7 +45,7 @@ function $$(selector) { return document.querySelectorAll(selector); }</script>
 
 
 
-<textarea id="input" onfocus="di()" placeholder="输入带html标签的发现内容"></textarea>
+<textarea id="input" class="form-control" onfocus="di()" placeholder="输入带html标签的发现内容"></textarea>
 <button onclick="getInput();dis()" class="bt1">格式化发现[旧]</button>
 <button onclick="getInput2();dis()" class="bt1">格式化发现[新](Json格式)</button>
 <button onclick="getInput3();" class="bt1">发现格式互转</button>
@@ -64,7 +64,7 @@ function $$(selector) { return document.querySelectorAll(selector); }</script>
 
 <div class="form-group">
     <div class="col-sm-12">
-        <textarea class="form-control" onmouseover="this.focus();" id="textSour" name="textSour" rows="10" style="max-height: 2222px;" placeholder="请输入要验证的文本"></textarea>
+       <textarea class="form-control" id="textSour" name="textSour" rows="10" placeholder="请输入要验证的文本"></textarea>
         <div> <!-- Added div to make button appear below -->
             <button onclick="pasteText2()" class="bt4">粘贴</button>
         </div>
@@ -103,7 +103,7 @@ function $$(selector) { return document.querySelectorAll(selector); }</script>
                 <div class="form-group">
                     <div class="col-sm-12">
 <div id="textResult"></div>
-                        <textarea onmouseover="this.focus();" id="textMatchResult" class="form-control" style="max-height: 2222px;" placeholder="得到验证后内容，内容为空为验证失败" readonly="readonly"></textarea>
+                        <textarea class="form-control" id="textMatchResult" placeholder="得到验证后内容，内容为空为验证失败" readonly></textarea>
                     </div>
                 </div>
                 <div class="form-group">
@@ -134,7 +134,7 @@ function $$(selector) { return document.querySelectorAll(selector); }</script>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <textarea readonly="readonly" id="textReplaceResult" class="form-control" placeholder="此处为替换后内容"></textarea>
+                        <textarea class="form-control" id="textReplaceResult" placeholder="此处为替换后内容" readonly></textarea>
                     </div>
                 </div>
                 </form>
