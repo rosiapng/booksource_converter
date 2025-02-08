@@ -44,21 +44,28 @@
 
     <script>
         function decode() {
-            const input = document.getElementById('inputBox').value;
-            const decodeType = document.getElementById('decodeType').value;
-            let output = '';
+    const input = document.getElementById('inputBox').value;
+    const decodeType = document.getElementById('decodeType').value;
+    let output = '';
 
-            try {
-                if (decodeType === 'base64') {
-                    output = atob(input); // Base64 decoding
-                } else if (decodeType === 'url') {
-                    output = decodeURIComponent(input); // URL decoding
-                }
-                document.getElementById('outputBox').value = output;
-            } catch (error) {
-                document.getElementById('outputBox').value = 'Error: Invalid input for selected decode type';
+    try {
+        if (decodeType === 'base64') {
+            // Decode Base64 and convert to UTF-8
+            const binaryString = atob(input);
+            const bytes = new Uint8Array(binaryString.length);
+            for (let i = 0; i < binaryString.length; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
             }
+            output = new TextDecoder('utf-8').decode(bytes);
+        } else if (decodeType === 'url') {
+            output = decodeURIComponent(input);
         }
+
+        document.getElementById('outputBox').value = output;
+    } catch (error) {
+        document.getElementById('outputBox').value = 'Error: Invalid input for selected decode type';
+    }
+}
     </script>
 
 </body>
