@@ -170,7 +170,7 @@ var pasteText = function() {
 
 var pasteText2 = function() {
     navigator.clipboard.readText().then(text => {
-        document.getElementById('textReplaceResult').value = text;
+        document.getElementById('textSour').value = text;
     });
 }
 
