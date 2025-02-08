@@ -383,20 +383,38 @@ function Empty() {
 }
 
 var pasteText = function() {
+    if (!navigator.clipboard) {
+        alert("Clipboard API is not supported in this browser.");
+        return;
+    }
     navigator.clipboard.readText().then(text => {
         document.getElementById('input').value = text;
+    }).catch(err => {
+        alert("Failed to read clipboard: " + err);
     });
-}
+};
 
 var pasteText2 = function() {
+    if (!navigator.clipboard) {
+        alert("Clipboard API is not supported in this browser.");
+        return;
+    }
     navigator.clipboard.readText().then(text => {
         document.getElementById('textReplaceResult').value = text;
+    }).catch(err => {
+        alert("Failed to read clipboard: " + err);
     });
-}
+};
 
 var pasteText3 = function() {
+    if (!navigator.clipboard) {
+        alert("Clipboard API is not supported in this browser.");
+        return;
+    }
     navigator.clipboard.readText().then(text => {
         document.getElementById('textMatchResult').value = text;
+    }).catch(err => {
+        alert("Failed to read clipboard: " + err);
     });
-}
+};
 </script>
