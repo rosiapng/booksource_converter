@@ -1,219 +1,8 @@
 <script>function $(selector) { return document.querySelector(selector); }
 function $$(selector) { return document.querySelectorAll(selector); }</script>
 
-<style>
 
-button,input{
-margin:5px
-}
-#basic-addon1,#replaceSpan1{
-background-color:Azure;
-padding:3px
-}
-button,input[type="button"]{
-	outline:none;
-	height:30px;
-	box-shadow:2px 1px #CFD8DC;
-	background:#fff;
-	border:1px solid #607D8B;
-	border-radius:6px;
-	}
-textarea{
-background-color:GhostWhite;
-border:0px solid black
-}
-.bt1,.bt4{
-	background:#fff;
-	width:30%;
-	border:1px solid green;
-	border-radius:10px;
-	}
-#bt4:active,#bt2:active{
-	background:#CFD8DC
-	}
-	#bt4,#bt2{
-		background:#fff;
-	width:100%;
-	border:1px solid #607D8B;
-	border-radius:6px;
-		}
-		button:active,input[type="button"]:active{
-	background:#C8E6C9
-	}
-	#success{
-		text-align:center;
-		border:1px solid green;
-		position:fixed;
-		left:40%;
-		width:20%;
-		background:#fff;
-		border-radius:5px;
-		display:none;
-		top:2px;
-		box-shadow:2px 1px 3px #CFD8DC;
-		}
-		#pageclass,#pageclass2{
-			width:100%
-			}
-			.pageclass{
-				font-size:10px
-				}
-#jhss a{
-font-size:10px;
-color:red;
-text-decoration:none;
-}
 
-#jhss p{
-display:inline-block;
-width:8em;
-}
-
-#jhss p{
-margin:0;
-padding:0;
-color:#666;
-}
-
-#jhss div{
-margin:0;
-padding:10px;
-}
-
-#jhss h1{
-margin:0;
-padding:9px;
-font-size:20px;
-}
-
-#jhss input{
-margin:2px;
-padding:2px 6px;
-font-size: 1em;
-background-color:rgba(200,200,200,0.5);
-color:#A00;
-border:0;
-border-radius: 3px;
-text-decoration: none;
-text-align:center;
-}
-textarea{
-width:100%
-}
-.menu {
-	justify-content: space-between;
-	max-width: 900px;
-	margin: 0 5px;
-}
-.menu .button {
-	width: 55px;
-	height: 15px;
-	min-height: 5px;
-	margin: 5px 0px;
-	cursor: pointer;
-}
-.button text {
-	text-anchor: middle;
-	dominant-baseline: middle;
-}
-
-.button rect {
-	width: 100%;
-	height: 100%;
-	fill: transparent;
-	stroke: #666;
-	stroke-width: 2px;
-}
-.button rect.busy {
-	stroke: #fD1850;
-	stroke-dasharray: 30 90;
-	animation: stroker 1s linear infinite;
-}
-.tabbox {
-	flex: 1;
-	display: flex;
-	flex-flow: column;
-}
-.tabtitle {
-	display: flex;
-	z-index: 1;
-	justify-content: center;
-}
-.tabtitle>div {
-	cursor: pointer;
-	padding: 1px 10px 0 10px;
-	border-bottom: 3px solid transparent;
-	font-weight: bold;
-}
-.tabtitle>.this {
-	color: #4f9da6;
-	border-bottom-color: #4EBBE4;
-}
-.tabbody {
-	flex: 1;
-	display: flex;
-	margin-top: -1px;
-	border: 1px solid #A9A9A9;
-	height: 0;
-}
-.tabbody>* {
-	flex: 1;
-	flex-flow: column;
-	display: none;
-}
-.tabbody>.this {
-	display: flex;
-}
-.tabbody>*>.titlebar{
-	display: flex;
-}
-.tabbody>*>.titlebar>*{
-	flex: 1;
-	margin: 1px 1px 1px 1px;
-}
-.tabbody>*>.context {
-	flex: 1;
-	flex-flow: column;
-	border: 0;
-	padding: 5px;
-	overflow-y: auto;
-}
-.tabbody>*>.inputbox{
-	border: 0;
-	border-bottom: #A9A9A9 solid 1px;
-	height: 15px;
-	text-align:center;
-}
-.link>* {
-	display: flex;
-	margin: 5px;
-	border-bottom: 1px solid;
-	text-decoration: none;
-}
-#RuleList>label>* {
-	background: #eee;
-	padding-left: 3px;
-	margin: 2px 0;
-	cursor: pointer;
-}
-#RuleList input[type=radio] {
-	display: none;
-}
-#RuleList input[type="radio"]:checked+* {
-	background: #15cda8;
-}
-.isError {
-	color: #FF0000;
-}
-#RuleJsonString{
-height:600px
-}
-svg text{
-font-size:10px
-}
-</style>
- 
-<a href="https://www.sojson.com/rehtml">html转义</a>&nbsp;&nbsp;<a href="http://www.jsons.cn/urlencode/">URL解码</a>
 <textarea rows="10" id="input" onfocus="di()" placeholder="输入带html标签的发现内容"></textarea>
 <button onclick="getInput();dis()" class="bt1">格式化发现[旧]</button>
 <button onclick="getInput2();dis()" class="bt1">格式化发现[新]</button>
@@ -227,29 +16,6 @@ font-size:10px
 
 <button onclick="copyText()" id="bt2">一键复制</button>
 
-<div class="pageclass">输入分类里的链接，如：
-/sort/xuanhuan/
-写成
-/sort/分类/
-</div>
-<input id="pageclass">
-<div class="pageclass">输入带有翻页的链接，如：
-/sort/xuanhuan/2.html
-写成
-/sort/分类/页码.html
-</div>
-<input id="pageclass2">
-
-<div class="pageclass">
-第一页跟第二页不一样？
-输入不一样的部分（第二页比第一页多出来的部分）
-如
-index_页码.html
-</div>
-<input id="pageclass3">
-
-
-<button onclick="okpage()">确认加入翻页（仅旧发现）</button>
 
 
 <p id="success">复制成功！</p><br><br><br>
@@ -305,8 +71,11 @@ index_页码.html
 <button value="/" onclick="pp(this.value)">/</button>
 <button value="_" onclick="pp(this.value)">_</button>
 <button value="-" onclick="pp(this.value)">-</button>
+<button value="{{page}}" onclick="pp(this.value)">{{page}}</button>
+<button value=".html" onclick="pp(this.value)">.html</button>
                         </div>
                     </div>
+																				
                     <div class="col-sm-2">
                         <div class="input-group">
                             <button onclick="return onReplace()" class="btn btn-success">替换匹配内容</button>
