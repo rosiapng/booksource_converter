@@ -27,13 +27,14 @@
     </nav>
 </div>
 
+  <h1 class="title">开源阅读/源阅发现转换工具</h1>
 
 <script>function $(selector) { return document.querySelector(selector); }
 function $$(selector) { return document.querySelectorAll(selector); }</script>
 
 
 
-<textarea rows="10" id="input" onfocus="di()" placeholder="输入带html标签的发现内容"></textarea>
+<textarea rows="14" id="input" onfocus="di()" placeholder="输入带html标签的发现内容"></textarea>
 <button onclick="getInput();dis()" class="bt1">格式化发现[旧]</button>
 <button onclick="getInput2();dis()" class="bt1">格式化发现[新]</button>
 <button onclick="getInput3();" class="bt1">发现格式互转</button>
@@ -383,38 +384,20 @@ function Empty() {
 }
 
 var pasteText = function() {
-    if (!navigator.clipboard) {
-        alert("Clipboard API is not supported in this browser.");
-        return;
-    }
-    navigator.clipboard.readText().then(text => {
-        document.getElementById('input').value = text;
-    }).catch(err => {
-        alert("Failed to read clipboard: " + err);
-    });
+    var input = document.getElementById('input');
+    input.focus();
+    document.execCommand('paste');
 };
 
 var pasteText2 = function() {
-    if (!navigator.clipboard) {
-        alert("Clipboard API is not supported in this browser.");
-        return;
-    }
-    navigator.clipboard.readText().then(text => {
-        document.getElementById('textReplaceResult').value = text;
-    }).catch(err => {
-        alert("Failed to read clipboard: " + err);
-    });
+    var input = document.getElementById('textReplaceResult');
+    input.focus();
+    document.execCommand('paste');
 };
 
 var pasteText3 = function() {
-    if (!navigator.clipboard) {
-        alert("Clipboard API is not supported in this browser.");
-        return;
-    }
-    navigator.clipboard.readText().then(text => {
-        document.getElementById('textMatchResult').value = text;
-    }).catch(err => {
-        alert("Failed to read clipboard: " + err);
-    });
+    var input = document.getElementById('textMatchResult');
+    input.focus();
+    document.execCommand('paste');
 };
 </script>
