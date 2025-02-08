@@ -53,6 +53,7 @@ function $$(selector) { return document.querySelectorAll(selector); }</script>
  <div class="form-group">
                     <div class="col-sm-12">
                         <textarea class="form-control" onmouseover="this.focus();" id="textSour" name="textSour" rows="10" style="max-height: 2222px;" placeholder="请输入要验证的文本"></textarea>
+                    <button onclick="pasteText2()">粘贴</button>
                     </div>
                 </div>
                 <div class="form-group">
@@ -63,24 +64,11 @@ function $$(selector) { return document.querySelectorAll(selector); }</script>
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-2">
-                        <div class="input-group" style="margin-left: 20px;">
-                            <label class="checkbox" style="cursor: pointer;">
-                                <input type="checkbox" value="global" checked="checked" id="optionGlobal" name="optionGlobl">全局搜索</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="input-group" style="margin-left: 20px;">
-                            <label class="checkbox" style="cursor: pointer;">
-                                <input type="checkbox" value="ignoreCase" id="optionIgnoreCase" name="optionIgnoreCase">忽略大小写</label>
-                        </div>
-                    </div>
+                
                     <div class="col-sm-8">
                        <button onclick="onMatch();" class="btn btn-success">验证匹配内容</button>
 <button onclick="Empty();" class="btn btn-danger">清空输入框</button>
 <button onclick="copyText3()">一键复制</button>
-<button onclick="pasteText3()">粘贴</button>
                     </div>
                 </div>
                 <div class="form-group">
