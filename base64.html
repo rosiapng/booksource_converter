@@ -26,30 +26,31 @@
     </nav>
 </div>
 
-    <h1>Base64 and URL Decoder</h1>
+   <h1>Base64, URL, and Eval Decoder</h1>
 
-    <label for="inputBox">Input:</label>
-    <textarea id="inputBox" class="input-box" placeholder="Enter text here..."></textarea>
+<label for="inputBox">Input:</label>
+<textarea id="inputBox" class="input-box" placeholder="Enter text here..."></textarea>
 
-    <label for="decodeType">Select Decode Type:</label>
-    <select id="decodeType" class="decoder-select">
-    <option value="base64">Base64 Decode</option>
+<label for="decodeType">Select Decode Type:</label>
+<select id="decodeType" class="decoder-select">
+    <option value="base64">Base64 Decode to UTF-8</option>
     <option value="url">URL Decode</option>
-    </select>
+    <option value="eval">Eval Decode</option>
+</select>
 
-    <button onclick="decode()">Decode</button>
+<button onclick="decode()">Decode</button>
 
-    <h2>Output (Decoded):</h2>
-    <textarea id="outputBox" class="output-box" readonly></textarea>
+<h2>Output (Decoded):</h2>
+<textarea id="outputBox" class="output-box" readonly></textarea>
 
-    <script>
-        function decode() {
-    const input = document.getElementById('inputBox').value;
-    const decodeType = document.getElementById('decodeType').value;
-    let output = '';
+<script>
+    function decode() {
+        const input = document.getElementById('inputBox').value;
+        const decodeType = document.getElementById('decodeType').value;
+        let output = '';
 
-    try {
-        if (decodeType === 'base64') {
+        try {
+            if (decodeType === 'base64') {
             // Decode Base64 and convert to UTF-8
             const binaryString = atob(input);
             const bytes = new Uint8Array(binaryString.length);
@@ -57,16 +58,27 @@
                 bytes[i] = binaryString.charCodeAt(i);
             }
             output = new TextDecoder('utf-8').decode(bytes);
-        } else if (decodeType === 'url') {
-            output = decodeURIComponent(input);
+            } else if (decodeType === 'url') {
+                output = decodeURIComponent(input); // URL decoding
+            } else if (decodeType === 'eval') {
+                output = executeEval(input); // Eval decoding
+            }
+            document.getElementById('outputBox').value = output;
+        } catch (error) {
+            document.getElementById('outputBox').value = 'Error: Invalid input for selected decode type';
         }
-
-        document.getElementById('outputBox').value = output;
-    } catch (error) {
-        document.getElementById('outputBox').value = 'Error: Invalid input for selected decode type';
     }
-}
-    </script>
+
+    function executeEval(evalCode) {
+        try {
+            evalCode = evalCode.replace(/^eval/, ""); // Remove initial eval if present
+            return eval(evalCode);
+        } catch (e) {
+            return "Error: " + e;
+        }
+    }
+</script>
+
 
 </body>
 </html>
