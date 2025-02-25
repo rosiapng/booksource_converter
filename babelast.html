@@ -19,32 +19,54 @@
 
     <script>
         function deobfuscate() {
-            const inputCode = document.getElementById("inputCode").value;
+    const inputCode = document.getElementById("inputCode").value;
 
-            try {
-                // Parse code to AST
-                const ast = Babel.parse(inputCode);
+    try {
+        // Parse code to AST
+        const ast = Babel.parse(inputCode);
 
-                // Modify AST (example: renaming all "a" to "myVar")
-                Babel.traverse(ast, {
-                    Identifier(path) {
-                        if (path.node.name === "a") {
-                            path.node.name = "myVar";
-                        }
-                    }
-                });
-
-                // Generate readable JavaScript
-                const output = Babel.transformFromAstSync(ast, inputCode, { 
-                    presets: ['env'],
-                    retainLines: true
-                }).code;
-
-                document.getElementById("outputCode").textContent = output;
-            } catch (err) {
-                document.getElementById("outputCode").textContent = "Error: " + err.message;
+        // Dead Code Removal: Traverse AST
+        Babel.traverse(ast, {
+            VariableDeclarator(path) {
+                // Remove unused variables
+                const binding = path.scope.getBinding(path.node.id.name);
+                if (binding && binding.references === 0) {
+                    path.remove();
+                }
+            },
+            IfStatement(path) {
+                // Remove `if (false) { ... }` or `if (0) { ... }`
+                if (path.node.test.type === "BooleanLiteral" && !path.node.test.value) {
+                    path.remove();
+                }
+            },
+            ExpressionStatement(path) {
+                // Remove redundant expressions like `0;` or `"test";`
+                if (path.node.expression.type === "NumericLiteral" || path.node.expression.type === "StringLiteral") {
+                    path.remove();
+                }
+            },
+            ReturnStatement(path) {
+                // Remove unreachable code after return
+                let next = path.getSibling(path.key + 1);
+                while (next.node) {
+                    next.remove();
+                    next = path.getSibling(next.key + 1);
+                }
             }
-        }
+        });
+
+        // Generate readable JavaScript
+        const output = Babel.transformFromAstSync(ast, inputCode, { 
+            presets: ['env'],
+            retainLines: true
+        }).code;
+
+        document.getElementById("outputCode").textContent = output;
+    } catch (err) {
+        document.getElementById("outputCode").textContent = "Error: " + err.message;
+    }
+}
     </script>
 </body>
 </html>
