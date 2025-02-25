@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS Deobfuscator</title>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://unpkg.com/@babel/parser"></script>
-    <script src="https://unpkg.com/@babel/traverse"></script>
-    <script src="https://unpkg.com/@babel/generator"></script>
 </head>
 <body>
     <h2>JavaScript Deobfuscator</h2>
@@ -17,14 +14,18 @@
     <h3>Deobfuscated Code:</h3>
     <pre id="outputCode"></pre>
 
-    <script>
-        function deobfuscate() {
+    <script type="module">
+        import * as babelParser from "https://unpkg.com/@babel/parser@latest";
+        import * as babelTraverse from "https://unpkg.com/@babel/traverse@latest";
+        import * as babelGenerator from "https://unpkg.com/@babel/generator@latest";
+
+        window.deobfuscate = function () {
             const inputCode = document.getElementById("inputCode").value;
 
             try {
-                // Use babelParser instead of Babel.parse()
+                // Parse JavaScript to AST
                 const ast = babelParser.parse(inputCode, {
-                    sourceType: "module", // Allows parsing of ES6 modules
+                    sourceType: "module", // Support ES6 syntax
                     plugins: ["jsx"] // Enable JSX if needed
                 });
 
@@ -55,7 +56,7 @@
                     }
                 });
 
-                // Step 2: Revert Obfuscation
+                // Step 2: Decode Obfuscation
                 babelTraverse.default(ast, {
                     Identifier(path) {
                         const nameMap = { a: "username", b: "password", c: "token" };
@@ -75,7 +76,7 @@
                     }
                 });
 
-                // Step 3: Generate Readable Code
+                // Step 3: Generate Clean Code
                 const output = babelGenerator.default(ast, {
                     retainLines: true
                 }).code;
@@ -84,7 +85,7 @@
             } catch (err) {
                 document.getElementById("outputCode").textContent = "Error: " + err.message;
             }
-        }
+        };
     </script>
 </body>
 </html>
