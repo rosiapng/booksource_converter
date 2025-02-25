@@ -5,9 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS Deobfuscator</title>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://unpkg.com/@babel/parser@7.21.4/lib/index.umd.js"></script>
-    <script src="https://unpkg.com/@babel/traverse@7.21.4/lib/index.umd.js"></script>
-    <script src="https://unpkg.com/@babel/generator@7.21.4/lib/index.umd.js"></script>
+    <script>
+        // Load Babel dependencies dynamically
+        async function loadBabelDependencies() {
+            const parserModule = await import("https://unpkg.com/@babel/parser@7.21.4");
+            const traverseModule = await import("https://unpkg.com/@babel/traverse@7.21.4");
+            const generatorModule = await import("https://unpkg.com/@babel/generator@7.21.4");
+
+            // Assign them globally so we can use them
+            window.babelParser = parserModule;
+            window.babelTraverse = traverseModule;
+            window.babelGenerator = generatorModule;
+
+            console.log("Babel dependencies loaded.");
+        }
+
+        loadBabelDependencies();
+    </script>
 </head>
 <body>
     <h2>JavaScript Deobfuscator</h2>
@@ -19,12 +33,17 @@
 
     <script>
         function deobfuscate() {
+            if (!window.babelParser || !window.babelTraverse || !window.babelGenerator) {
+                document.getElementById("outputCode").textContent = "Error: Babel dependencies not yet loaded.";
+                return;
+            }
+
             const inputCode = document.getElementById("inputCode").value;
 
             try {
                 // Parse JavaScript into AST
                 const ast = window.babelParser.parse(inputCode, {
-                    sourceType: "module", // Allow ES6 syntax
+                    sourceType: "module", // Support ES6 syntax
                     plugins: ["jsx"] // Enable JSX if needed
                 });
 
