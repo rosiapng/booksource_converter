@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Obfuscator</title>
+    <script src="https://cdn.jsdelivr.net/npm/javascript-obfuscator/dist/index.browser.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        textarea {
+            width: 80%;
+            height: 300px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        button {
+            margin: 10px 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        select {
+            font-size: 16px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>JavaScript Obfuscator</h2>
+
+    <textarea id="codeInput" placeholder="Enter JavaScript code here..."></textarea><br>
+
+    <label for="level">Obfuscation Level:</label>
+    <select id="level">
+        <option value="low">Low</option>
+        <option value="medium" selected>Medium</option>
+        <option value="high">High</option>
+    </select>
+
+    <br>
+    <button onclick="obfuscateCode()">Obfuscate</button>
+    <button onclick="clearCode()">Clear</button>
+    <button onclick="copyCode()">Copy</button>
+    <button onclick="pasteCode()">Paste</button>
+
+    <script>
+        function obfuscateCode() {
+            const input = document.getElementById("codeInput");
+            const level = document.getElementById("level").value;
+            const code = input.value;
+
+            if (!code.trim()) {
+                alert("Please enter JavaScript code to obfuscate.");
+                return;
+            }
+
+            let options = {};
+
+            if (level === "low") {
+                options = { compact: true };
+            } else if (level === "medium") {
+                options = {
+                    compact: true,
+                    controlFlowFlattening: true
+                };
+            } else if (level === "high") {
+                options = {
+                    compact: true,
+                    controlFlowFlattening: true,
+                    stringArray: true,
+                    stringArrayEncoding: ["base64"],
+                    rotateStringArray: true,
+                    selfDefending: true,
+                    deadCodeInjection: true
+                };
+            }
+
+            try {
+                const obfuscatedCode = JavaScriptObfuscator.obfuscate(code, options).getObfuscatedCode();
+                input.value = obfuscatedCode;
+            } catch (error) {
+                alert("Error obfuscating code: " + error.message);
+            }
+        }
+
+        function clearCode() {
+            document.getElementById("codeInput").value = "";
+        }
+
+        function copyCode() {
+            const input = document.getElementById("codeInput");
+            input.select();
+            document.execCommand("copy");
+            alert("Code copied to clipboard!");
+        }
+
+        async function pasteCode() {
+            try {
+                const text = await navigator.clipboard.readText();
+                document.getElementById("codeInput").value = text;
+            } catch (error) {
+                alert("Failed to paste: " + error.message);
+            }
+        }
+    </script>
+
+</body>
+</html>
