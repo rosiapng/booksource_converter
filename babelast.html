@@ -6,35 +6,45 @@
     <title>JS Deobfuscator</title>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script>
-        // Load Babel dependencies dynamically
+        // Disable button until Babel is ready
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("deobfuscateButton").disabled = true;
+            loadBabelDependencies();
+        });
+
         async function loadBabelDependencies() {
-            const parserModule = await import("https://unpkg.com/@babel/parser@7.21.4");
-            const traverseModule = await import("https://unpkg.com/@babel/traverse@7.21.4");
-            const generatorModule = await import("https://unpkg.com/@babel/generator@7.21.4");
+            try {
+                const parserModule = await import("https://unpkg.com/@babel/parser@7.21.4");
+                const traverseModule = await import("https://unpkg.com/@babel/traverse@7.21.4");
+                const generatorModule = await import("https://unpkg.com/@babel/generator@7.21.4");
 
-            // Assign them globally so we can use them
-            window.babelParser = parserModule;
-            window.babelTraverse = traverseModule;
-            window.babelGenerator = generatorModule;
+                // Assign them globally
+                window.babelParser = parserModule;
+                window.babelTraverse = traverseModule;
+                window.babelGenerator = generatorModule;
 
-            console.log("Babel dependencies loaded.");
+                // Enable button once everything is loaded
+                document.getElementById("deobfuscateButton").disabled = false;
+                console.log("Babel dependencies loaded.");
+            } catch (error) {
+                console.error("Failed to load Babel dependencies:", error);
+                document.getElementById("outputCode").textContent = "Error loading Babel dependencies.";
+            }
         }
-
-        loadBabelDependencies();
     </script>
 </head>
 <body>
     <h2>JavaScript Deobfuscator</h2>
     <textarea id="inputCode" rows="10" cols="50" placeholder="Paste obfuscated JavaScript here"></textarea>
     <br>
-    <button onclick="deobfuscate()">Deobfuscate</button>
+    <button id="deobfuscateButton" onclick="deobfuscate()">Deobfuscate (Loading...)</button>
     <h3>Deobfuscated Code:</h3>
     <pre id="outputCode"></pre>
 
     <script>
         function deobfuscate() {
             if (!window.babelParser || !window.babelTraverse || !window.babelGenerator) {
-                document.getElementById("outputCode").textContent = "Error: Babel dependencies not yet loaded.";
+                document.getElementById("outputCode").textContent = "Error: Babel dependencies not loaded.";
                 return;
             }
 
@@ -43,8 +53,8 @@
             try {
                 // Parse JavaScript into AST
                 const ast = window.babelParser.parse(inputCode, {
-                    sourceType: "module", // Support ES6 syntax
-                    plugins: ["jsx"] // Enable JSX if needed
+                    sourceType: "module",
+                    plugins: ["jsx"]
                 });
 
                 // Step 1: Remove Dead Code
