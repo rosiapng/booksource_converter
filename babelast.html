@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS Deobfuscator</title>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/@babel/parser@7.21.4/lib/index.umd.js"></script>
+    <script src="https://unpkg.com/@babel/traverse@7.21.4/lib/index.umd.js"></script>
+    <script src="https://unpkg.com/@babel/generator@7.21.4/lib/index.umd.js"></script>
 </head>
 <body>
     <h2>JavaScript Deobfuscator</h2>
@@ -14,23 +17,19 @@
     <h3>Deobfuscated Code:</h3>
     <pre id="outputCode"></pre>
 
-    <script type="module">
-        import * as babelParser from "https://unpkg.com/@babel/parser@latest";
-        import * as babelTraverse from "https://unpkg.com/@babel/traverse@latest";
-        import * as babelGenerator from "https://unpkg.com/@babel/generator@latest";
-
-        window.deobfuscate = function () {
+    <script>
+        function deobfuscate() {
             const inputCode = document.getElementById("inputCode").value;
 
             try {
-                // Parse JavaScript to AST
-                const ast = babelParser.parse(inputCode, {
-                    sourceType: "module", // Support ES6 syntax
+                // Parse JavaScript into AST
+                const ast = window.babelParser.parse(inputCode, {
+                    sourceType: "module", // Allow ES6 syntax
                     plugins: ["jsx"] // Enable JSX if needed
                 });
 
                 // Step 1: Remove Dead Code
-                babelTraverse.default(ast, {
+                window.babelTraverse.default(ast, {
                     VariableDeclarator(path) {
                         const binding = path.scope.getBinding(path.node.id.name);
                         if (binding && binding.references === 0) {
@@ -57,7 +56,7 @@
                 });
 
                 // Step 2: Decode Obfuscation
-                babelTraverse.default(ast, {
+                window.babelTraverse.default(ast, {
                     Identifier(path) {
                         const nameMap = { a: "username", b: "password", c: "token" };
                         if (nameMap[path.node.name]) {
@@ -77,7 +76,7 @@
                 });
 
                 // Step 3: Generate Clean Code
-                const output = babelGenerator.default(ast, {
+                const output = window.babelGenerator.default(ast, {
                     retainLines: true
                 }).code;
 
@@ -85,7 +84,7 @@
             } catch (err) {
                 document.getElementById("outputCode").textContent = "Error: " + err.message;
             }
-        };
+        }
     </script>
 </body>
 </html>
