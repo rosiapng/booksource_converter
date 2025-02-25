@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Obfuscator</title>
+    <title>JS代码混淆</title>
     <script src="https://cdn.jsdelivr.net/npm/javascript-obfuscator/dist/index.browser.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
             margin: 20px;
         }
         textarea {
-            width: 80%;
-            height: 300px;
+            width: 80%;!important;
+            height: 300px;!important;
             font-family: monospace;
             font-size: 14px;
         }
@@ -28,25 +27,46 @@
             padding: 5px;
         }
     </style>
+     <link rel="stylesheet" href="./css/index_styles.css">
 </head>
 <body>
+    <h2 class="big-title">JS代码混淆</h2>
+    <p class="author">By 小猫咪Rosia P'ng</p>
 
-    <h2>JavaScript Obfuscator</h2>
+    <div class="nav-box">
+        <nav>
+            <a class="nav-button" href="./index.html">书源语法转换器(xpath,css)</a>
+            <a class="nav-button" href="./manyajs.html">傻瓜式益达转漫鸭正文JS器</a>
+            <a class="nav-button" href="./jijian.html">傻瓜极简写源工具</a>
+            <a class="nav-button" href="./jjfen.html">极简源发现工具</a>
+            <a class="nav-button" href="./yuedu.html">阅读源发现格式转换极简源发现</a>
+            <a class="nav-button" href="./beuti.html">美化Json和JS</a>
+            <a class="nav-button" href="./code.html">Js测试</a>
+            <a class="nav-button" href="./base64.html">Base64和URI decode</a>
+            <a class="nav-button" href="./aes.html">Crypto AES解密测试</a>
+            <a class="nav-button" href="./yuedutool.html">开源阅读/源阅发现转换工具</a>
+            <a class="nav-button" href="./qingnao.html">极简微光转换器</a>
+        <a class="nav-button" href="./jsob.html">JS代码混淆</a>
+        </nav>
+    </div>
+
+   <h1 class="title">JS代码混淆</h1>
 
     <textarea id="codeInput" placeholder="Enter JavaScript code here..."></textarea><br>
 
     <label for="level">Obfuscation Level:</label>
     <select id="level">
+        <option value="default" selected>Default</option>
         <option value="low">Low</option>
-        <option value="medium" selected>Medium</option>
+        <option value="medium">Medium</option>
         <option value="high">High</option>
     </select>
 
     <br>
-    <button onclick="obfuscateCode()">Obfuscate</button>
-    <button onclick="clearCode()">Clear</button>
-    <button onclick="copyCode()">Copy</button>
-    <button onclick="pasteCode()">Paste</button>
+    <button onclick="obfuscateCode()">代码混淆</button>
+    <button onclick="clearCode()">清空</button>
+    <button onclick="copyCode()">复制</button>
+    <button onclick="pasteCode()">粘贴</button>
 
     <script>
         function obfuscateCode() {
@@ -58,17 +78,105 @@
 
             let options = {};
 
-            if (level === "low") {
-                options = { compact: true };
+            if (level === "default") {
+                options = {
+                    compact: true,
+                    controlFlowFlattening: false,
+                    deadCodeInjection: false,
+                    debugProtection: false,
+                    debugProtectionInterval: 0,
+                    disableConsoleOutput: false,
+                    identifierNamesGenerator: 'hexadecimal',
+                    log: false,
+                    numbersToExpressions: false,
+                    renameGlobals: false,
+                    selfDefending: false,
+                    simplify: true,
+                    splitStrings: false,
+                    stringArray: true,
+                    stringArrayCallsTransform: false,
+                    stringArrayCallsTransformThreshold: 0.5,
+                    stringArrayEncoding: [],
+                    stringArrayIndexShift: true,
+                    stringArrayRotate: true,
+                    stringArrayShuffle: true,
+                    stringArrayWrappersCount: 1,
+                    stringArrayWrappersChainedCalls: true,
+                    stringArrayWrappersParametersMaxCount: 2,
+                    stringArrayWrappersType: 'variable',
+                    stringArrayThreshold: 0.75,
+                    unicodeEscapeSequence: false
+                };
+            } else if (level === "low") {
+                options = {
+                    compact: true,
+                    controlFlowFlattening: false,
+                    deadCodeInjection: false,
+                    debugProtection: false,
+                    debugProtectionInterval: 0,
+                    disableConsoleOutput: true,
+                    identifierNamesGenerator: 'hexadecimal',
+                    log: false,
+                    numbersToExpressions: false,
+                    renameGlobals: false,
+                    selfDefending: true,
+                    simplify: true,
+                    splitStrings: false,
+                    stringArray: true,
+                    stringArrayCallsTransform: false,
+                    stringArrayEncoding: [],
+                    stringArrayIndexShift: true,
+                    stringArrayRotate: true,
+                    stringArrayShuffle: true,
+                    stringArrayWrappersCount: 1,
+                    stringArrayWrappersChainedCalls: true,
+                    stringArrayWrappersParametersMaxCount: 2,
+                    stringArrayWrappersType: 'variable',
+                    stringArrayThreshold: 0.75,
+                    unicodeEscapeSequence: false
+                };
             } else if (level === "medium") {
+                options = {
+                    compact: true,
+                    controlFlowFlattening: true,
+                    controlFlowFlatteningThreshold: 0.75,
+                    deadCodeInjection: true,
+                    deadCodeInjectionThreshold: 0.4,
+                    debugProtection: false,
+                    debugProtectionInterval: 0,
+                    disableConsoleOutput: true,
+                    identifierNamesGenerator: 'hexadecimal',
+                    log: false,
+                    numbersToExpressions: true,
+                    renameGlobals: false,
+                    selfDefending: true,
+                    simplify: true,
+                    splitStrings: true,
+                    splitStringsChunkLength: 10,
+                    stringArray: true,
+                    stringArrayCallsTransform: true,
+                    stringArrayCallsTransformThreshold: 0.75,
+                    stringArrayEncoding: ['base64'],
+                    stringArrayIndexShift: true,
+                    stringArrayRotate: true,
+                    stringArrayShuffle: true,
+                    stringArrayWrappersCount: 2,
+                    stringArrayWrappersChainedCalls: true,
+                    stringArrayWrappersParametersMaxCount: 4,
+                    stringArrayWrappersType: 'function',
+                    stringArrayThreshold: 0.75,
+                    transformObjectKeys: true,
+                    unicodeEscapeSequence: false
+                };
+            } else if (level === "high") {
                 options = {
     compact: true,
     controlFlowFlattening: true,
-    controlFlowFlatteningThreshold: 0.75,
+    controlFlowFlatteningThreshold: 1,
     deadCodeInjection: true,
-    deadCodeInjectionThreshold: 0.4,
-    debugProtection: false,
-    debugProtectionInterval: 0,
+    deadCodeInjectionThreshold: 1,
+    debugProtection: true,
+    debugProtectionInterval: 4000,
     disableConsoleOutput: true,
     identifierNamesGenerator: 'hexadecimal',
     log: false,
@@ -77,32 +185,21 @@
     selfDefending: true,
     simplify: true,
     splitStrings: true,
-    splitStringsChunkLength: 10,
+    splitStringsChunkLength: 5,
     stringArray: true,
     stringArrayCallsTransform: true,
-    stringArrayCallsTransformThreshold: 0.75,
-    stringArrayEncoding: ['base64'],
+    stringArrayEncoding: ['rc4'],
     stringArrayIndexShift: true,
     stringArrayRotate: true,
     stringArrayShuffle: true,
-    stringArrayWrappersCount: 2,
-    stringArrayWrappersChainedCalls: true,
-    stringArrayWrappersParametersMaxCount: 4,
+    stringArrayWrappersCount: 5,
+    stringArrayWrappersChainedCalls: true,    
+    stringArrayWrappersParametersMaxCount: 5,
     stringArrayWrappersType: 'function',
-    stringArrayThreshold: 0.75,
+    stringArrayThreshold: 1,
     transformObjectKeys: true,
     unicodeEscapeSequence: false
 };
-            } else if (level === "high") {
-                options = {
-                    compact: true,
-                    controlFlowFlattening: true,
-                    stringArray: true,
-                    stringArrayEncoding: ["base64"],
-                    rotateStringArray: true,
-                    selfDefending: true,
-                    deadCodeInjection: true
-                };
             }
 
             try {
