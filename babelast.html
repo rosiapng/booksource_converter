@@ -22,32 +22,31 @@
             const inputCode = document.getElementById("inputCode").value;
 
             try {
-                // Parse code to AST
-                const ast = Babel.parse(inputCode);
+                // Use babelParser instead of Babel.parse()
+                const ast = babelParser.parse(inputCode, {
+                    sourceType: "module", // Allows parsing of ES6 modules
+                    plugins: ["jsx"] // Enable JSX if needed
+                });
 
                 // Step 1: Remove Dead Code
-                Babel.traverse(ast, {
+                babelTraverse.default(ast, {
                     VariableDeclarator(path) {
-                        // Remove unused variables
                         const binding = path.scope.getBinding(path.node.id.name);
                         if (binding && binding.references === 0) {
                             path.remove();
                         }
                     },
                     IfStatement(path) {
-                        // Remove `if (false)` blocks
                         if (path.node.test.type === "BooleanLiteral" && !path.node.test.value) {
                             path.remove();
                         }
                     },
                     ExpressionStatement(path) {
-                        // Remove unnecessary expressions like `"test";`
                         if (path.node.expression.type === "NumericLiteral" || path.node.expression.type === "StringLiteral") {
                             path.remove();
                         }
                     },
                     ReturnStatement(path) {
-                        // Remove unreachable code after return
                         let next = path.getSibling(path.key + 1);
                         while (next.node) {
                             next.remove();
@@ -57,23 +56,19 @@
                 });
 
                 // Step 2: Revert Obfuscation
-                Babel.traverse(ast, {
+                babelTraverse.default(ast, {
                     Identifier(path) {
-                        // Example: Rename variables back if possible
                         const nameMap = { a: "username", b: "password", c: "token" };
                         if (nameMap[path.node.name]) {
                             path.node.name = nameMap[path.node.name];
                         }
                     },
                     StringLiteral(path) {
-                        // Decode hex-encoded strings like "\x68\x65\x6c\x6c\x6f" => "hello"
-                        const decoded = path.node.value.replace(/\\x([0-9A-Fa-f]{2})/g, (match, hex) =>
+                        path.node.value = path.node.value.replace(/\\x([0-9A-Fa-f]{2})/g, (_, hex) => 
                             String.fromCharCode(parseInt(hex, 16))
                         );
-                        path.node.value = decoded;
                     },
                     CallExpression(path) {
-                        // Unwrap self-executing functions
                         if (path.node.callee.type === "FunctionExpression") {
                             path.replaceWithMultiple(path.node.callee.body.body);
                         }
@@ -81,9 +76,8 @@
                 });
 
                 // Step 3: Generate Readable Code
-                const output = Babel.transformFromAstSync(ast, inputCode, { 
-                    presets: ['env'],
-                    retainLines: true 
+                const output = babelGenerator.default(ast, {
+                    retainLines: true
                 }).code;
 
                 document.getElementById("outputCode").textContent = output;
