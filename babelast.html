@@ -8,18 +8,27 @@
     <!-- Load Babel Standalone -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <!-- Load Babel Modules -->
     <script>
-        async function loadBabelModules() {
-            const babelParserModule = await import("https://cdn.jsdelivr.net/npm/@babel/parser@7.21.4/+esm");
-            const babelTraverseModule = await import("https://cdn.jsdelivr.net/npm/@babel/traverse@7.21.4/+esm");
-            const babelGeneratorModule = await import("https://cdn.jsdelivr.net/npm/@babel/generator@7.21.4/+esm");
+        let babelReady = false; // ✅ Track Babel loading state
 
-            // ✅ Fix: Correctly assign named exports
-            window.babelParser = babelParserModule;
-            window.babelTraverse = babelTraverseModule.traverse;
-            window.babelGenerator = babelGeneratorModule;
+        async function loadBabelModules() {
+            try {
+                const babelParserModule = await import("https://cdn.jsdelivr.net/npm/@babel/parser@7.21.4/+esm");
+                const babelTraverseModule = await import("https://cdn.jsdelivr.net/npm/@babel/traverse@7.21.4/+esm");
+                const babelGeneratorModule = await import("https://cdn.jsdelivr.net/npm/@babel/generator@7.21.4/+esm");
+
+                // ✅ Assign modules correctly
+                window.babelParser = babelParserModule;
+                window.babelTraverse = babelTraverseModule.default; // FIX: Properly set traverse
+                window.babelGenerator = babelGeneratorModule.default; // FIX: Properly set generator
+
+                babelReady = true; // ✅ Mark Babel as ready
+                document.getElementById("deobfuscateButton").disabled = false; // Enable button
+            } catch (error) {
+                console.error("Failed to load Babel modules:", error);
+            }
         }
+
         loadBabelModules();
     </script>
 </head>
@@ -27,32 +36,34 @@
     <h2>JavaScript Deobfuscator</h2>
     <textarea id="inputCode" rows="10" cols="50" placeholder="Paste obfuscated JavaScript here"></textarea>
     <br>
-    <button id="deobfuscateButton">Deobfuscate</button>
+    <button id="deobfuscateButton" disabled>Deobfuscate</button>
     <h3>Deobfuscated Code:</h3>
     <pre id="outputCode"></pre>
 
     <script>
-        async function deobfuscate() {
-            try {
-                if (!window.babelParser || !window.babelTraverse || !window.babelGenerator) {
-                    document.getElementById("outputCode").textContent = "Error: Babel modules not loaded yet!";
-                    return;
-                }
+        async function waitForBabel() {
+            while (!babelReady) {
+                await new Promise(resolve => setTimeout(resolve, 50)); // ✅ Wait 50ms if Babel is not ready
+            }
+        }
 
+        async function deobfuscate() {
+            await waitForBabel(); // ✅ Ensure Babel is loaded before running
+
+            try {
                 const inputCode = document.getElementById("inputCode").value;
                 if (!inputCode.trim()) {
                     document.getElementById("outputCode").textContent = "Error: No input code provided!";
                     return;
                 }
 
-                // ✅ Fix: Ensure proper source type for parsing
                 const ast = window.babelParser.parse(inputCode, {
                     sourceType: "script",
                     allowReturnOutsideFunction: true,
                     plugins: ["jsx"]
                 });
 
-                // ✅ Fix: Use `window.babelTraverse(ast, callback)`
+                // ✅ Traverse AST to remove dead code
                 window.babelTraverse(ast, {
                     VariableDeclarator(path) {
                         const binding = path.scope.getBinding(path.node.id.name);
@@ -69,21 +80,11 @@
                         if (path.node.expression.type === "NumericLiteral" || path.node.expression.type === "StringLiteral") {
                             path.remove();
                         }
-                    },
-                    ReturnStatement(path) {
-                        let next = path.getSibling(path.key + 1);
-                        while (next.node) {
-                            next.remove();
-                            next = path.getSibling(next.key + 1);
-                        }
                     }
                 });
 
-                // ✅ Fix: Use correct generator
-                const output = window.babelGenerator.default(ast, {
-                    retainLines: true
-                }).code;
-
+                // ✅ Generate cleaned code
+                const output = window.babelGenerator(ast, { retainLines: true }).code;
                 document.getElementById("outputCode").textContent = output || "No changes detected.";
             } catch (err) {
                 document.getElementById("outputCode").textContent = "Error: " + err.message;
