@@ -4,61 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS Deobfuscator</title>
+
+    <!-- Load Babel Standalone -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Load Babel Modules -->
     <script>
-        // Disable button until Babel is ready
-        document.addEventListener("DOMContentLoaded", () => {
-            document.getElementById("deobfuscateButton").disabled = true;
-            loadBabelDependencies();
-        });
+        async function loadBabelModules() {
+            const babelParserModule = await import("https://cdn.jsdelivr.net/npm/@babel/parser@7.21.4/+esm");
+            const babelTraverseModule = await import("https://cdn.jsdelivr.net/npm/@babel/traverse@7.21.4/+esm");
+            const babelGeneratorModule = await import("https://cdn.jsdelivr.net/npm/@babel/generator@7.21.4/+esm");
 
-        async function loadBabelDependencies() {
-            try {
-                const parserModule = await import("https://unpkg.com/@babel/parser@7.21.4");
-                const traverseModule = await import("https://unpkg.com/@babel/traverse@7.21.4");
-                const generatorModule = await import("https://unpkg.com/@babel/generator@7.21.4");
-
-                // Assign them globally
-                window.babelParser = parserModule;
-                window.babelTraverse = traverseModule;
-                window.babelGenerator = generatorModule;
-
-                // Enable button once everything is loaded
-                document.getElementById("deobfuscateButton").disabled = false;
-                console.log("Babel dependencies loaded.");
-            } catch (error) {
-                console.error("Failed to load Babel dependencies:", error);
-                document.getElementById("outputCode").textContent = "Error loading Babel dependencies.";
-            }
+            // ✅ Fix: Correctly assign named exports
+            window.babelParser = babelParserModule;
+            window.babelTraverse = babelTraverseModule.traverse;
+            window.babelGenerator = babelGeneratorModule;
         }
+        loadBabelModules();
     </script>
 </head>
 <body>
     <h2>JavaScript Deobfuscator</h2>
     <textarea id="inputCode" rows="10" cols="50" placeholder="Paste obfuscated JavaScript here"></textarea>
     <br>
-    <button id="deobfuscateButton" onclick="deobfuscate()">Deobfuscate (Loading...)</button>
+    <button id="deobfuscateButton">Deobfuscate</button>
     <h3>Deobfuscated Code:</h3>
     <pre id="outputCode"></pre>
 
     <script>
-        function deobfuscate() {
-            if (!window.babelParser || !window.babelTraverse || !window.babelGenerator) {
-                document.getElementById("outputCode").textContent = "Error: Babel dependencies not loaded.";
-                return;
-            }
-
-            const inputCode = document.getElementById("inputCode").value;
-
+        async function deobfuscate() {
             try {
-                // Parse JavaScript into AST
+                if (!window.babelParser || !window.babelTraverse || !window.babelGenerator) {
+                    document.getElementById("outputCode").textContent = "Error: Babel modules not loaded yet!";
+                    return;
+                }
+
+                const inputCode = document.getElementById("inputCode").value;
+                if (!inputCode.trim()) {
+                    document.getElementById("outputCode").textContent = "Error: No input code provided!";
+                    return;
+                }
+
+                // ✅ Fix: Ensure proper source type for parsing
                 const ast = window.babelParser.parse(inputCode, {
-                    sourceType: "module",
+                    sourceType: "script",
+                    allowReturnOutsideFunction: true,
                     plugins: ["jsx"]
                 });
 
-                // Step 1: Remove Dead Code
-                window.babelTraverse.default(ast, {
+                // ✅ Fix: Use `window.babelTraverse(ast, callback)`
+                window.babelTraverse(ast, {
                     VariableDeclarator(path) {
                         const binding = path.scope.getBinding(path.node.id.name);
                         if (binding && binding.references === 0) {
@@ -84,36 +79,18 @@
                     }
                 });
 
-                // Step 2: Decode Obfuscation
-                window.babelTraverse.default(ast, {
-                    Identifier(path) {
-                        const nameMap = { a: "username", b: "password", c: "token" };
-                        if (nameMap[path.node.name]) {
-                            path.node.name = nameMap[path.node.name];
-                        }
-                    },
-                    StringLiteral(path) {
-                        path.node.value = path.node.value.replace(/\\x([0-9A-Fa-f]{2})/g, (_, hex) => 
-                            String.fromCharCode(parseInt(hex, 16))
-                        );
-                    },
-                    CallExpression(path) {
-                        if (path.node.callee.type === "FunctionExpression") {
-                            path.replaceWithMultiple(path.node.callee.body.body);
-                        }
-                    }
-                });
-
-                // Step 3: Generate Clean Code
+                // ✅ Fix: Use correct generator
                 const output = window.babelGenerator.default(ast, {
                     retainLines: true
                 }).code;
 
-                document.getElementById("outputCode").textContent = output;
+                document.getElementById("outputCode").textContent = output || "No changes detected.";
             } catch (err) {
                 document.getElementById("outputCode").textContent = "Error: " + err.message;
             }
         }
+
+        document.getElementById("deobfuscateButton").addEventListener("click", deobfuscate);
     </script>
 </body>
 </html>
