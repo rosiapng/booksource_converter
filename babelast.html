@@ -3,53 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS Deobfuscator</title>
-
-    <!-- Load Babel Standalone -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-    <script>
-        let babelReady = false; // ✅ Track Babel loading state
-
-        async function loadBabelModules() {
-            try {
-                const babelParserModule = await import("https://cdn.jsdelivr.net/npm/@babel/parser@7.21.4/+esm");
-                const babelTraverseModule = await import("https://cdn.jsdelivr.net/npm/@babel/traverse@7.21.4/+esm");
-                const babelGeneratorModule = await import("https://cdn.jsdelivr.net/npm/@babel/generator@7.21.4/+esm");
-
-                // ✅ Assign modules correctly
-                window.babelParser = babelParserModule;
-                window.babelTraverse = babelTraverseModule.default; // FIX: Properly set traverse
-                window.babelGenerator = babelGeneratorModule.default; // FIX: Properly set generator
-
-                babelReady = true; // ✅ Mark Babel as ready
-                document.getElementById("deobfuscateButton").disabled = false; // Enable button
-            } catch (error) {
-                console.error("Failed to load Babel modules:", error);
-            }
-        }
-
-        loadBabelModules();
-    </script>
+    <title>JavaScript Deobfuscator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.4/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prettier/3.0.3/standalone.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prettier/3.0.3/parser-babel.js"></script>
 </head>
 <body>
     <h2>JavaScript Deobfuscator</h2>
     <textarea id="inputCode" rows="10" cols="50" placeholder="Paste obfuscated JavaScript here"></textarea>
     <br>
-    <button id="deobfuscateButton" disabled>Deobfuscate</button>
+    <button id="pasteButton">📋 Paste</button>
+    <button id="clearButton">🗑 Clear</button>
+    <button id="deobfuscateButton">🔍 Deobfuscate</button>
     <h3>Deobfuscated Code:</h3>
     <pre id="outputCode"></pre>
 
     <script>
-        async function waitForBabel() {
-            while (!babelReady) {
-                await new Promise(resolve => setTimeout(resolve, 50)); // ✅ Wait 50ms if Babel is not ready
+        async function beautifyCode(code) {
+            try {
+                return prettier.format(code, {
+                    parser: "babel",
+                    plugins: [prettierPlugins]  // ✅ Fixed: Use correct plugins reference
+                });
+            } catch (err) {
+                console.error("Prettier failed:", err);
+                return code;
             }
         }
 
-        async function deobfuscate() {
-            await waitForBabel(); // ✅ Ensure Babel is loaded before running
-
+        function deobfuscate() {
             try {
                 const inputCode = document.getElementById("inputCode").value;
                 if (!inputCode.trim()) {
@@ -57,41 +39,83 @@
                     return;
                 }
 
-                const ast = window.babelParser.parse(inputCode, {
-                    sourceType: "script",
-                    allowReturnOutsideFunction: true,
-                    plugins: ["jsx"]
+                const output = Babel.transform(inputCode, {
+                    presets: [],
+                    plugins: [
+                        function ({ types: t }) {
+                            return {
+                                visitor: {
+                                    // Remove dead code
+                                    IfStatement(path) {
+                                        if (t.isBooleanLiteral(path.node.test, { value: false })) {
+                                            path.remove();
+                                        }
+                                    },
+                                    ExpressionStatement(path) {
+                                        if (
+                                            t.isNumericLiteral(path.node.expression) ||
+                                            t.isStringLiteral(path.node.expression)
+                                        ) {
+                                            path.remove();
+                                        }
+                                    },
+                                    VariableDeclarator(path) {
+                                        if (path.node.id && path.scope.getBinding(path.node.id.name)?.references === 0) {
+                                            path.remove();
+                                        }
+                                    },
+                                    
+                                    // Replace eval() with its argument
+                                    CallExpression(path) {
+                                        if (t.isIdentifier(path.node.callee, { name: "eval" }) &&
+                                            path.node.arguments.length === 1 &&
+                                            t.isStringLiteral(path.node.arguments[0])) {
+                                            try {
+                                                const evaluatedAst = Babel.transform(path.node.arguments[0].value, {
+                                                    presets: [],
+                                                }).ast;
+                                                path.replaceWithMultiple(evaluatedAst.program.body);
+                                            } catch (e) {
+                                                console.error("Error evaluating eval():", e);
+                                            }
+                                        }
+                                    },
+
+                                    // Rename obfuscated variables
+                                    Identifier(path) {
+                                        path.node.name = "var_" + path.node.name.replace(/[^a-zA-Z0-9]/g, "_");
+                                    }
+                                }
+                            };
+                        }
+                    ]
+                }).code;
+
+                // Beautify output
+                beautifyCode(output).then((formatted) => {
+                    document.getElementById("outputCode").textContent = formatted || "No changes detected.";
                 });
 
-                // ✅ Traverse AST to remove dead code
-                window.babelTraverse(ast, {
-                    VariableDeclarator(path) {
-                        const binding = path.scope.getBinding(path.node.id.name);
-                        if (binding && binding.references === 0) {
-                            path.remove();
-                        }
-                    },
-                    IfStatement(path) {
-                        if (path.node.test.type === "BooleanLiteral" && !path.node.test.value) {
-                            path.remove();
-                        }
-                    },
-                    ExpressionStatement(path) {
-                        if (path.node.expression.type === "NumericLiteral" || path.node.expression.type === "StringLiteral") {
-                            path.remove();
-                        }
-                    }
-                });
-
-                // ✅ Generate cleaned code
-                const output = window.babelGenerator(ast, { retainLines: true }).code;
-                document.getElementById("outputCode").textContent = output || "No changes detected.";
             } catch (err) {
                 document.getElementById("outputCode").textContent = "Error: " + err.message;
             }
         }
 
+        // Button event listeners
         document.getElementById("deobfuscateButton").addEventListener("click", deobfuscate);
+        document.getElementById("clearButton").addEventListener("click", () => {
+            document.getElementById("inputCode").value = "";
+            document.getElementById("outputCode").textContent = "";
+        });
+
+        document.getElementById("pasteButton").addEventListener("click", async () => {
+            try {
+                const text = await navigator.clipboard.readText();
+                document.getElementById("inputCode").value = text;
+            } catch (err) {
+                console.error("Clipboard access denied:", err);
+            }
+        });
     </script>
 </body>
 </html>
