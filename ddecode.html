@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Decoder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        select, button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        #output {
+            margin-top: 20px;
+            white-space: pre-wrap;
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+            text-align: left; /* Ensures left-aligned text */
+        }
+    </style>
+</head>
+<body>
+
+    <h2>JavaScript Decoder</h2>
+    
+    <label for="codeInput">Paste obfuscated code below:</label>
+    <textarea id="codeInput" placeholder="Enter obfuscated JavaScript here..."></textarea>
+
+    <label for="decodeType">Select decoding method:</label>
+    <select id="decodeType">
+        <option value="common">Common</option>
+        <option value="sojson">jiami</option>
+        <option value="sojsonv7">Jiamiv7</option>
+        <option value="obfuscator">Obfuscator</option>
+        <option value="awsc">AWSC</option>
+        <option value="jjencode">JJEncode</option>
+    </select>
+
+    <button onclick="decodeJS()">Decode</button>
+
+    <h3>Decoded Output:</h3>
+    <pre id="output"></pre>
+
+    <script>
+        async function decodeJS() {
+            const code = document.getElementById("codeInput").value.trim();
+            const type = document.getElementById("decodeType").value;
+            const outputElement = document.getElementById("output");
+
+            if (!code) {
+                alert("Please enter obfuscated JavaScript code!");
+                return;
+            }
+
+            try {
+                const response = await fetch("https://p01--decodeapi--8b2p7sgft5xs.code.run/decode", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ code, type })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    outputElement.innerText = data.decoded || "Decoding failed!";
+                } else {
+                    outputElement.innerText = "Error: " + data.detail;
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                outputElement.innerText = "Error communicating with the server.";
+            }
+
+            outputElement.style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
