@@ -3,87 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS Decoder</title>
+    <title>Javascript混淆解密</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            text-align: center;
+            background-color: #000;
+            color: #fff;
         }
         textarea {
             width: 100%;
-            height: 150px;
+            height: 200px;
             margin-bottom: 10px;
-            display: block;
+            font-size: 16px;
+            padding: 10px;
+            background-color: #222;
+            color: #fff;
+            border: 1px solid #555;
         }
         select, button {
             padding: 10px;
             font-size: 16px;
-            margin-top: 10px;
+            margin: 5px;
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #555;
+            cursor: pointer;
+        }
+        select:hover, button:hover {
+            background-color: #444;
         }
         #output {
             margin-top: 20px;
             white-space: pre-wrap;
-            background: #f4f4f4;
+            background: #111;
             padding: 10px;
             border-radius: 5px;
             display: none;
-            text-align: left; /* Ensures left-aligned text */
+            text-align: left;
+            color: #fff;
+            border: 1px solid #555;
         }
     </style>
 </head>
 <body>
 
-    <h2>JavaScript Decoder</h2>
+    <h2>Javascript混淆解密</h2>
     
-    <label for="codeInput">Paste obfuscated code below:</label>
-    <textarea id="codeInput" placeholder="Enter obfuscated JavaScript here..."></textarea>
+    <label for="codeInput">Paste obfuscated code below:</label><br>
+    <textarea id="codeInput" placeholder="Enter obfuscated JavaScript here..."></textarea><br>
+
+    <button onclick="pasteText()">粘贴</button>
+    <button onclick="clearText()">清空</button>
+
+    <br><br>
 
     <label for="decodeType">Select decoding method:</label>
     <select id="decodeType">
         <option value="common">Common</option>
-        <option value="sojson">jiami</option>
+        <option value="sojson">Jiami</option>
         <option value="sojsonv7">Jiamiv7</option>
         <option value="obfuscator">Obfuscator</option>
-        <option value="awsc">AWSC</option>
+        <option value="awsc">fireyejs</option>
         <option value="jjencode">JJEncode</option>
     </select>
 
-    <button onclick="decodeJS()">Decode</button>
+    <button onclick="decodeJS()">解密</button>
 
     <h3>Decoded Output:</h3>
     <pre id="output"></pre>
+    <button id="copyButton" onclick="copyText()" style="display: none;">复制</button>
 
     <script>
-        async function decodeJS() {
-            const code = document.getElementById("codeInput").value.trim();
+        async function pasteText() {
+            try {
+                const text = await navigator.clipboard.readText();
+                document.getElementById("codeInput").value = text;
+            } catch (err) {
+                console.error("Failed to paste:", err);
+            }
+        }
+
+        function clearText() {
+            document.getElementById("codeInput").value = "";
+            document.getElementById("output").style.display = "none";
+            document.getElementById("copyButton").style.display = "none";
+        }
+
+        function decodeJS() {
+            const encoded = document.getElementById("codeInput").value;
             const type = document.getElementById("decodeType").value;
             const outputElement = document.getElementById("output");
+            const copyButton = document.getElementById("copyButton");
 
-            if (!code) {
-                alert("Please enter obfuscated JavaScript code!");
-                return;
-            }
+            if (!encoded.trim()) return;
 
-            try {
-                const response = await fetch("https://p01--decodeapi--8b2p7sgft5xs.code.run/decode", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ code, type })
-                });
-
-                const data = await response.json();
-
-                if (response.ok) {
-                    outputElement.innerText = data.decoded || "Decoding failed!";
+            fetch("https://p01--decodeapi--8b2p7sgft5xs.code.run/decode", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ encoded, type })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.decoded) {
+                    outputElement.innerText = data.decoded;
+                    outputElement.style.display = "block";
+                    copyButton.style.display = "inline-block";
                 } else {
-                    outputElement.innerText = "Error: " + data.detail;
+                    outputElement.innerText = "Decoding failed!";
+                    outputElement.style.display = "block";
+                    copyButton.style.display = "none";
                 }
-            } catch (error) {
+            })
+            .catch(error => {
                 console.error("Error:", error);
                 outputElement.innerText = "Error communicating with the server.";
-            }
+                outputElement.style.display = "block";
+                copyButton.style.display = "none";
+            });
+        }
 
-            outputElement.style.display = "block";
+        function copyText() {
+            const outputText = document.getElementById("output").innerText;
+            navigator.clipboard.writeText(outputText).catch(err => {
+                console.error("Failed to copy:", err);
+            });
         }
     </script>
 
